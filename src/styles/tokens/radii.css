@@ -1,0 +1,9 @@
+/* ============================================================
+   BORDES REDONDEADOS
+   ============================================================ */
+
+:root {
+  /* CAMBIAR AQUÍ: radios globales */
+  --radius-lg: 6px; /* bloques grandes: covers, heroes, fotos */
+  --radius-sm: 4px; /* celdas / chips / piezas pequeñas */
+}

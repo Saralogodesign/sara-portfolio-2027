@@ -1,0 +1,34 @@
+/* ============================================================
+   TIPOGRAFÍA — fuentes y familia por defecto
+   ============================================================ */
+
+/* CAMBIAR AQUÍ: familias tipográficas (Google Fonts) */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,500&display=swap");
+
+:root {
+  /* CAMBIAR AQUÍ: stack de texto de cuerpo */
+  --font-body: "DM Sans", sans-serif;
+  /* CAMBIAR AQUÍ: stack de display / titulares */
+  --font-display: "Fraunces", serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+.hero-title h1,
+.project-art strong,
+.project-copy h3,
+.case-hero h1,
+.case-art strong,
+.more-art,
+.cx-closing,
+.cx-eco-simple > div.is-core,
+.cx-brand-pair strong,
+.cx-reuse .is-core,
+.cx-eco-core strong,
+.cx-brand strong,
+.cx-words span,
+.cx-quote blockquote {
+  font-family: var(--font-display);
+}

@@ -1,0 +1,22 @@
+/* ============================================================
+   ENTRADA DE ESTILOS
+   Orden: tokens → base → home → cases
+   Edita tokens/ para colores, tipografía y radii.
+   ============================================================ */
+
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/radii.css";
+
+@import "./base.css";
+@import "./home.css";
+@import "./case-base.css";
+@import "./case-shared.css";
+
+@import "./cases/conecta.css";
+@import "./cases/rosetta.css";
+@import "./cases/violeta.css";
+@import "./cases/cucharita.css";
+@import "./cases/escuela.css";
+
+@import "./radii-apply.css";

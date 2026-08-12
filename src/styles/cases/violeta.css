@@ -1,0 +1,157 @@
+/* —— Violeta case study —— */
+.violeta-case{
+  --violet:#6b3fa0;
+  --violet-soft:#c9bdff;
+  --violet-mid:#8b5cf6;
+  --rose:#f2b6d5;
+}
+.violeta-case .eyebrow{color:var(--violet)}
+.violeta-case .cx-dark .eyebrow{color:var(--violet-soft)}
+.violeta-case .cx-label{color:var(--violet)}
+.violeta-case .cx-dark .cx-label{color:var(--violet-soft)}
+.violeta-case .cx-months>div{border-top-color:var(--violet)}
+.violeta-case .cx-months em{font-style:normal;font-size:13px;color:#555;line-height:1.35}
+.violeta-case .cx-journey{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.violeta-case .cx-journey>div{
+  border-top:2px solid var(--line);
+  padding:16px 10px 20px;
+  display:grid;
+  gap:8px;
+  min-height:140px;
+  position:relative;
+}
+.violeta-case .cx-journey>div span{
+  font-size:12px;
+  font-weight:700;
+  color:var(--violet);
+}
+.violeta-case .cx-journey>div strong{
+  font-size:16px;
+  letter-spacing:-.02em;
+  line-height:1.25;
+}
+.violeta-case .cx-journey>div em{
+  font-style:normal;
+  font-size:13px;
+  color:#555;
+}
+.violeta-case .cx-journey>div.is-intervene{
+  border-top-color:var(--violet);
+  background:rgba(107,63,160,.07);
+}
+.violeta-case .cx-journey>div b{
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--violet);
+  font-weight:700;
+}
+.violeta-case .cx-triangulate{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+}
+.violeta-case .cx-triangulate>div{
+  border:1px solid var(--line);
+  background:white;
+  padding:18px 20px;
+  min-width:140px;
+  flex:1;
+}
+.violeta-case .cx-triangulate strong{
+  display:block;
+  font-size:16px;
+  margin-bottom:6px;
+}
+.violeta-case .cx-triangulate span:not(.cx-arrow){
+  font-size:13px;
+  color:#555;
+}
+.violeta-case .cx-triangulate .is-core{
+  background:var(--violet);
+  color:white;
+  border-color:var(--violet);
+}
+.violeta-case .cx-triangulate .is-core span{color:rgba(255,255,255,.8)}
+.violeta-case .cx-triangulate .is-out{
+  background:var(--violet-soft);
+  border-color:var(--violet-soft);
+}
+.violeta-case .cx-triangulate .cx-arrow{
+  color:var(--violet);
+  font-size:20px;
+  font-weight:700;
+  flex:0;
+}
+.violeta-case .cx-principles{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+}
+.violeta-case .cx-principles>div{
+  border:1px solid var(--line);
+  background:white;
+  padding:24px 18px;
+  min-height:140px;
+}
+.violeta-case .cx-principles strong{
+  display:block;
+  font-size:18px;
+  letter-spacing:-.02em;
+  line-height:1.3;
+}
+.violeta-case .cx-brand-board{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:12px;
+}
+.violeta-case .cx-brand-board>div{
+  border:1px solid rgba(255,255,255,.28);
+  padding:24px 16px;
+  min-height:140px;
+}
+.violeta-case .cx-brand-board strong{
+  display:block;
+  font-family:"Fraunces",serif;
+  font-size:22px;
+  font-weight:300;
+  letter-spacing:-.03em;
+  line-height:1.2;
+}
+.violeta-case .cx-layers{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+.violeta-case .cx-layers>div{
+  border:1px solid var(--line);
+  background:white;
+  padding:28px 22px;
+}
+.violeta-case .cx-layers strong{
+  display:block;
+  font-family:"Fraunces",serif;
+  font-size:28px;
+  font-weight:300;
+  letter-spacing:-.03em;
+  margin-bottom:10px;
+}
+.violeta-case .cx-layers span{
+  font-size:14px;
+  color:#555;
+}
+.violeta-case .cx-hero-art{
+  background:linear-gradient(145deg,#6b3fa0 0%,#8b5cf6 45%,#f2b6d5 100%);
+  color:white;
+}
+@media(max-width:900px){
+  .violeta-case .cx-journey,.violeta-case .cx-principles,.violeta-case .cx-brand-board,.violeta-case .cx-layers{
+    grid-template-columns:1fr 1fr;
+  }
+}
+

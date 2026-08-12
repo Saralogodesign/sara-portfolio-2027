@@ -1,0 +1,52 @@
+/* —— Radii globales: grandes 6px · pequeños 4px —— */
+.project-art,
+.case-art,
+.cx-photo,
+.more-art,
+.mini-art,
+.portrait,
+.lab-grid div,
+.system-diagram,
+.case-evolution>div>section,
+.cx-compare>div,
+.cx-brand-pair>div,
+.cx-taxonomy>div,
+.cx-brand>div,
+.violeta-case .cx-principles>div,
+.violeta-case .cx-brand-board>div,
+.violeta-case .cx-layers>div,
+.cucharita-case .cu-eco>div,
+.cucharita-case .cx-tension>div,
+.cucharita-case .cx-concept-map>div,
+.cucharita-case .cx-brand-foundations>div,
+.cucharita-case .cx-naming>div,
+.escuela-case .eh-stakeholders>div,
+.escuela-case .eh-brand-path>div,
+.escuela-case .eh-transfer>div,
+.escuela-case .eh-compare>div,
+.escuela-case .eh-rebuild>div{
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+
+.cx-eco-simple>div,
+.cx-reuse>div,
+.cx-reuse-grid b,
+.cx-loop>div,
+.cx-eco-actor,
+.cx-eco-core,
+.cx-compare li,
+.cx-tags span,
+.cx-collab>div,
+.cx-foundations span,
+.system-diagram>*,
+.violeta-case .cx-triangulate>div,
+.cucharita-case .cx-concept-map li,
+.cucharita-case .cx-naming li,
+.escuela-case .eh-brand-path li,
+.escuela-case .eh-kit>div,
+.escuela-case .eh-a11y>div,
+.escuela-case .eh-a11y-system>div>div,
+.escuela-case .eh-kit-light>div{
+  border-radius:var(--radius-sm);
+}

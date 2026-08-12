@@ -1,0 +1,30 @@
+/* ============================================================
+   COLORES — edita aquí la paleta global y los tonos de proyecto
+   ============================================================ */
+
+:root {
+  /* CAMBIAR AQUÍ: fondo / tinta / acento */
+  --cream: #f7f3ec;
+  --ink: #191919;
+  --blue: #3420fd;
+  --teal: #15556a;
+
+  --page-bg: var(--cream);
+  --fg: var(--ink);
+  --fg-muted: #555;
+  --accent: var(--blue);
+  --accent-contrast: #fff;
+  --surface: #e5e1dc;
+  --line: rgba(25, 25, 25, 0.16);
+  --cta-bg: var(--blue);
+  --cta-fg: #fff;
+}
+
+/* CAMBIAR AQUÍ: fondos de las tarjetas de proyecto en la home */
+.violet { background: #c9bdff; }
+.blue { background: #b7dcff; }
+.coral { background: #ff896f; }
+.lime { background: #d1ef63; }
+.navy { background: #182e59; color: white; }
+.pink { background: #f2b6d5; }
+.teal { background: #15556a; color: white; }
