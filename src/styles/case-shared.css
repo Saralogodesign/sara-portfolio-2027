@@ -116,17 +116,41 @@
 .cx-words span{font-family:"Fraunces",serif;font-size:clamp(28px,4vw,48px);font-weight:300;letter-spacing:-.04em;border-top:1px solid rgba(255,255,255,.35);padding-top:18px}
 .cx-quote{padding-top:70px;padding-bottom:110px}
 .cx-quote blockquote{margin:0;max-width:980px;font-family:"Fraunces",serif;font-size:clamp(28px,4.5vw,52px);font-weight:300;line-height:1.15;letter-spacing:-.04em;color:var(--ink)}
-@media(max-width:900px){
+@media(max-width:1024px){
   .conecta-case .conecta-meta,.cx-timeline,.cx-chain,.cx-compare,.cx-taxonomy,.cx-brand,.cx-pipeline,.cx-months,.cx-words,.cx-ecosystem{grid-template-columns:1fr 1fr}
-  .cx-pipeline{grid-template-columns:1fr 1fr 1fr}
+  .cx-pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cx-ecosystem{grid-template-areas:"core" "a" "c" "b" "rel1" "rel2";grid-template-columns:1fr}
+  .cx-pad h2{font-size:clamp(36px,6vw,64px)}
+  .cx-prose p{font-size:18px}
+  .cx-section{padding:80px 5vw}
 }
 @media(max-width:760px){
   .conecta-case .conecta-meta,.cx-timeline,.cx-chain,.cx-compare,.cx-taxonomy,.cx-brand,.cx-pipeline,.cx-months,.cx-words,.cx-ecosystem,.cx-brand-pair,.cx-journey,.cx-principles,.cx-brand-board,.cx-layers{grid-template-columns:1fr}
-  .cx-section{padding:70px 20px}
+  .cx-section{padding:64px 20px}
+  .cx-pad h2{font-size:clamp(30px,8vw,48px);margin-bottom:28px}
+  .cx-prose{gap:16px;margin-bottom:32px}
+  .cx-prose p{font-size:17px;line-height:1.5}
+  .cx-list li{font-size:16px}
   .cx-bar{grid-template-columns:1fr}
-  .cx-eco-simple{flex-direction:column}
+  .cx-eco-simple{flex-direction:column;align-items:stretch}
+  .cx-eco-simple>div.is-core{font-size:clamp(22px,6vw,28px)}
+  .cx-reuse{flex-direction:column;align-items:stretch}
+  .rosetta-case .cx-pipeline{grid-template-columns:1fr}
   .cx-triangulate{flex-direction:column;align-items:stretch}
-  .cx-triangulate .cx-arrow{transform:rotate(90deg)}
+  .cx-triangulate .cx-arrow{transform:rotate(90deg);align-self:center}
+  .cx-brand-pair strong{font-size:clamp(24px,6vw,32px)}
+  .cx-eco-core strong{font-size:clamp(32px,8vw,42px)}
+  .cx-quote{padding-top:48px;padding-bottom:72px}
+  .cx-quote blockquote{font-size:clamp(24px,6.5vw,36px)}
+  .cx-closing{font-size:clamp(20px,5.5vw,28px)}
+  .cx-tech span{padding:10px 14px;font-size:13px}
+  .cx-photo{min-height:220px}
+  .cx-photo span{font-size:13px;padding:0 12px}
+}
+@media(max-width:480px){
+  .cx-pipeline,.cx-months,.cx-timeline{gap:8px}
+  .cx-pipeline>div,.cx-months>div,.cx-timeline-step{padding:12px 6px;font-size:13px}
+  .cx-words span{font-size:clamp(22px,7vw,32px)}
 }
 
 
