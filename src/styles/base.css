@@ -9,6 +9,7 @@
 html {
   scroll-behavior: smooth;
   background: var(--page-bg, var(--cream));
+  overflow-x: clip;
 }
 
 body {
@@ -16,6 +17,20 @@ body {
   background: transparent;
   color: var(--fg);
   transition: none;
+  overflow-x: clip;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+main,
+article,
+section {
+  min-width: 0;
 }
 
 button,

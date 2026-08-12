@@ -211,5 +211,8 @@
   .cucharita-case .cx-tension,.cucharita-case .cx-concept-map,.cucharita-case .cx-slow-line,.cucharita-case .cx-brand-foundations,.cucharita-case .cx-naming,.cucharita-case .cu-eco{
     grid-template-columns:1fr;
   }
+  .cucharita-case .cx-tension strong{font-size:clamp(24px,7vw,32px)}
+  .cucharita-case .cx-naming .is-name strong{font-size:clamp(32px,9vw,42px)}
+  .cucharita-case .cu-eco strong{font-size:clamp(22px,6vw,28px)}
 }
 
