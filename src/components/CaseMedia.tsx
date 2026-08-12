@@ -30,10 +30,9 @@ export default function CaseMedia({ media, label, note, className = "" }: Props)
   }
 
   return (
-    <div className={`cx-photo ${className}`.trim()} aria-label={caption}>
+    <figure className={`cx-photo ${className}`.trim()} role="group" aria-label={caption}>
       <span>{caption}</span>
-      {help ? <em className="eh-photo-note">{help}</em> : null}
-      {/* Añade el archivo en public{src} o quita src en content */}
-    </div>
+      {help ? <figcaption className="eh-photo-note">{help}</figcaption> : null}
+    </figure>
   );
 }
