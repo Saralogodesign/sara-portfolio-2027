@@ -30,14 +30,17 @@ export default function CaseArticle({ content, diagrams = {}, heroToneClass = ""
             </div>
           ))}
         </dl>
-        <div className={`case-art ${heroToneClass} cx-hero-art`.trim()}>
+        <div
+          className={`case-art ${heroToneClass} cx-hero-art`.trim()}
+          aria-hidden={hero.heroMedia?.src ? undefined : true}
+        >
           {hero.heroMedia?.src ? (
             <img src={hero.heroMedia.src} alt={hero.heroMedia.alt} />
           ) : (
             <>
               <span>{hero.artLabel}</span>
               <strong>{hero.artTitle}</strong>
-              <i>{hero.artHint}</i>
+              <i aria-hidden="true">{hero.artHint}</i>
             </>
           )}
         </div>
@@ -67,9 +70,11 @@ export default function CaseArticle({ content, diagrams = {}, heroToneClass = ""
       <section className="cx-section cx-pad cx-dark cx-close">
         <p className="eyebrow">{closing.eyebrow}</p>
         <h2>{closing.title}</h2>
-        <div className="cx-tech">
+        <div className="cx-tech" role="list" aria-label="Habilidades y herramientas">
           {closing.skills.map((item) => (
-            <span key={item}>{item}</span>
+            <span key={item} role="listitem">
+              {item}
+            </span>
           ))}
         </div>
         <p className="cx-closing">{closing.text}</p>

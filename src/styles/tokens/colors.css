@@ -8,6 +8,7 @@
   --ink: #191919;
   --blue: #3420fd;
   --teal: #15556a;
+  --focus-ring: var(--blue);
 
   --page-bg: var(--cream);
   --fg: var(--ink);

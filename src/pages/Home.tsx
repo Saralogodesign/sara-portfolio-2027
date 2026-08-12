@@ -42,13 +42,23 @@ export default function Home() {
       setView("timeline");
     }
 
-    const roleTimer = window.setInterval(() => {
-      setRole((current) => (current === site.hero.roles[0] ? site.hero.roles[1] : site.hero.roles[0]));
-    }, 2600);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const roleTimer = prefersReducedMotion
+      ? undefined
+      : window.setInterval(() => {
+          setRole((current) => (current === site.hero.roles[0] ? site.hero.roles[1] : site.hero.roles[0]));
+        }, 2600);
 
     const onScroll = () => setNavScrolled(window.scrollY > 32);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
 
     type RGB = [number, number, number];
     type Theme = {
@@ -191,31 +201,47 @@ export default function Home() {
     revealEls.forEach((el) => io.observe(el));
 
     return () => {
-      window.clearInterval(roleTimer);
+      if (roleTimer !== undefined) window.clearInterval(roleTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onThemeScroll);
+      window.removeEventListener("keydown", onKeyDown);
       io.disconnect();
     };
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  const activeViewTabId = view === "grid" ? "view-grid-tab" : "view-timeline-tab";
+
   return (
-    <main>
+    <>
+      <a className="skip-link" href="#main-content">
+        Saltar al contenido principal
+      </a>
+      <main id="main-content">
       <header className={`site-nav ${navScrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
-        <a className="brand" href="#top" aria-label="Ir al inicio">
+        <a className="brand" href="#top" aria-label={`${site.brand}, ir al inicio`}>
           {site.brand}
-          <span>.</span>
+          <span aria-hidden="true">.</span>
         </a>
         <button
+          type="button"
           className="menu-toggle"
-          aria-label="Abrir navegación"
+          aria-label={menuOpen ? "Cerrar navegación" : "Abrir navegación"}
           aria-expanded={menuOpen}
+          aria-controls="site-nav-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
-          <i />
-          <i />
-          <i />
+          <i aria-hidden="true" />
+          <i aria-hidden="true" />
+          <i aria-hidden="true" />
         </button>
-        <nav aria-label="Navegación principal" onClick={() => setMenuOpen(false)}>
+        <nav id="site-nav-menu" aria-label="Navegación principal" onClick={() => setMenuOpen(false)}>
           {site.nav.map((item) => (
             <a key={item.href} href={item.href}>
               <span>{item.label}</span>
@@ -227,46 +253,65 @@ export default function Home() {
         </nav>
       </header>
 
-      <section className="hero" id="top">
+      <section className="hero" id="top" aria-labelledby="hero-heading">
         <div className="hero-socials" aria-label="Redes sociales">
-          <a href={site.links.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-            GH
+          <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (se abre en una pestaña nueva)">
+            <span aria-hidden="true">GH</span>
           </a>
-          <a href={site.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            in
+          <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (se abre en una pestaña nueva)">
+            <span aria-hidden="true">in</span>
           </a>
-          <a href={site.links.medium} target="_blank" rel="noreferrer" aria-label="Medium">
-            M
+          <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium (se abre en una pestaña nueva)">
+            <span aria-hidden="true">M</span>
           </a>
         </div>
         <div className="hero-title">
-          <span className="hero-role" key={role}>
+          <span className="hero-role" key={role} aria-live="polite" aria-atomic="true">
             ·{role}
           </span>
-          <h1>{site.hero.title}</h1>
+          <h1 id="hero-heading">{site.hero.title}</h1>
         </div>
         <p className="hero-copy">{site.hero.copy}</p>
-        <a className="scroll-cue" href="#work">
-          {site.hero.scrollLabel}
+        <a className="scroll-cue" href="#work" aria-label="Ir a la sección de proyectos">
+          <span aria-hidden="true">{site.hero.scrollLabel}</span>
         </a>
       </section>
 
-      <section className={`work work-${view}`} id="work">
+      <section className={`work work-${view}`} id="work" aria-labelledby="work-heading">
         <div className="section-heading reveal">
           <div>
-            <h2>{site.work.title}</h2>
+            <h2 id="work-heading">{site.work.title}</h2>
             <p>{site.work.subtitle}</p>
           </div>
           <div className="view-toggle" role="tablist" aria-label="Cambiar vista de proyectos">
-            <button role="tab" aria-selected={view === "grid"} onClick={() => setView("grid")}>
+            <button
+              type="button"
+              role="tab"
+              id="view-grid-tab"
+              aria-selected={view === "grid"}
+              aria-controls="projects-panel"
+              onClick={() => setView("grid")}
+            >
               Grid
             </button>
-            <button role="tab" aria-selected={view === "timeline"} onClick={() => setView("timeline")}>
+            <button
+              type="button"
+              role="tab"
+              id="view-timeline-tab"
+              aria-selected={view === "timeline"}
+              aria-controls="projects-panel"
+              onClick={() => setView("timeline")}
+            >
               Timeline
             </button>
           </div>
         </div>
-        <div className={`projects ${view}`}>
+        <div
+          id="projects-panel"
+          role="tabpanel"
+          aria-labelledby={activeViewTabId}
+          className={`projects ${view}`}
+        >
           {projects.map((project, index) => {
             const fromSide = index % 2 === 0 ? "tl-from-left" : "tl-from-right";
             return (
@@ -304,33 +349,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="about reveal" id="about">
+      <section className="about reveal" id="about" aria-labelledby="about-heading">
         <div className="section-heading light">
           <div>
-            <h2>{site.about.title}</h2>
+            <h2 id="about-heading">{site.about.title}</h2>
             <p>{site.about.subtitle}</p>
           </div>
         </div>
         <div className="about-grid">
           <p className="about-lead">{site.about.lead}</p>
-          <div className="portrait" aria-label="Espacio para tu fotografía">
+          <figure className="portrait">
             {site.about.portraitSrc ? (
-              <img src={site.about.portraitSrc} alt="Sara" />
+              <img src={site.about.portraitSrc} alt="Retrato de Sara" />
             ) : (
-              <span style={{ whiteSpace: "pre-line" }}>{site.about.portraitLabel}</span>
+              <figcaption style={{ whiteSpace: "pre-line" }}>{site.about.portraitLabel}</figcaption>
             )}
-          </div>
+          </figure>
           <div className="about-note">
-            <span>✦</span>
+            <span aria-hidden="true">✦</span>
             <p style={{ whiteSpace: "pre-line" }}>{site.about.note}</p>
           </div>
         </div>
       </section>
 
-      <section className="lab reveal" id="lab">
+      <section className="lab reveal" id="lab" aria-labelledby="lab-heading">
         <div className="section-heading light">
           <div>
-            <h2>{site.lab.title}</h2>
+            <h2 id="lab-heading">{site.lab.title}</h2>
             <p>{site.lab.subtitle}</p>
           </div>
         </div>
@@ -343,12 +388,12 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="reveal" id="contact">
-        <h2>{site.footer.title}</h2>
+      <footer className="reveal" id="contact" aria-labelledby="contact-heading">
+        <h2 id="contact-heading">{site.footer.title}</h2>
         <div className="footer-bottom">
           <p>{site.footer.copyright}</p>
           <div>
-            <a href={site.links.linkedin} target="_blank" rel="noreferrer">
+            <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
             <a href={site.links.cv}>CV</a>
@@ -357,5 +402,6 @@ export default function Home() {
         </div>
       </footer>
     </main>
+    </>
   );
 }

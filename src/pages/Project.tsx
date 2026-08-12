@@ -35,24 +35,33 @@ export default function Project() {
 
   if (!project) {
     return (
-      <main className="case-missing">
-        <h1>Proyecto no encontrado</h1>
-        <Link to="/#work">Volver al portfolio</Link>
-      </main>
+      <>
+        <a className="skip-link" href="#case-content">
+          Saltar al contenido
+        </a>
+        <main id="case-content" className="case-missing">
+          <h1>Proyecto no encontrado</h1>
+          <Link to="/#work">Volver al portfolio</Link>
+        </main>
+      </>
     );
   }
 
   const related = projects.filter((item) => item.slug !== slug).slice(0, 3);
 
   return (
-    <main className="case-page">
-      <header className="case-nav">
-        <Link className="brand" to="/">
-          SARA<span>.</span>
-        </Link>
-        <Link to="/#work">← Todos los proyectos</Link>
-      </header>
-      <article>
+    <>
+      <a className="skip-link" href="#case-content">
+        Saltar al contenido del caso
+      </a>
+      <main className="case-page">
+        <header className="case-nav">
+          <Link className="brand" to="/" aria-label="SARA, volver al inicio">
+            SARA<span aria-hidden="true">.</span>
+          </Link>
+          <Link to="/#work">← Todos los proyectos</Link>
+        </header>
+        <article id="case-content">
         <section className="case-hero">
           <p className="project-meta">
             {project.year} · {project.category}
@@ -73,7 +82,7 @@ export default function Project() {
               <dd>{project.team}</dd>
             </div>
           </dl>
-          <div className={`case-art ${project.tone}`}>
+          <div className={`case-art ${project.tone}`} aria-hidden={project.image ? undefined : true}>
             {project.image ? (
               <img src={project.image} alt={project.title} />
             ) : (
@@ -82,7 +91,7 @@ export default function Project() {
                   CASE STUDY · {project.year}
                 </span>
                 <strong>{project.title}</strong>
-                <i>↗</i>
+                <i aria-hidden="true">↗</i>
               </>
             )}
           </div>
@@ -160,13 +169,19 @@ export default function Project() {
             ))}
           </div>
         </section>
-        <section className="more-projects">
+        <section className="more-projects" aria-labelledby="more-projects-heading">
           <p className="eyebrow">SEGUIR EXPLORANDO</p>
-          <h2>Más proyectos</h2>
+          <h2 id="more-projects-heading">Más proyectos</h2>
           <div>
             {related.map((item) => (
-              <Link to={`/projects/${item.slug}`} key={item.slug}>
-                <div className={`more-art ${item.tone}`}>{item.title}</div>
+              <Link
+                to={`/projects/${item.slug}`}
+                key={item.slug}
+                aria-label={`Ver proyecto ${item.title}`}
+              >
+                <div className={`more-art ${item.tone}`} aria-hidden="true">
+                  {item.title}
+                </div>
                 <p>{item.category}</p>
                 <h3>{item.title} →</h3>
               </Link>
@@ -175,12 +190,13 @@ export default function Project() {
         </section>
       </article>
       <footer className="case-footer">
-        <Link className="brand" to="/">
-          SARA<span>.</span>
+        <Link className="brand" to="/" aria-label="SARA, volver al inicio">
+          SARA<span aria-hidden="true">.</span>
         </Link>
         <p>© 2027 Sara — Product Designer</p>
         <a href="/#contact">Hablemos →</a>
       </footer>
     </main>
+    </>
   );
 }

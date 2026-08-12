@@ -1,0 +1,111 @@
+/* ============================================================
+   ACCESIBILIDAD — foco, skip link, estados y utilidades
+   ============================================================ */
+
+:root {
+  --focus-ring: var(--blue);
+  --focus-ring-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm, 4px);
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-160%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a,
+button,
+[role="button"],
+[role="tab"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled,
+[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+button:active:not(:disabled),
+.view-toggle button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.site-nav nav a:focus-visible,
+.site-nav nav a.nav-cta:focus-visible,
+.menu-toggle:focus-visible,
+.brand:focus-visible,
+.case-nav a:focus-visible,
+.footer-bottom a:focus-visible,
+.case-footer a:focus-visible,
+.scroll-cue:focus-visible,
+.more-projects a:focus-visible,
+.case-missing a:focus-visible {
+  outline-color: var(--focus-ring);
+}
+
+.site-nav nav a:focus-visible,
+.site-nav nav a.nav-cta:focus-visible {
+  overflow: visible;
+}
+
+.view-toggle button:focus-visible {
+  outline-offset: 2px;
+}
+
+.view-toggle button[aria-selected="true"]:focus-visible {
+  box-shadow: 0 0 0 2px var(--page-bg, var(--cream)), 0 0 0 4px var(--focus-ring);
+}
+
+a.project:focus-visible,
+.more-projects a:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 6px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.menu-toggle:focus-visible {
+  border-radius: var(--radius-sm, 4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skip-link {
+    transition: none;
+  }
+}
