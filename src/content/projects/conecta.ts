@@ -17,6 +17,11 @@ export const conectaCase: CaseStudyContent = {
     artLabel: "MOCKUP / HERO",
     artTitle: "Conecta",
     artHint: "Producto en uso + detalle de interfaz",
+    heroMedia: {
+      id: "hero",
+      src: "/images/projects/conecta/hero.mp4",
+      caption: "Vídeo del producto Conecta en uso",
+    },
   },
   sections: [
     {
@@ -32,7 +37,7 @@ export const conectaCase: CaseStudyContent = {
       id: "role",
       eyebrow: "ROL",
       title: "Mi papel: ownership de extremo a extremo",
-      tone: "soft",
+      tone: "dark",
       paragraphs: [
         "Lideré la definición del producto, el branding digital, los flujos principales, los workshops con cliente, la organización del proyecto en Figma y el handoff a desarrollo. También estructuré la forma de colaborar entre equipos y stakeholders en España y Panamá.",
         "Más que producir pantallas, mi responsabilidad fue mantener alineadas las decisiones de negocio, experiencia, marca y ejecución para llegar a un MVP coherente en cuatro meses.",
@@ -40,9 +45,8 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "role",
-          src: "/images/projects/conecta/role.jpg",
-          alt: "Workshop · FigJam · archivo compartido con stakeholders",
-          caption: "Workshop · FigJam · archivo compartido con stakeholders",
+          src: "/images/projects/conecta/role.png",
+          caption: "Fases de trabajo",
         },
       ],
     },
@@ -57,9 +61,8 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-01",
-          src: "/images/projects/conecta/decision-01.jpg",
-          alt: "Login inicial + edición / completado de perfil",
-          caption: "Login inicial + edición / completado de perfil",
+          src: "/images/projects/conecta/decision-01.png",
+          caption: "Flujo de registro: de acceder con email a elegir perfil y cuenta creada",
         },
       ],
     },
@@ -67,17 +70,22 @@ export const conectaCase: CaseStudyContent = {
       id: "decision-02",
       eyebrow: "DECISIÓN 02",
       title: "Convertir categorías en arquitectura",
-      tone: "dark",
+      tone: "soft",
       paragraphs: [
         "El buscador dependía de una taxonomía musical consistente. Géneros, formatos y tipos de artista se solapaban, y además la información introducida en el perfil tenía que alimentar después los filtros de búsqueda.",
-        "Facilité un workshop para ordenar categorías, detectar duplicidades y definir una lógica común entre alta de datos y filtrado. No era solo diseñar filtros: era diseñar la estructura que hacía posible que el buscador funcionara.",
+        "Facilité un workshop online en FigJam para ordenar categorías, detectar duplicidades y definir una lógica común entre alta de datos y filtrado. No era solo diseñar filtros: era diseñar la estructura que hacía posible que el buscador funcionara.",
       ],
       media: [
         {
           id: "decision-02",
-          src: "/images/projects/conecta/decision-02.jpg",
-          alt: "Workshop / árbol de categorías + filtro final en producto",
-          caption: "Workshop / árbol de categorías + filtro final en producto",
+          src: "/images/projects/conecta/decision-02.png",
+          caption: "Workshop de categorización y filtros",
+          cursors: [
+            { name: "Sara", color: "#c4244a" },
+            { name: "Marta", color: "#0d99ff" },
+            { name: "Lucía", color: "#14ae5c" },
+            { name: "Álex", color: "#7b61ff" },
+          ],
         },
       ],
     },
@@ -93,7 +101,6 @@ export const conectaCase: CaseStudyContent = {
         {
           id: "identidad",
           src: "/images/projects/conecta/identidad.jpg",
-          alt: "1 elemento Somos Música + 1–2 pantallas Conecta",
           caption: "1 elemento Somos Música + 1–2 pantallas Conecta",
         },
       ],
@@ -102,7 +109,7 @@ export const conectaCase: CaseStudyContent = {
       id: "colaboracion",
       eyebrow: "COLABORACIÓN",
       title: "Diseñar también la colaboración",
-      tone: "soft",
+      tone: "dark",
       paragraphs: [
         "Con varios stakeholders y desarrollo trabajando en otro huso horario, Figma se convirtió en la fuente única de verdad: producto, decisiones, prototipos, workshops y documentación convivían en el mismo entorno.",
         "Esa gobernanza redujo la dispersión y permitió que cliente y desarrollo entendieran no solo qué había que construir, sino por qué se había tomado cada decisión.",
@@ -110,9 +117,8 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "colaboracion",
-          src: "/images/projects/conecta/colaboracion.jpg",
-          alt: "Estructura del proyecto Figma / FigJam · 3–4 zonas anotadas",
-          caption: "Estructura del proyecto Figma / FigJam · 3–4 zonas anotadas",
+          src: "/images/projects/conecta/colaboracion.png",
+          caption: "Figma como fuente de verdad",
         },
       ],
     },
@@ -127,9 +133,8 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "resultado",
-          src: "/images/projects/conecta/resultado.jpg",
-          alt: "Mockup del producto terminado o pantalla representativa a sangre",
-          caption: "Mockup del producto terminado o pantalla representativa a sangre",
+          src: "/images/projects/conecta/resultado.png",
+          caption: "MVP: búsqueda, filtros, favoritos y perfil de artista",
         },
       ],
     },
@@ -147,6 +152,6 @@ export const conectaCase: CaseStudyContent = {
       "Design systems",
       "Handoff a desarrollo",
     ],
-    text: "Conecta resume bien mi forma de trabajar: ordenar problemas poco definidos, tomar decisiones con criterio y construir el sistema necesario para que negocio, diseño y tecnología avancen en la misma dirección.",
+    text: "Ordenar problemas poco definidos, tomar decisiones con criterio y construir una buena base, es necesario para que negocio y diseño avancen en la misma dirección.",
   },
 };

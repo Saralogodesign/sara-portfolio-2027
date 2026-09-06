@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import type { ReactNode } from "react";
 import { site } from "../content/site";
-import { projects } from "../content/projects";
+import EmailLink from "./EmailLink";
+import MoreProjectsCarousel from "./MoreProjectsCarousel";
 
 type Props = {
   children: ReactNode;
@@ -10,42 +11,39 @@ type Props = {
 };
 
 export default function CaseLayout({ children, className = "", currentSlug }: Props) {
-  const related = projects.filter((item) => item.slug !== currentSlug).slice(0, 3);
-
   return (
-    <main className={`case-page conecta-case ${className}`.trim()}>
+    <div className={`case-page conecta-case ${className}`.trim()}>
+      <a className="skip-link" href="#case-main">
+        Saltar al contenido
+      </a>
       <header className="case-nav">
-        <Link className="brand" to="/">
+        <Link className="brand" to="/" aria-label="Ir al inicio">
           {site.brand}
           <span>.</span>
         </Link>
         <Link to={site.caseFooter.backHref}>{site.caseFooter.backLabel}</Link>
       </header>
 
-      <article>{children}</article>
-
-      <section className="more-projects">
-        <p className="eyebrow">SEGUIR EXPLORANDO</p>
-        <h2>Más proyectos</h2>
-        <div>
-          {related.map((item) => (
-            <Link to={`/projects/${item.slug}`} key={item.slug}>
-              <div className={`more-art ${item.tone}`}>{item.title}</div>
-              <p>{item.category}</p>
-              <h3>{item.title} →</h3>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <main id="case-main">
+        <article>{children}</article>
+        <MoreProjectsCarousel currentSlug={currentSlug} />
+      </main>
 
       <footer className="case-footer">
-        <Link className="brand" to="/">
-          {site.brand}
-          <span>.</span>
-        </Link>
+        <div className="case-footer-socials" aria-label="Redes sociales">
+          <a href={site.links.github} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
+          <a href={site.links.medium} target="_blank" rel="noopener noreferrer">
+            Medium
+          </a>
+        </div>
         <p>{site.caseFooter.copyright}</p>
-        <a href={site.caseFooter.contactHref}>{site.caseFooter.contactLabel}</a>
+        <EmailLink>{site.caseFooter.contactLabel}</EmailLink>
       </footer>
-    </main>
+    </div>
   );
 }

@@ -18,6 +18,11 @@ export const rosettaCase: CaseStudyContent = {
     artLabel: "MOCKUP / HERO",
     artTitle: "Rosetta",
     artHint: "Dashboard o Storybook real · una imagen protagonista",
+    heroMedia: {
+      id: "hero",
+      src: "/images/projects/rosetta/hero.png",
+      caption: "Mockup de la plataforma Rosetta DS sobre un portátil",
+    },
   },
   sections: [
     {
@@ -32,7 +37,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "context",
           src: "/images/projects/rosetta/context.jpg",
-          alt: "Vista real donde convivan estado, componente/tarea y conversación",
           caption: "Vista real donde convivan estado, componente/tarea y conversación",
         },
       ],
@@ -50,7 +54,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "role",
           src: "/images/projects/rosetta/role.jpg",
-          alt: "Figma junto a implementación · Cursor/agente o estructura del proyecto",
           caption: "Figma junto a implementación · Cursor/agente o estructura del proyecto",
         },
       ],
@@ -67,7 +70,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "decision-01",
           src: "/images/projects/rosetta/decision-01.jpg",
-          alt: "Dashboard real con estados · conversación contextual sobre una tarea/componente",
           caption: "Dashboard real con estados · conversación contextual sobre una tarea/componente",
         },
       ],
@@ -85,7 +87,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "decision-02",
           src: "/images/projects/rosetta/decision-02.jpg",
-          alt: "Vista general de Rosetta como plataforma, no solo documentación de Conecta",
           caption: "Vista general de Rosetta como plataforma, no solo documentación de Conecta",
         },
       ],
@@ -102,7 +103,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "design-system",
           src: "/images/projects/rosetta/design-system.jpg",
-          alt: "Storybook real de un componente + documentación o referencia al paquete NPM",
           caption: "Storybook real de un componente + documentación o referencia al paquete NPM",
         },
       ],
@@ -120,7 +120,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "ai",
           src: "/images/projects/rosetta/ai.jpg",
-          alt: "Sistema funcionando · herramientas como evidencia secundaria",
           caption: "Sistema funcionando · herramientas como evidencia secundaria",
         },
       ],
@@ -137,7 +136,6 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "resultado",
           src: "/images/projects/rosetta/resultado.jpg",
-          alt: "Vista más completa o madura de Rosetta · cierre a sangre",
           caption: "Vista más completa o madura de Rosetta · cierre a sangre",
         },
       ],

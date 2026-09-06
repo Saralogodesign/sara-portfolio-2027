@@ -123,10 +123,6 @@ const diagrams = {
 export default function VioletaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = violetaCase.documentTitle;
-    return () => {
-      document.title = "Sara — Product Designer";
-    };
   }, []);
 
   return (

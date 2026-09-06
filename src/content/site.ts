@@ -5,12 +5,19 @@
 
 export const site = {
   brand: "SARA",
+  /** CAMBIAR AQUÍ: dominio canónico al publicar (OG, sitemap, JSON-LD) */
+  url: "https://sara-portfolio-2027.vercel.app",
+  title: "Sara — Product Designer · Product Engineer",
+  description:
+    "Portfolio de Sara: product design y product engineering. Diseño, orquesto y ejecuto.",
+  ogImage: "/og.svg",
   links: {
     // CAMBIAR AQUÍ: redes y contacto
     github: "https://github.com/",
     linkedin: "https://linkedin.com/",
     medium: "https://medium.com/",
-    email: "mailto:hola@sara.design",
+    email: "mailto:sara.lg.design@gmail.com?subject=Hola%20Sara",
+    emailAddress: "sara.lg.design@gmail.com",
     cv: "#",
   },
   nav: [
@@ -20,7 +27,7 @@ export const site = {
   ],
   hero: {
     title: "Designer",
-    roles: ["Product", "Engineer"] as const,
+    roles: ["PRODUCT", "ENGINEER"] as const,
     copy: "Diseño, orquesto y ejecuto.",
     scrollLabel: "scroll",
   },
@@ -44,14 +51,15 @@ export const site = {
     items: ["TYPE\nSTUDIES", "AI +\nDESIGN", "COLOR\nSYSTEMS", "MOTION\nTESTS"],
   },
   footer: {
-    title: "Hablemos!",
-    copyright: "© 2027 Sara — Product Designer",
-    location: "Hecho con cariño en Barcelona",
+    title: "¡Hablemos!",
+    titleHover: "Escríbeme.",
+    copyright: "© 2026 Sara — Product Designer",
+    location: "Madrid",
   },
   caseFooter: {
-    copyright: "© 2027 Sara — Product Designer",
+    copyright: "© 2026 Sara — Product Designer",
     contactLabel: "Hablemos →",
-    contactHref: "/#contact",
+    contactHref: "mailto:sara.lg.design@gmail.com?subject=Hola%20Sara",
     backLabel: "← Todos los proyectos",
     backHref: "/#work",
   },

@@ -1,25 +1,43 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import EmailLink from "../components/EmailLink";
+import SplitFlapRole from "../components/SplitFlapRole";
+import { CaseVideo } from "../components/CaseMedia";
 import { projects } from "../content/projects";
 import { site } from "../content/site";
 
 function ProjectCover({
   image,
+  video,
   title,
   tone,
   index,
 }: {
   image?: string;
+  video?: string;
   title: string;
   tone: string;
   index: number;
 }) {
   const [broken, setBroken] = useState(false);
-  const showImage = Boolean(image) && !broken;
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduceMotion(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  const showVideo = Boolean(video) && !broken && !reduceMotion;
+  const showImage = Boolean(image) && !showVideo;
 
   return (
     <div className={`project-art ${tone}`} aria-hidden="true">
-      {showImage ? (
+      {showVideo ? (
+        <CaseVideo src={video!} poster={image} alt="" onError={() => setBroken(true)} />
+      ) : showImage ? (
         <img src={image} alt="" onError={() => setBroken(true)} />
       ) : (
         <>
@@ -31,20 +49,64 @@ function ProjectCover({
   );
 }
 
+function SocialLinks({ className }: { className: string }) {
+  return (
+    <div className={className} aria-label="Redes sociales">
+      <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        GH
+      </a>
+      <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        in
+      </a>
+      <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
+        M
+      </a>
+      <EmailLink aria-label="Email">
+        <svg className="hero-social-mail" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M3.5 5.75h17a1.25 1.25 0 0 1 1.25 1.25v10a1.25 1.25 0 0 1-1.25 1.25h-17A1.25 1.25 0 0 1 2.25 17V7A1.25 1.25 0 0 1 3.5 5.75Zm.75 2.03V17h15.5V7.78l-7.02 4.45a1.5 1.5 0 0 1-1.46 0L4.25 7.78Zm1.1-1.28 6.2 3.93a.5.5 0 0 0 .5 0l6.2-3.93H5.35Z"
+          />
+        </svg>
+      </EmailLink>
+    </div>
+  );
+}
+
 export default function Home() {
   const [view, setView] = useState<"grid" | "timeline">("grid");
-  const [role, setRole] = useState<(typeof site.hero.roles)[number]>(site.hero.roles[0]);
   const [navScrolled, setNavScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [narrow, setNarrow] = useState(false);
+  const hasCv = Boolean(site.links.cv) && site.links.cv !== "#";
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 760px)");
+    const sync = () => {
+      setNarrow(mq.matches);
+      if (!mq.matches) setMenuOpen(false);
+    };
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (new URLSearchParams(window.location.search).get("view") === "timeline") {
       setView("timeline");
     }
-
-    const roleTimer = window.setInterval(() => {
-      setRole((current) => (current === site.hero.roles[0] ? site.hero.roles[1] : site.hero.roles[0]));
-    }, 2600);
 
     const onScroll = () => setNavScrolled(window.scrollY > 32);
     onScroll();
@@ -68,41 +130,41 @@ export default function Home() {
     const themes: Theme[] = [
       {
         id: "work",
-        bg: [247, 243, 236],
+        bg: [248, 249, 247],
         fg: [25, 25, 25],
         muted: [85, 85, 85],
-        accent: [52, 32, 253],
+        accent: [196, 36, 74],
         accentContrast: [255, 255, 255],
-        surface: [229, 225, 220],
+        surface: [236, 238, 233],
         line: [25, 25, 25],
         lineAlpha: 0.16,
-        ctaBg: [52, 32, 253],
+        ctaBg: [196, 36, 74],
         ctaFg: [255, 255, 255],
       },
       {
         id: "about",
-        bg: [52, 32, 253],
+        bg: [196, 36, 74],
         fg: [255, 255, 255],
-        muted: [220, 216, 255],
-        accent: [191, 255, 99],
+        muted: [255, 224, 230],
+        accent: [244, 168, 184],
         accentContrast: [25, 25, 25],
-        surface: [90, 72, 255],
+        surface: [168, 32, 62],
         line: [255, 255, 255],
         lineAlpha: 0.28,
         ctaBg: [255, 255, 255],
-        ctaFg: [52, 32, 253],
+        ctaFg: [196, 36, 74],
       },
       {
         id: "lab",
         bg: [10, 10, 10],
-        fg: [247, 243, 236],
+        fg: [248, 249, 247],
         muted: [180, 176, 170],
-        accent: [169, 155, 255],
+        accent: [244, 168, 184],
         accentContrast: [10, 10, 10],
         surface: [36, 36, 36],
         line: [255, 255, 255],
         lineAlpha: 0.32,
-        ctaBg: [247, 243, 236],
+        ctaBg: [248, 249, 247],
         ctaFg: [10, 10, 10],
       },
     ];
@@ -154,6 +216,14 @@ export default function Home() {
       let to = themes[0];
       let t = 0;
 
+      // Zona media junto al límite: +10% (más elegante) y sin mezclar toda la sección
+      const blendPx = Math.min(308, Math.max(220, window.innerHeight * 0.24 * 1.1));
+      // "Smootherstep" (curva quintica): transiciones más suaves que smoothstep
+      const smoothstep = (x: number) => {
+        const s = Math.min(1, Math.max(0, x));
+        return s * s * s * (s * (s * 6 - 15) + 10);
+      };
+
       for (let i = 0; i < sections.length; i++) {
         const el = sections[i].el;
         if (!el) continue;
@@ -163,7 +233,12 @@ export default function Home() {
         if (y >= top && y < bottom) {
           from = themes[i];
           to = themes[Math.min(i + 1, themes.length - 1)];
-          t = next ? Math.min(1, Math.max(0, (y - top) / (bottom - top))) : 0;
+          if (next && from.id !== to.id) {
+            const blendStart = bottom - blendPx;
+            t = y <= blendStart ? 0 : smoothstep((y - blendStart) / blendPx);
+          } else {
+            t = 0;
+          }
           break;
         }
         if (y >= bottom && i === sections.length - 1) {
@@ -191,7 +266,6 @@ export default function Home() {
     revealEls.forEach((el) => io.observe(el));
 
     return () => {
-      window.clearInterval(roleTimer);
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("scroll", onThemeScroll);
       io.disconnect();
@@ -199,50 +273,49 @@ export default function Home() {
   }, []);
 
   return (
-    <main>
+    <div className="page">
+      <a className="skip-link" href="#work">
+        Saltar a proyectos
+      </a>
       <header className={`site-nav ${navScrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
         <a className="brand" href="#top" aria-label="Ir al inicio">
           {site.brand}
           <span>.</span>
         </a>
         <button
+          type="button"
           className="menu-toggle"
-          aria-label="Abrir navegación"
+          aria-label={menuOpen ? "Cerrar navegación" : "Abrir navegación"}
           aria-expanded={menuOpen}
+          aria-controls="site-menu"
           onClick={() => setMenuOpen((open) => !open)}
         >
           <i />
           <i />
           <i />
         </button>
-        <nav aria-label="Navegación principal" onClick={() => setMenuOpen(false)}>
+        <nav
+          id="site-menu"
+          aria-label="Navegación principal"
+          aria-hidden={narrow && !menuOpen}
+          inert={narrow && !menuOpen ? true : undefined}
+          onClick={() => setMenuOpen(false)}
+        >
           {site.nav.map((item) => (
             <a key={item.href} href={item.href}>
               <span>{item.label}</span>
             </a>
           ))}
-          <a className="nav-cta" href={site.links.email}>
-            Contacto
-          </a>
+          <EmailLink className="nav-cta">Contacto</EmailLink>
+          <SocialLinks className="nav-socials" />
         </nav>
       </header>
 
+      <main id="main">
       <section className="hero" id="top">
-        <div className="hero-socials" aria-label="Redes sociales">
-          <a href={site.links.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-            GH
-          </a>
-          <a href={site.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            in
-          </a>
-          <a href={site.links.medium} target="_blank" rel="noreferrer" aria-label="Medium">
-            M
-          </a>
-        </div>
+        <SocialLinks className="hero-socials" />
         <div className="hero-title">
-          <span className="hero-role" key={role}>
-            ·{role}
-          </span>
+          <SplitFlapRole words={site.hero.roles} />
           <h1>{site.hero.title}</h1>
         </div>
         <p className="hero-copy">{site.hero.copy}</p>
@@ -257,11 +330,11 @@ export default function Home() {
             <h2>{site.work.title}</h2>
             <p>{site.work.subtitle}</p>
           </div>
-          <div className="view-toggle" role="tablist" aria-label="Cambiar vista de proyectos">
-            <button role="tab" aria-selected={view === "grid"} onClick={() => setView("grid")}>
+          <div className="view-toggle" role="group" aria-label="Cambiar vista de proyectos">
+            <button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")}>
               Grid
             </button>
-            <button role="tab" aria-selected={view === "timeline"} onClick={() => setView("timeline")}>
+            <button type="button" aria-pressed={view === "timeline"} onClick={() => setView("timeline")}>
               Timeline
             </button>
           </div>
@@ -294,6 +367,7 @@ export default function Home() {
                 {view === "timeline" && <span className="tl-dot" aria-hidden="true" />}
                 <ProjectCover
                   image={project.image}
+                  video={project.video}
                   title={project.title}
                   tone={project.tone}
                   index={index}
@@ -342,20 +416,39 @@ export default function Home() {
           ))}
         </div>
       </section>
-
+      </main>
       <footer className="reveal" id="contact">
-        <h2>{site.footer.title}</h2>
+        <h2>
+          <EmailLink className="footer-title-link" data-hover={site.footer.titleHover}>
+            <span className="footer-title-default">{site.footer.title}</span>
+            <span className="footer-title-hover" aria-hidden="true">
+              {site.footer.titleHover}
+            </span>
+          </EmailLink>
+        </h2>
         <div className="footer-bottom">
           <p>{site.footer.copyright}</p>
           <div>
-            <a href={site.links.linkedin} target="_blank" rel="noreferrer">
+            <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer">
               LinkedIn
             </a>
-            <a href={site.links.cv}>CV</a>
+            {hasCv ? (
+              <a href={site.links.cv} target="_blank" rel="noopener noreferrer">
+                CV
+              </a>
+            ) : null}
+            <EmailLink aria-label="Email" className="footer-mail-link">
+              <svg className="footer-mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  fill="currentColor"
+                  d="M3.5 5.75h17a1.25 1.25 0 0 1 1.25 1.25v10a1.25 1.25 0 0 1-1.25 1.25h-17A1.25 1.25 0 0 1 2.25 17V7A1.25 1.25 0 0 1 3.5 5.75Zm.75 2.03V17h15.5V7.78l-7.02 4.45a1.5 1.5 0 0 1-1.46 0L4.25 7.78Zm1.1-1.28 6.2 3.93a.5.5 0 0 0 .5 0l6.2-3.93H5.35Z"
+                />
+              </svg>
+            </EmailLink>
           </div>
           <p>{site.footer.location}</p>
         </div>
       </footer>
-    </main>
+    </div>
   );
 }

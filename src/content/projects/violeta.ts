@@ -17,6 +17,11 @@ export const violetaCase: CaseStudyContent = {
     artLabel: "FOTOGRAFÍA / HERO",
     artTitle: "Violeta",
     artHint: "Identidad o pantalla a gran escala · entrar por el universo visual",
+    heroMedia: {
+      id: "hero",
+      src: "/images/projects/violeta/hero.png",
+      caption: "Onboarding de Violeta: un espacio seguro, hecho por y para las mujeres",
+    },
   },
   sections: [
     {
@@ -30,9 +35,13 @@ export const violetaCase: CaseStudyContent = {
       media: [
         {
           id: "reto",
-          src: "/images/projects/violeta/reto.jpg",
-          alt: "Verbatim o imagen del research · una pieza potente, no una batería de estadísticas",
-          caption: "Verbatim o imagen del research · una pieza potente, no una batería de estadísticas",
+          src: "/images/projects/violeta/reto.png",
+          caption: "Verbatim usuaria · focus group",
+        },
+        {
+          id: "research",
+          src: "/images/projects/violeta/research.png",
+          caption: "Verbatim experta · Marta López Pardal",
         },
       ],
     },
@@ -47,10 +56,9 @@ export const violetaCase: CaseStudyContent = {
       ],
       media: [
         {
-          id: "research",
-          src: "/images/projects/violeta/research.jpg",
-          alt: "Verbatim de usuaria y/o experta · tratamiento editorial del proyecto",
-          caption: "Verbatim de usuaria y/o experta · tratamiento editorial del proyecto",
+          id: "research-focusgroup",
+          src: "/images/projects/violeta/research-focusgroup.png",
+          caption: "Focus group · entrevistas",
         },
       ],
     },
@@ -65,9 +73,16 @@ export const violetaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-01",
-          src: "/images/projects/violeta/decision-01.jpg",
-          alt: "Secuencia: onboarding + chat + borrador de denuncia · 2–3 pantallas",
-          caption: "Secuencia: onboarding + chat + borrador de denuncia · 2–3 pantallas",
+          src: "/images/projects/violeta/decision-01.png",
+          caption: "Onboarding · chat · borrador de denuncia",
+          zoom: {
+            src: "/images/projects/violeta/decision-01-zoom.png",
+            left: "63%",
+            top: "16%",
+            size: "32%",
+            focus: "50% 50%",
+            magnify: "118%",
+          },
         },
       ],
     },
@@ -78,14 +93,13 @@ export const violetaCase: CaseStudyContent = {
       tone: "dark",
       paragraphs: [
         "En Violeta la identidad no podía ser una capa decorativa. Tenía que hablar de un tema duro sin construir una experiencia clínica, institucional o paternalista. Desarrollé gran parte del branding buscando un lenguaje con carácter, cercano y reconocible, capaz de transmitir seguridad sin borrar la energía de quien recupera el control.",
-        "El sistema combina una tipografía de alta presencia, recursos editoriales, fotografía humana y una paleta violeta, lila y rosa. La propia presentación cambia de un territorio rojo y tenso durante el problema a un universo violeta cuando aparece la solución: el branding también cuenta el cambio de estado.",
+        "El sistema combina una tipografía de alta presencia, recursos editoriales, fotografía humana y una paleta violeta, lila y rosa.",
       ],
       media: [
         {
           id: "branding",
-          src: "/images/projects/violeta/branding.jpg",
-          alt: "Moodboard + aplicación real · criterio visual, no un brand book completo",
-          caption: "Moodboard + aplicación real · criterio visual, no un brand book completo",
+          src: "/images/projects/violeta/branding.png",
+          caption: "Logo, comunicación y sistema visual",
         },
       ],
     },
@@ -95,14 +109,13 @@ export const violetaCase: CaseStudyContent = {
       title: "Dar recorrido al producto",
       paragraphs: [
         "Aunque la capa de usuario debía ser gratuita, un proyecto de impacto necesita un modelo que lo sostenga. Mi aportación fue desarrollar líneas de negocio y un Business Plan que permitieran pensar Violeta más allá del ejercicio académico: análisis de datos agregados, monetización del know-how, formación especializada y otras vías complementarias.",
-        "También planteé un roadmap progresivo: validar primero una solución ligera —web y asistente conversacional entrenado con documentación especializada— y evolucionar después hacia un producto más completo y, finalmente, una aplicación nativa. La idea era aprender antes de asumir el coste de construirlo todo.",
+        "También planteé un roadmap progresivo: validar primero una solución ligera, web y asistente conversacional entrenado con documentación especializada, y evolucionar después hacia un producto más completo y, finalmente, una aplicación nativa. La idea era aprender antes de asumir el coste de construirlo todo.",
       ],
       media: [
         {
           id: "decision-02",
-          src: "/images/projects/violeta/decision-02.jpg",
-          alt: "Business roadmap o reinterpretación limpia de las etapas de la presentación",
-          caption: "Business roadmap o reinterpretación limpia de las etapas de la presentación",
+          src: "/images/projects/violeta/decision-02.png",
+          caption: "Roadmap · de MVP a escalado",
         },
       ],
     },
@@ -118,9 +131,8 @@ export const violetaCase: CaseStudyContent = {
       media: [
         {
           id: "resultado",
-          src: "/images/projects/violeta/resultado.jpg",
-          alt: "Pieza más madura: landing, onboarding o composición marca + producto",
-          caption: "Pieza más madura: landing, onboarding o composición marca + producto",
+          src: "/images/projects/violeta/cover.png",
+          caption: "Producto · onboarding",
         },
       ],
     },

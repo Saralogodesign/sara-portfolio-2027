@@ -7,14 +7,28 @@ export type MediaRef = {
   id: string;
   /** Ruta pública, ej. /images/projects/rosetta/hero.jpg — vacío = placeholder */
   src?: string;
-  alt: string;
-  /** Texto de ayuda / caption bajo la imagen o en el placeholder */
-  caption?: string;
-  note?: string;
+  /** Pie de foto o vídeo. También se usa como texto alternativo. */
+  caption: string;
+  /** Cursores tipo FigJam encima de la imagen */
+  cursors?: { name: string; color: string }[];
+  /** Plano detalle / lupa encima de la imagen */
+  zoom?: {
+    src: string;
+    /** Posición de la burbuja sobre la foto, en % */
+    left: string;
+    top: string;
+    /** Tamaño de la burbuja relativo a la foto */
+    size?: string;
+    /** Punto de la imagen que se enseña dentro de la lupa */
+    focus?: string;
+    /** Nivel de zoom dentro de la lupa, ej. 260% */
+    magnify?: string;
+  };
 };
 
 export type MetaItem = { label: string; value: string };
 
+/** Tarjeta de la home y del carrusel «más proyectos» */
 export type ProjectCard = {
   slug: string;
   year: string;
@@ -24,18 +38,8 @@ export type ProjectCard = {
   tone: string;
   /** Cover en la home: /images/projects/{slug}/cover.jpg */
   image?: string;
-  subtitle: string;
-  role: string;
-  duration: string;
-  team: string;
-  intro: string;
-  context: string;
-  challenge: string;
-  process: string[];
-  system: string;
-  evolution: { label: string; text: string }[];
-  impact: string[];
-  technical: string[];
+  /** Vídeo en la card de la home; `image` se usa como poster */
+  video?: string;
 };
 
 export type CaseSection = {
@@ -61,7 +65,6 @@ export type CaseStudyContent = {
     artLabel: string;
     artTitle: string;
     artHint: string;
-    heroNote?: string;
     heroMedia?: MediaRef;
   };
   sections: CaseSection[];

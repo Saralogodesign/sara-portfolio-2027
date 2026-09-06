@@ -1,9 +1,9 @@
 /* —— Cucharita case study —— */
 .cucharita-case{
-  --deep:#1a2a4a;
-  --deep-mid:#2c4570;
-  --nude:#e8d5c4;
-  --nude-soft:#f3ebe3;
+  --deep:var(--strawberry-800);
+  --deep-mid:var(--strawberry-600);
+  --nude:var(--strawberry-100);
+  --nude-soft:var(--strawberry-50);
 }
 .cucharita-case .eyebrow{color:var(--deep-mid)}
 .cucharita-case .cx-dark .eyebrow{color:var(--nude)}
@@ -29,7 +29,7 @@
 }
 .cucharita-case .cu-eco strong{
   display:block;
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:28px;
   font-weight:300;
   letter-spacing:-.03em;
@@ -65,14 +65,14 @@
   font-size:15px;
   color:#555;
   text-decoration:line-through;
-  text-decoration-color:rgba(26,42,74,.35);
+  text-decoration-color:var(--strawberry-ghost-mid);
 }
 .cucharita-case .cx-tension b{
   color:var(--deep-mid);
   font-size:18px;
 }
 .cucharita-case .cx-tension strong{
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:32px;
   font-weight:300;
   letter-spacing:-.03em;
@@ -151,7 +151,7 @@
 }
 .cucharita-case .cx-brand-foundations strong{
   display:block;
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:24px;
   font-weight:300;
   letter-spacing:-.03em;
@@ -175,7 +175,7 @@
 .cucharita-case .cx-naming .is-name .cx-label{color:var(--nude)}
 .cucharita-case .cx-naming .is-name strong{
   display:block;
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:42px;
   font-weight:300;
   letter-spacing:-.04em;
@@ -199,7 +199,7 @@
   padding-top:10px;
 }
 .cucharita-case .cx-hero-art{
-  background:linear-gradient(145deg,#1a2a4a 0%,#2c4570 55%,#e8d5c4 100%);
+  background:linear-gradient(145deg,var(--strawberry-900) 0%,var(--strawberry-700) 55%,var(--strawberry-100) 100%);
   color:white;
 }
 @media(max-width:900px){

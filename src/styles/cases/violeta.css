@@ -1,9 +1,9 @@
 /* —— Violeta case study —— */
 .violeta-case{
-  --violet:#6b3fa0;
-  --violet-soft:#c9bdff;
-  --violet-mid:#8b5cf6;
-  --rose:#f2b6d5;
+  --violet:var(--strawberry);
+  --violet-soft:var(--strawberry-200);
+  --violet-mid:var(--strawberry-400);
+  --rose:var(--strawberry-100);
 }
 .violeta-case .eyebrow{color:var(--violet)}
 .violeta-case .cx-dark .eyebrow{color:var(--violet-soft)}
@@ -41,7 +41,7 @@
 }
 .violeta-case .cx-journey>div.is-intervene{
   border-top-color:var(--violet);
-  background:rgba(107,63,160,.07);
+  background:var(--strawberry-ghost);
 }
 .violeta-case .cx-journey>div b{
   font-size:11px;
@@ -117,7 +117,7 @@
 }
 .violeta-case .cx-brand-board strong{
   display:block;
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:22px;
   font-weight:300;
   letter-spacing:-.03em;
@@ -135,7 +135,7 @@
 }
 .violeta-case .cx-layers strong{
   display:block;
-  font-family:"Fraunces",serif;
+  font-family:var(--font-display);
   font-size:28px;
   font-weight:300;
   letter-spacing:-.03em;
@@ -146,7 +146,7 @@
   color:#555;
 }
 .violeta-case .cx-hero-art{
-  background:linear-gradient(145deg,#6b3fa0 0%,#8b5cf6 45%,#f2b6d5 100%);
+  background:linear-gradient(145deg,var(--strawberry-900) 0%,var(--strawberry) 45%,var(--strawberry-100) 100%);
   color:white;
 }
 @media(max-width:900px){

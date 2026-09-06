@@ -76,10 +76,6 @@ const diagrams = {
 export default function RosettaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = rosettaCase.documentTitle;
-    return () => {
-      document.title = "Sara — Product Designer";
-    };
   }, []);
 
   return (

@@ -14,9 +14,14 @@ export const cucharitaCase: CaseStudyContent = {
       { label: "Metodología", value: "Lean UX · MVP" },
       { label: "Mi foco", value: "Concepto · insights · branding · lanzamiento" },
     ],
-    artLabel: "FOTOGRAFÍA / HERO",
+    artLabel: "VÍDEO / HERO",
     artTitle: "Cucharita",
-    artHint: "Imagen sensorial · piel, abrazo o detalle de producto",
+    artHint: "Spot · contraste entre aceleración y calma",
+    heroMedia: {
+      id: "hero",
+      src: "/images/projects/cucharita/mvp.mp4",
+      caption: "Spot de Cucharita · contraste entre aceleración y calma",
+    },
   },
   sections: [
     {
@@ -30,9 +35,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "insight",
-          src: "/images/projects/cucharita/insight.jpg",
-          alt: "Imagen cotidiana de descanso o contacto · introducir el insight antes del producto",
-          caption: "Imagen cotidiana de descanso o contacto · introducir el insight antes del producto",
+          src: "/images/projects/cucharita/insight.mp4",
+          caption: "Campaña · cortisol",
         },
       ],
     },
@@ -48,9 +52,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "propuesta",
-          src: "/images/projects/cucharita/propuesta.jpg",
-          alt: "Mockup del colchón o concepto de producto + pantalla representativa de la app",
-          caption: "Mockup del colchón o concepto de producto + pantalla representativa de la app",
+          src: "/images/projects/cucharita/propuesta.png",
+          caption: "Producto · beneficios y tecnología",
         },
       ],
     },
@@ -59,15 +62,14 @@ export const cucharitaCase: CaseStudyContent = {
       eyebrow: "DECISIÓN 01",
       title: "El cortisol como hilo conductor",
       paragraphs: [
-        "Entre muchos posibles territorios —descanso, sexo, tecnología, pareja— necesitábamos un eje capaz de unirlos. Propuse trabajar alrededor del estrés y la reducción del cortisol como tensión narrativa del proyecto.",
+        "Entre muchos posibles territorios, descanso, sexo, tecnología, pareja, necesitábamos un eje capaz de unirlos. Propuse trabajar alrededor del estrés y la reducción del cortisol como tensión narrativa del proyecto.",
         "Eso dio una dirección común al concepto de producto, al discurso de marca y a la campaña: pasar de la aceleración cotidiana a un espacio de pausa, contacto y presencia.",
       ],
       media: [
         {
           id: "decision-01",
-          src: "/images/projects/cucharita/decision-01.jpg",
-          alt: "Pieza o titular de campaña · cómo el concepto se convierte en comunicación",
-          caption: "Pieza o titular de campaña · cómo el concepto se convierte en comunicación",
+          src: "/images/projects/cucharita/decision-01.mp4",
+          caption: "Campaña · dopamina",
         },
       ],
     },
@@ -83,9 +85,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-02",
-          src: "/images/projects/cucharita/decision-02.jpg",
-          alt: "CTA o sección de la landing relacionada con lanzamiento / pre-order",
-          caption: "CTA o sección de la landing relacionada con lanzamiento / pre-order",
+          src: "/images/projects/cucharita/decision-02.png",
+          caption: "Lanzamiento · app y pre-order",
         },
       ],
     },
@@ -100,9 +101,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "branding",
-          src: "/images/projects/cucharita/branding.jpg",
-          alt: "Bloque editorial: paleta azul/nude + tipografías + 2 fotografías 35 mm + logo",
-          caption: "Bloque editorial: paleta azul/nude + tipografías + 2 fotografías 35 mm + logo",
+          src: "/images/projects/cucharita/branding.png",
+          caption: "Paleta y tipografías",
         },
       ],
     },
@@ -118,9 +118,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "sistema",
-          src: "/images/projects/cucharita/sistema.jpg",
-          alt: "3 frames del spot o contact sheet + una aplicación del sistema gráfico",
-          caption: "3 frames del spot o contact sheet + una aplicación del sistema gráfico",
+          src: "/images/projects/cucharita/sistema.gif",
+          caption: "Sistema gráfico",
         },
       ],
     },
@@ -135,9 +134,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "mvp",
-          src: "/images/projects/cucharita/mvp.jpg",
-          alt: "Landing completa o scroll: hero, producto y CTA",
-          caption: "Landing completa o scroll: hero, producto y CTA",
+          src: "/images/projects/cucharita/cover.png",
+          caption: "MVP · landing",
         },
       ],
     },

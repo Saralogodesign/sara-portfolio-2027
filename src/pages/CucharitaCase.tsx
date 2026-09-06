@@ -140,10 +140,6 @@ const diagrams = {
 export default function CucharitaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = cucharitaCase.documentTitle;
-    return () => {
-      document.title = "Sara — Product Designer";
-    };
   }, []);
 
   return (

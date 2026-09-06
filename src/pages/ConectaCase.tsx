@@ -3,36 +3,14 @@ import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
 import { conectaCase } from "../content/projects/conecta";
 
-const ownership = [
-  { label: "Product Strategy", level: "principal" },
-  { label: "UX", level: "principal" },
-  { label: "Brand", level: "principal" },
-  { label: "Stakeholders", level: "principal" },
-  { label: "Design System", level: "compartida" },
-  { label: "Handoff", level: "compartida" },
-];
-
 const diagrams = {
   context: (
-    <div className="cx-diagram cx-eco-simple" aria-label="Ecosistema Conecta">
+    <div className="cx-diagram cx-eco-simple" role="img" aria-label="Ecosistema Conecta">
       <div>Artistas</div>
       <span>↔</span>
       <div className="is-core">CONECTA</div>
       <span>↔</span>
       <div>Salas / promotores</div>
-    </div>
-  ),
-  role: (
-    <div className="cx-diagram cx-ownership" aria-label="Mapa de ownership">
-      {ownership.map((item) => (
-        <div key={item.label} className={`cx-bar ${item.level}`}>
-          <div>
-            <strong>{item.label}</strong>
-            <span>{item.level === "principal" ? "Liderada" : "Compartida"}</span>
-          </div>
-          <i />
-        </div>
-      ))}
     </div>
   ),
   "decision-01": (
@@ -55,13 +33,6 @@ const diagrams = {
         </ol>
         <span className="cx-note">Valor antes de pedir datos</span>
       </div>
-    </div>
-  ),
-  "decision-02": (
-    <div className="cx-diagram cx-pipeline light" aria-label="Taxonomía">
-      {["Datos del perfil", "Categorías normalizadas", "Filtros", "Resultados"].map((step) => (
-        <div key={step}>{step}</div>
-      ))}
     </div>
   ),
   identidad: (
@@ -103,10 +74,6 @@ const diagrams = {
 export default function ConectaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = conectaCase.documentTitle;
-    return () => {
-      document.title = "Sara — Product Designer";
-    };
   }, []);
 
   return (

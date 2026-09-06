@@ -3,28 +3,40 @@
    ============================================================ */
 
 :root {
-  /* CAMBIAR AQUÍ: fondo / tinta / acento */
-  --cream: #f7f3ec;
+  /* CAMBIAR AQUÍ: rampa rojo fresa (WCAG AA en tonos principales) */
+  --strawberry-50: #fff0f3;
+  --strawberry-100: #fad4dc;
+  --strawberry-200: #f4a8b8;
+  --strawberry-300: #ef7a94;
+  --strawberry-400: #e04d6f;
+  --strawberry: #c4244a;
+  --strawberry-600: #a81f3f;
+  --strawberry-700: #8b1a38;
+  --strawberry-800: #6d142c;
+  --strawberry-900: #4a0e1e;
+  --strawberry-ghost: rgba(196, 36, 74, 0.06);
+  --strawberry-ghost-mid: rgba(196, 36, 74, 0.35);
+
+  --cream: #f8f9f7;
+  --soft: #f0f1ef;
   --ink: #191919;
-  --blue: #3420fd;
-  --teal: #15556a;
+  --blue: var(--strawberry);
+  --teal: var(--strawberry);
 
   --page-bg: var(--cream);
   --fg: var(--ink);
   --fg-muted: #555;
-  --accent: var(--blue);
+  --accent: var(--strawberry);
   --accent-contrast: #fff;
-  --surface: #e5e1dc;
+  --surface: #eceee9;
   --line: rgba(25, 25, 25, 0.16);
-  --cta-bg: var(--blue);
+  --cta-bg: var(--strawberry);
   --cta-fg: #fff;
 }
 
-/* CAMBIAR AQUÍ: fondos de las tarjetas de proyecto en la home */
-.violet { background: #c9bdff; }
-.blue { background: #b7dcff; }
-.coral { background: #ff896f; }
-.lime { background: #d1ef63; }
-.navy { background: #182e59; color: white; }
-.pink { background: #f2b6d5; }
-.teal { background: #15556a; color: white; }
+/* CAMBIAR AQUÍ: fondos de las tarjetas de proyecto en la home (rampa fresa) */
+.violet { background: var(--strawberry-200); }
+.blue { background: var(--strawberry-100); }
+.navy { background: var(--strawberry-700); color: white; }
+.ink { background: #000; color: white; }
+.teal { background: #ececec; color: var(--ink); }

@@ -2,16 +2,16 @@ import type { CaseStudyContent } from "../types";
 
 export const escuelaCase: CaseStudyContent = {
   slug: "escuela-hosteleria",
-  documentTitle: "Escuela de Hostelería y Alimentación — Sara",
+  documentTitle: "Escuela de Hostelería — Sara",
   hero: {
     eyebrow: "CASE STUDY · PRODUCT DESIGN · UI SYSTEM",
-    title: "Escuela de Hostelería y Alimentación",
+    title: "Escuela de Hostelería",
     subtitle: "Diseñar para que el producto pueda seguir funcionando cuando tú ya no estás.",
     lead: "Un proyecto institucional donde el reto no fue solo construir una web, sino dejar un sistema entendible, implementable y transferible entre proveedores.",
     skills:
       "Product Design · UI System · Accessibility · Design-to-Dev · Stakeholder Management · Documentation",
     meta: [
-      { label: "Contexto", value: "Servicio público de formación" },
+      { label: "Contexto", value: "Servicio público de formación para la Comunidad de Madrid" },
       { label: "Año", value: "2025" },
       { label: "Mi papel", value: "Diseño + coordinación" },
       { label: "Reto", value: "Continuidad y transferencia" },
@@ -19,7 +19,11 @@ export const escuelaCase: CaseStudyContent = {
     artLabel: "COMPOSICIÓN / HERO",
     artTitle: "Escuela",
     artHint: "2–3 pantallas del diseño original + detalle del sistema de componentes",
-    heroNote: "No usar la web actual como hero. La captura de la implementación solo aparece como contexto.",
+    heroMedia: {
+      id: "hero",
+      src: "/images/projects/escuela-hosteleria/cover.jpg",
+      caption: "Mockup móvil de la Escuela de Hostelería: salto laboral, cursos y formulario de contacto",
+    },
   },
   sections: [
     {
@@ -34,9 +38,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "context",
           src: "/images/projects/escuela-hosteleria/context.jpg",
-          alt: "Captura discreta de la plataforma publicada",
           caption: "Captura discreta de la plataforma publicada",
-          note: "Evidencia de que el servicio llegó a producción · no protagonista",
         },
       ],
     },
@@ -53,9 +55,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "role",
           src: "/images/projects/escuela-hosteleria/role.jpg",
-          alt: "Documentación / handoff reconstruida",
           caption: "Documentación / handoff reconstruida",
-          note: "Componente + estados + comportamiento + nota funcional",
         },
       ],
     },
@@ -71,9 +71,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "decision-01",
           src: "/images/projects/escuela-hosteleria/decision-01.jpg",
-          alt: "Brand foundations reconstruidas",
           caption: "Brand foundations reconstruidas",
-          note: "Logo de partida → paleta → tipografía → jerarquía → recursos → aplicación",
         },
       ],
     },
@@ -90,16 +88,12 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "decision-02",
           src: "/images/projects/escuela-hosteleria/decision-02.jpg",
-          alt: "Artefacto principal · Accessibility by design",
           caption: "Artefacto principal · Accessibility by design",
-          note: "Lámina en Figma con evidencias reales sobre componentes · no una checklist genérica",
         },
         {
           id: "decision-02-handoff",
           src: "/images/projects/escuela-hosteleria/decision-02-handoff.jpg",
-          alt: "Artefacto de handoff · Figma como fuente de verdad",
           caption: "Artefacto de handoff · Figma como fuente de verdad",
-          note: "Documentación para desarrollo: accesibilidad, comportamiento y reglas de uso en el mismo archivo",
         },
       ],
     },
@@ -115,9 +109,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "decision-03",
           src: "/images/projects/escuela-hosteleria/decision-03.jpg",
-          alt: "Artefacto clave · 2–3 componentes en detalle",
           caption: "Artefacto clave · 2–3 componentes en detalle",
-          note: "Variants, properties, estados y responsive behavior · imagen protagonista",
         },
       ],
     },
@@ -134,9 +126,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "sistema",
           src: "/images/projects/escuela-hosteleria/sistema.jpg",
-          alt: "Composición producto + comunicación",
           caption: "Composición producto + comunicación",
-          note: "Card/CTA web junto a ficha de curso, cartel, social o pieza equivalente",
         },
       ],
     },
@@ -152,9 +142,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "decision-04",
           src: "/images/projects/escuela-hosteleria/decision-04.jpg",
-          alt: "Lámina de documentación de trabajo",
           caption: "Lámina de documentación de trabajo",
-          note: "Nomenclatura, properties, estados, reglas responsive y ejemplo de implementación",
         },
       ],
     },
@@ -171,9 +159,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "restricciones",
           src: "/images/projects/escuela-hosteleria/restricciones.jpg",
-          alt: "Comparativa controlada · Designed system / Implemented service",
           caption: "Comparativa controlada · Designed system / Implemented service",
-          note: "No plantearla como «bien vs mal» · indicar qué corresponde a la entrega",
         },
       ],
     },

@@ -160,10 +160,6 @@ const diagrams = {
 export default function EscuelaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = escuelaCase.documentTitle;
-    return () => {
-      document.title = "Sara — Product Designer";
-    };
   }, []);
 
   return (
