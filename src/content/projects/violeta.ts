@@ -19,7 +19,7 @@ export const violetaCase: CaseStudyContent = {
     artHint: "Identidad o pantalla a gran escala · entrar por el universo visual",
     heroMedia: {
       id: "hero",
-      src: "/images/projects/violeta/hero.png",
+      src: "/images/projects/violeta/resultado.mp4",
       caption: "Onboarding de Violeta: un espacio seguro, hecho por y para las mujeres",
     },
   },
@@ -49,7 +49,7 @@ export const violetaCase: CaseStudyContent = {
       id: "research",
       eyebrow: "RESEARCH",
       title: "Encontrar el problema correcto",
-      tone: "soft",
+      tone: "dark",
       paragraphs: [
         "Trabajamos con focus groups, encuestas y entrevistas a expertas para entender tanto la experiencia de las usuarias como la realidad técnica y legal. En mi caso, estuve especialmente implicada en research, entrevistas y síntesis de insights, incluyendo conversaciones con perfiles de ciberseguridad y hacking ético.",
         "Antes de pedir a una mujer que denuncie, hay que ayudarla a identificar lo que está viviendo, entender sus opciones y recuperar sensación de control.",
@@ -58,7 +58,7 @@ export const violetaCase: CaseStudyContent = {
         {
           id: "research-focusgroup",
           src: "/images/projects/violeta/research-focusgroup.png",
-          caption: "Focus group · entrevistas",
+          caption: "Focus group · Entrevistas a expertas - Marta López, hacker ético",
         },
       ],
     },
@@ -81,7 +81,7 @@ export const violetaCase: CaseStudyContent = {
             top: "16%",
             size: "32%",
             focus: "50% 50%",
-            magnify: "118%",
+            magnify: "fill",
           },
         },
       ],
@@ -90,7 +90,7 @@ export const violetaCase: CaseStudyContent = {
       id: "branding",
       eyebrow: "BRANDING",
       title: "La identidad como parte de la experiencia",
-      tone: "dark",
+      tone: "soft",
       paragraphs: [
         "En Violeta la identidad no podía ser una capa decorativa. Tenía que hablar de un tema duro sin construir una experiencia clínica, institucional o paternalista. Desarrollé gran parte del branding buscando un lenguaje con carácter, cercano y reconocible, capaz de transmitir seguridad sin borrar la energía de quien recupera el control.",
         "El sistema combina una tipografía de alta presencia, recursos editoriales, fotografía humana y una paleta violeta, lila y rosa.",
@@ -131,8 +131,8 @@ export const violetaCase: CaseStudyContent = {
       media: [
         {
           id: "resultado",
-          src: "/images/projects/violeta/cover.png",
-          caption: "Producto · onboarding",
+          src: "/images/projects/violeta/CIBERTalent.jpg",
+          caption: "Presentación · Incubadora INCIBE - Cyber Talent",
         },
       ],
     },

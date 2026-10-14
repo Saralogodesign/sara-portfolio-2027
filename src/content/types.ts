@@ -9,6 +9,10 @@ export type MediaRef = {
   src?: string;
   /** Pie de foto o vídeo. También se usa como texto alternativo. */
   caption: string;
+  /** Ancho visual en el case: full (100%) o half (~50%) */
+  size?: "full" | "half";
+  /** Vista con scroll interno sin agrandar el contenedor */
+  scroll?: "vertical";
   /** Cursores tipo FigJam encima de la imagen */
   cursors?: { name: string; color: string }[];
   /** Plano detalle / lupa encima de la imagen */
@@ -21,7 +25,7 @@ export type MediaRef = {
     size?: string;
     /** Punto de la imagen que se enseña dentro de la lupa */
     focus?: string;
-    /** Nivel de zoom dentro de la lupa, ej. 260% */
+    /** Ajuste dentro de la lupa: fill | cover | contain | 260% */
     magnify?: string;
   };
 };
@@ -47,8 +51,8 @@ export type CaseSection = {
   eyebrow: string;
   title: string;
   paragraphs: string[];
-  /** soft | dark | default */
-  tone?: "default" | "soft" | "dark";
+  /** soft | dark | cream | default */
+  tone?: "default" | "soft" | "dark" | "cream";
   media?: MediaRef[];
 };
 

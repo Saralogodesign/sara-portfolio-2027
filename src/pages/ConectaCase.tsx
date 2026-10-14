@@ -35,18 +35,6 @@ const diagrams = {
       </div>
     </div>
   ),
-  identidad: (
-    <div className="cx-diagram cx-brand-pair" aria-label="Comparativa de marca">
-      <div>
-        <p className="cx-label">Somos Música</p>
-        <strong>Origen</strong>
-      </div>
-      <div className="is-product">
-        <p className="cx-label">Conecta</p>
-        <strong>Producto digital</strong>
-      </div>
-    </div>
-  ),
   colaboracion: (
     <div className="cx-diagram cx-collab" aria-label="Flujo de trabajo">
       {["Stakeholders", "Workshop / decisión", "Figma", "Validación", "Desarrollo"].map((step) => (
@@ -77,7 +65,7 @@ export default function ConectaCase() {
   }, []);
 
   return (
-    <CaseLayout currentSlug="conecta">
+    <CaseLayout currentSlug="conecta" className="conecta-case">
       <CaseArticle content={conectaCase} diagrams={diagrams} heroToneClass="navy" />
     </CaseLayout>
   );

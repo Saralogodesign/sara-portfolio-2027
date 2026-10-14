@@ -1,0 +1,381 @@
+/* Interactive Button playground — Escuela DS */
+.escuela-case .eh-btn-playground{
+  --eh-orange-50:#fff3ec;
+  --eh-orange-200:#ffc9a9;
+  --eh-orange-500:#ff8945;
+  --eh-orange-700:#b56131;
+  --eh-blue-50:#eff3fe;
+  --eh-blue-100:#ced9fc;
+  --eh-blue-400:#809cf6;
+  --eh-blue-600:#5777de;
+  --eh-blue-800:#354886;
+  --eh-black-100:#b3b3b3;
+  --eh-black-400:#3c3c3c;
+  --eh-black-500:#0b0b0b;
+  --eh-beige-100:#fcf8f5;
+  --eh-beige-500:#f4e9df;
+  --eh-white:#fff;
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(260px,.9fr);
+  gap:18px;
+  margin-top:22px;
+  align-items:stretch;
+}
+.escuela-case .cx-dark .eh-btn-panel-title,
+.escuela-case .cx-dark .eh-btn-prop-label{
+  color:rgba(255,255,255,.55);
+}
+.escuela-case .cx-dark .eh-btn-panel{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.2);
+}
+.escuela-case .cx-dark .eh-btn-prop-options button{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.22);
+  color:#fff;
+}
+.escuela-case .cx-dark .eh-btn-prop-options button:hover{
+  border-color:rgba(255,255,255,.45);
+}
+.escuela-case .cx-dark .eh-btn-prop-options button.is-active{
+  background:#fff;
+  border-color:#fff;
+  color:var(--ink);
+}
+.escuela-case .cx-dark .eh-btn-prop-options button:focus-visible{
+  outline-color:#fff;
+}
+.escuela-case .eh-btn-stage{
+  display:grid;
+  place-content:center;
+  gap:18px;
+  min-height:280px;
+  padding:28px 24px;
+  background:var(--eh-beige-500);
+  border:1px dashed #717171;
+  border-radius:5px;
+  text-align:center;
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+.escuela-case .eh-btn-stage.is-surface-cream{
+  background:var(--eh-beige-500);
+  border-color:#9a8f84;
+  color:#333;
+}
+.escuela-case .eh-btn-stage.is-surface-blue{
+  background:var(--eh-blue-600);
+  border-color:rgba(255,255,255,.45);
+  color:#fcf8f5;
+}
+.escuela-case .eh-btn-stage.is-surface-orange{
+  background:var(--eh-orange-500);
+  border-color:rgba(11,11,11,.35);
+  color:#0b0b0b;
+}
+.escuela-case .eh-btn-stage-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  width:100%;
+  max-width:360px;
+  margin:0 auto;
+}
+.escuela-case .eh-btn-surface-chips{
+  display:flex;
+  gap:6px;
+}
+.escuela-case .eh-btn-surface-chips button{
+  appearance:none;
+  width:22px;
+  height:22px;
+  padding:2px;
+  border:1px solid rgba(11,11,11,.28);
+  border-radius:999px;
+  background:transparent;
+  cursor:pointer;
+}
+.escuela-case .eh-btn-stage.is-surface-blue .eh-btn-surface-chips button{
+  border-color:rgba(255,255,255,.45);
+}
+.escuela-case .eh-btn-surface-chips button.is-active{
+  outline:2px solid currentColor;
+  outline-offset:1px;
+}
+.escuela-case .eh-btn-surface-chips button span{
+  display:block;
+  width:100%;
+  height:100%;
+  border-radius:inherit;
+  border:1px solid rgba(11,11,11,.12);
+}
+.escuela-case .eh-btn-stage-label,
+.escuela-case .eh-btn-panel-title,
+.escuela-case .eh-btn-prop-label{
+  margin:0;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#666;
+}
+.escuela-case .eh-btn-stage .eh-btn-stage-label,
+.escuela-case .eh-btn-stage .eh-btn-formula{
+  color:inherit;
+}
+.escuela-case .eh-btn-stage.is-surface-cream .eh-btn-stage-label{
+  color:#666;
+}
+.escuela-case .eh-btn-stage.is-surface-blue .eh-btn-stage-label{
+  color:rgba(252,248,245,.75);
+}
+.escuela-case .eh-btn-stage.is-surface-orange .eh-btn-stage-label{
+  color:rgba(11,11,11,.65);
+}
+.escuela-case .eh-btn-formula{
+  margin:0;
+  font-size:13px;
+  font-weight:600;
+  line-height:1.45;
+  word-break:break-word;
+}
+.escuela-case .eh-btn-swatch{
+  display:inline-block;
+  width:12px;
+  height:12px;
+  border-radius:999px;
+  border:1px solid rgba(11,11,11,.2);
+  flex:none;
+}
+.escuela-case .eh-btn-prop-options button.has-swatch{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+}
+.escuela-case .eh-btn-panel{
+  display:grid;
+  gap:14px;
+  align-content:start;
+  padding:20px;
+  background:#f7f7f7;
+  border:1px solid var(--line);
+  border-radius:var(--radius-lg);
+}
+.escuela-case .eh-btn-prop{
+  display:grid;
+  gap:8px;
+}
+.escuela-case .eh-btn-prop-options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.escuela-case .eh-btn-prop-options button{
+  appearance:none;
+  border:1px solid var(--line);
+  background:#fff;
+  color:var(--ink);
+  border-radius:999px;
+  padding:7px 12px;
+  font:inherit;
+  font-size:12px;
+  font-weight:700;
+  cursor:pointer;
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+.escuela-case .eh-btn-prop-options button:hover{
+  border-color:#999;
+}
+.escuela-case .eh-btn-prop-options button.is-active{
+  background:var(--ink);
+  border-color:var(--ink);
+  color:#fff;
+}
+.escuela-case .eh-btn-prop-options button:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:2px;
+}
+
+/* Button component */
+.escuela-case .eh-ds-btn{
+  appearance:none;
+  display:inline-flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  margin:0 auto;
+  border:0 solid transparent;
+  border-radius:999px;
+  font-family:inherit;
+  font-weight:400;
+  text-align:center;
+  cursor:pointer;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,color .18s ease,font-weight .18s ease;
+}
+.escuela-case .eh-ds-btn .eh-btn-icon{
+  width:1em;
+  height:1em;
+  flex:none;
+  display:block;
+}
+.escuela-case .eh-ds-btn .eh-btn-icon.is-flip{
+  transform:scaleX(-1);
+}
+.escuela-case .eh-ds-btn .eh-btn-icon.is-spin{
+  animation:eh-btn-spin .8s linear infinite;
+}
+@keyframes eh-btn-spin{
+  to{transform:rotate(360deg)}
+}
+
+/* Size */
+.escuela-case .eh-ds-btn.is-normal{
+  padding:16px 32px;
+  gap:10px;
+  font-size:20px;
+  line-height:24px;
+}
+.escuela-case .eh-ds-btn.is-normal.has-icon-left,
+.escuela-case .eh-ds-btn.is-normal.has-icon-right,
+.escuela-case .eh-ds-btn.is-normal.is-loading{
+  gap:8px;
+}
+.escuela-case .eh-ds-btn.is-normal .eh-btn-icon{width:24px;height:24px}
+.escuela-case .eh-ds-btn.is-medium{
+  padding:14px 32px;
+  font-size:16px;
+  line-height:19px;
+}
+.escuela-case .eh-ds-btn.is-medium .eh-btn-icon{width:20px;height:20px}
+.escuela-case .eh-ds-btn.is-small{
+  padding:8px 24px;
+  font-size:14px;
+  line-height:17px;
+}
+.escuela-case .eh-ds-btn.is-small .eh-btn-icon{width:16px;height:16px}
+
+/* Type · Org */
+.escuela-case .eh-ds-btn.is-org{
+  background:var(--eh-orange-500);
+  color:var(--eh-black-500);
+}
+.escuela-case .eh-ds-btn.is-org.is-hover,
+.escuela-case .eh-ds-btn.is-org.is-focus,
+.escuela-case .eh-ds-btn.is-org.is-default:not(:disabled):hover{
+  border-color:var(--eh-black-500);
+  font-weight:900;
+  box-shadow:0 8px 12px 6px rgba(0,0,0,.15),0 4px 4px rgba(0,0,0,.3);
+}
+.escuela-case .eh-ds-btn.is-org.is-normal.is-hover,
+.escuela-case .eh-ds-btn.is-org.is-normal.is-focus,
+.escuela-case .eh-ds-btn.is-org.is-medium.is-hover,
+.escuela-case .eh-ds-btn.is-org.is-medium.is-focus{border-width:2px}
+.escuela-case .eh-ds-btn.is-org.is-small.is-hover,
+.escuela-case .eh-ds-btn.is-org.is-small.is-focus{
+  border-width:1.5px;
+  box-shadow:0 6px 10px 4px rgba(0,0,0,.15),0 2px 3px rgba(0,0,0,.3);
+}
+.escuela-case .eh-ds-btn.is-org.is-click{
+  background:var(--eh-orange-200);
+  border-style:dashed;
+  border-color:var(--eh-black-500);
+  font-weight:400;
+  box-shadow:none;
+}
+.escuela-case .eh-ds-btn.is-org.is-normal.is-click{border-width:3px}
+.escuela-case .eh-ds-btn.is-org.is-medium.is-click{border-width:2.5px}
+.escuela-case .eh-ds-btn.is-org.is-small.is-click{border-width:2px}
+.escuela-case .eh-ds-btn.is-org.is-disabled{
+  background:var(--eh-orange-50);
+  border:1px solid var(--eh-orange-700);
+  color:var(--eh-orange-700);
+  font-weight:900;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+/* Type · Blue */
+.escuela-case .eh-ds-btn.is-bl{
+  background:var(--eh-blue-600);
+  color:var(--eh-beige-100);
+  border:1px solid var(--eh-beige-100);
+}
+.escuela-case .eh-ds-btn.is-bl.is-hover,
+.escuela-case .eh-ds-btn.is-bl.is-focus,
+.escuela-case .eh-ds-btn.is-bl.is-default:not(:disabled):hover{
+  border-color:var(--eh-beige-100);
+  font-weight:900;
+  box-shadow:0 8px 12px 6px rgba(0,0,0,.15),0 4px 4px rgba(0,0,0,.3);
+}
+.escuela-case .eh-ds-btn.is-bl.is-hover{border-width:1px}
+.escuela-case .eh-ds-btn.is-bl.is-focus{border-width:2px}
+.escuela-case .eh-ds-btn.is-bl.is-click{
+  background:var(--eh-blue-100);
+  border:2.5px dashed var(--eh-blue-800);
+  color:var(--eh-blue-800);
+  font-weight:900;
+  box-shadow:none;
+}
+.escuela-case .eh-ds-btn.is-bl.is-disabled{
+  background:var(--eh-blue-50);
+  border:0;
+  color:var(--eh-blue-400);
+  font-weight:400;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+/* Type · Black */
+.escuela-case .eh-ds-btn.is-bk{
+  background:var(--eh-black-500);
+  color:var(--eh-beige-500);
+  border:0 solid transparent;
+}
+.escuela-case .eh-ds-btn.is-bk.is-hover,
+.escuela-case .eh-ds-btn.is-bk.is-focus,
+.escuela-case .eh-ds-btn.is-bk.is-default:not(:disabled):hover{
+  border-color:var(--eh-beige-500);
+  box-shadow:0 8px 12px 6px rgba(0,0,0,.15),0 4px 4px rgba(0,0,0,.3);
+}
+.escuela-case .eh-ds-btn.is-bk.is-normal.is-hover,
+.escuela-case .eh-ds-btn.is-bk.is-normal.is-focus,
+.escuela-case .eh-ds-btn.is-bk.is-medium.is-hover,
+.escuela-case .eh-ds-btn.is-bk.is-medium.is-focus{border-width:2px}
+.escuela-case .eh-ds-btn.is-bk.is-small.is-hover,
+.escuela-case .eh-ds-btn.is-bk.is-small.is-focus{border-width:1.5px}
+.escuela-case .eh-ds-btn.is-bk.is-click{
+  background:var(--eh-black-100);
+  border-style:dashed;
+  border-color:var(--eh-black-500);
+  color:var(--eh-black-500);
+  box-shadow:none;
+}
+.escuela-case .eh-ds-btn.is-bk.is-normal.is-click,
+.escuela-case .eh-ds-btn.is-bk.is-medium.is-click{border-width:2.5px}
+.escuela-case .eh-ds-btn.is-bk.is-small.is-click{border-width:2px}
+.escuela-case .eh-ds-btn.is-bk.is-disabled{
+  background:var(--eh-white);
+  border:0;
+  color:var(--eh-black-400);
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+.escuela-case .eh-ds-btn:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
+.escuela-case .eh-ds-btn.is-focus{
+  outline:none;
+}
+.escuela-case .eh-ds-btn.is-loading{
+  cursor:progress;
+}
+
+@media(max-width:900px){
+  .escuela-case .eh-btn-playground{
+    grid-template-columns:1fr;
+  }
+  .escuela-case .eh-btn-stage{min-height:220px}
+}

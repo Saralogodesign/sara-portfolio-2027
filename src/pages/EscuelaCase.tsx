@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
+import EscuelaButtonPlayground from "../components/EscuelaButtonPlayground";
+import EscuelaGovernance from "../components/EscuelaGovernance";
 import { escuelaCase } from "../content/projects/escuela";
 
 const stakeholders = [
@@ -20,11 +22,54 @@ const translation = [
   "Implementación",
 ];
 
-const brandPath = [
-  { label: "Referencias de partida", items: ["Logo", "Referencias dispersas"] },
-  { label: "Criterios definidos", items: ["Personalidad", "Consistencia", "Contexto institucional"] },
-  { label: "Sistema final", items: ["Paleta", "Tipografía", "Jerarquía", "Recursos gráficos"] },
-];
+const foundations = [
+  {
+    id: "color",
+    tone: "signal",
+    eyebrow: "01 / Color",
+    summary: "Logo → primitivos → roles semánticos",
+    note: "Orange/500 · text/primary · action/primary",
+  },
+  {
+    id: "shape",
+    tone: "signal",
+    eyebrow: "02 / Shape",
+    summary: "Logo → control · card · field",
+    note: "La forma diferencia jerarquía y función.",
+  },
+  {
+    id: "type",
+    tone: "foundation",
+    eyebrow: "03 / Typography",
+    summary: "Grande. Directo. Condensado.",
+    note: "Barlow Semi Condensed / headings · Lato / body & interface",
+  },
+  {
+    id: "rhythm",
+    tone: "foundation",
+    eyebrow: "04 / Rhythm",
+    summary: "Base 4 px · proximidad · alineación",
+    note: "4 · 8 · 16 · 24 · 32",
+  },
+  {
+    id: "a11y",
+    tone: "system",
+    eyebrow: "05 / Accessibility",
+    summary: "Contraste · foco · target 44 px · color + texto",
+    note: "8.36:1 · 2.36:1 · 21:1",
+  },
+  {
+    id: "semantic",
+    tone: "system",
+    eyebrow: "06 / Semantic UI",
+    summary: "Tokens → foundations → componentes accesibles",
+    note: "La coherencia nace de sistematizar, no de repetir el logo.",
+  },
+] as const;
+
+const foundationFlow = ["Logo", "Principios", "Tokens", "Foundations", "Producto"];
+
+const spacingScale = [4, 8, 16, 24, 32];
 
 const a11yEvidence = [
   { label: "Contraste", note: "Ratio visible en color" },
@@ -39,20 +84,6 @@ const a11yInSystem = [
   { label: "Error sin color solo", note: "Feedback comprensible" },
   { label: "Labels definidos", note: "Properties en el kit" },
 ];
-
-const uiKit = [
-  "Button",
-  "Input",
-  "Select",
-  "Card de curso",
-  "Tags",
-  "Alert / estado",
-  "Navegación",
-  "Accordion",
-  "CTA",
-];
-
-const reuseLine = ["Foundations", "UI kit", "Web", "Comunicación"];
 
 const transfer = [
   { label: "Equipo actual", note: "Diseño + desarrollo" },
@@ -81,17 +112,115 @@ const diagrams = {
     </div>
   ),
   "decision-01": (
-    <div className="cx-diagram eh-brand-path" aria-label="De referencias a sistema">
-      {brandPath.map((col) => (
-        <div key={col.label} className={col.label === "Sistema final" ? "is-system" : undefined}>
-          <p className="cx-label">{col.label}</p>
-          <ul>
-            {col.items.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div className="cx-diagram eh-foundations" aria-label="Cómo nacen las foundations">
+      <header className="eh-foundations-head">
+        <p className="eh-foundations-eyebrow">Del logo al sistema</p>
+      </header>
+
+      <div className="eh-foundations-source">
+        <img
+          src="/images/projects/escuela-hosteleria/Logo_escuela.png"
+          alt="Logo Escuela Municipal de Hostelería y Alimentación"
+        />
+      </div>
+
+      <div className="eh-foundations-grid">
+        {foundations.map((item) => (
+          <article key={item.id} className={`eh-foundations-card is-${item.tone} is-${item.id}`}>
+            <p className="eh-foundations-card-eyebrow">{item.eyebrow}</p>
+
+            {item.id === "color" ? (
+              <div className="eh-foundations-swatches" aria-hidden="true">
+                <span className="is-orange">#FF8945</span>
+                <span className="is-black">#000000</span>
+                <span className="is-white">#FFFFFF</span>
+              </div>
+            ) : null}
+
+            {item.id === "shape" ? (
+              <div className="eh-foundations-shapes" aria-hidden="true">
+                <div>
+                  <i className="is-full" />
+                  <span>radius/full</span>
+                </div>
+                <div>
+                  <i className="is-12" />
+                  <span>radius/12</span>
+                </div>
+                <div>
+                  <i className="is-8" />
+                  <span>radius/8</span>
+                </div>
+              </div>
+            ) : null}
+
+            {item.id === "type" ? (
+              <p className="eh-foundations-type-sample" aria-hidden="true">
+                Grande. Directo. Condensado.
+              </p>
+            ) : null}
+
+            {item.id === "rhythm" ? (
+              <div className="eh-foundations-bars" aria-hidden="true">
+                {spacingScale.map((size) => (
+                  <div key={size}>
+                    <i style={{ width: `${size * 4.5}px` }} />
+                    <span>{size} px</span>
+                  </div>
+                ))}
+              </div>
+            ) : null}
+
+            {item.id === "a11y" ? (
+              <div className="eh-foundations-contrast" aria-hidden="true">
+                <span className="is-ok">
+                  <strong>8.36:1</strong>
+                  Negro / naranja
+                </span>
+                <span className="is-warn">
+                  <strong>2.36:1</strong>
+                  Blanco / naranja
+                </span>
+                <span className="is-max">
+                  <strong>21:1</strong>
+                  Blanco / negro
+                </span>
+              </div>
+            ) : null}
+
+            {item.id === "semantic" ? (
+              <div className="eh-foundations-tokens" aria-hidden="true">
+                <span className="is-action">action/primary</span>
+                <span className="is-text">text/primary</span>
+                <span className="is-surface">surface/default</span>
+              </div>
+            ) : null}
+
+            <p className="eh-foundations-summary">{item.summary}</p>
+            <p className="eh-foundations-note">{item.note}</p>
+          </article>
+        ))}
+      </div>
+
+      <p className="eh-foundations-flow" aria-label="Flujo del sistema">
+        {foundationFlow.flatMap((step, index) => {
+          const word = (
+            <span
+              key={step}
+              className={index === 0 || index === foundationFlow.length - 1 ? "is-accent" : undefined}
+            >
+              {step}
+            </span>
+          );
+          if (index === 0) return [word];
+          return [
+            <span key={`arrow-${step}`} className="eh-foundations-arrow" aria-hidden="true">
+              →
+            </span>,
+            word,
+          ];
+        })}
+      </p>
     </div>
   ),
   "decision-02": (
@@ -117,20 +246,7 @@ const diagrams = {
       </div>
     </>
   ),
-  "decision-03": (
-    <div className="cx-diagram eh-kit eh-kit-light" aria-label="UI kit reducido">
-      {uiKit.map((item) => (
-        <div key={item}>{item}</div>
-      ))}
-    </div>
-  ),
-  sistema: (
-    <div className="cx-diagram eh-reuse" aria-label="Línea de reutilización">
-      {reuseLine.map((item) => (
-        <div key={item}>{item}</div>
-      ))}
-    </div>
-  ),
+  "decision-03": <EscuelaGovernance />,
   "decision-04": (
     <div className="cx-diagram eh-transfer" aria-label="Ciclo de transferencia">
       {transfer.map((item) => (
@@ -164,7 +280,14 @@ export default function EscuelaCase() {
 
   return (
     <CaseLayout currentSlug="escuela-hosteleria" className="escuela-case">
-      <CaseArticle content={escuelaCase} diagrams={diagrams} heroToneClass="teal" />
+      <CaseArticle
+        content={escuelaCase}
+        diagrams={diagrams}
+        diagramsAfter={{
+          "decision-02": <EscuelaButtonPlayground />,
+        }}
+        heroToneClass="teal"
+      />
     </CaseLayout>
   );
 }

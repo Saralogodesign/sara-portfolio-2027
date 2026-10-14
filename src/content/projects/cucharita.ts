@@ -20,7 +20,7 @@ export const cucharitaCase: CaseStudyContent = {
     heroMedia: {
       id: "hero",
       src: "/images/projects/cucharita/mvp.mp4",
-      caption: "Spot de Cucharita · contraste entre aceleración y calma",
+      caption: "Vídeo demo del proyecto",
     },
   },
   sections: [
@@ -31,13 +31,6 @@ export const cucharitaCase: CaseStudyContent = {
       paragraphs: [
         "El punto de partida fue algo que reconocíamos en nuestra propia vida: estrés, sobreexposición y poco espacio para parar. En lugar de empezar por una solución tecnológica, centramos la conversación en cómo el descanso, el contacto y la intimidad pueden ayudar a recuperar bienestar y conexión.",
         "Mi aportación fue empujar un eje especialmente claro para ordenar el concepto: la bajada del cortisol. Ese foco nos permitió conectar una necesidad cotidiana con una propuesta basada en slow life y slow sex, y empezar a construir el producto desde ahí.",
-      ],
-      media: [
-        {
-          id: "insight",
-          src: "/images/projects/cucharita/insight.mp4",
-          caption: "Campaña · cortisol",
-        },
       ],
     },
     {
@@ -68,8 +61,8 @@ export const cucharitaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-01",
-          src: "/images/projects/cucharita/decision-01.mp4",
-          caption: "Campaña · dopamina",
+          src: "/images/projects/cucharita/insight.mp4",
+          caption: "Campaña · cortisol",
         },
       ],
     },
@@ -91,9 +84,27 @@ export const cucharitaCase: CaseStudyContent = {
       ],
     },
     {
+      id: "sistema",
+      eyebrow: "SISTEMA",
+      title: "Una marca construida alrededor del contacto",
+      tone: "cream",
+      paragraphs: [
+        "El propio naming, Cucharita, convertía un gesto sencillo y reconocible en territorio de marca. A partir de ahí, las formas redondeadas, los recursos orgánicos y las estrellas construyeron un sistema gráfico modular alrededor de la idea de cercanía.",
+        "El spot llevó el mismo principio al movimiento: contraste entre aceleración y calma, con primeros planos de piel, caricias y gestos cotidianos. Más que explicar la tecnología, la comunicación debía hacer sentir para qué existía.",
+      ],
+      media: [
+        {
+          id: "sistema",
+          src: "/images/projects/cucharita/decision-01.mp4",
+          caption: "Campaña · dopamina",
+        },
+      ],
+    },
+    {
       id: "branding",
       eyebrow: "BRANDING",
       title: "Tecnología que no parece tecnología",
+      tone: "soft",
       paragraphs: [
         "Una parte importante de mi aportación estuvo en construir un universo visual capaz de hablar de intimidad sin caer ni en códigos clínicos ni en clichés sexuales. El objetivo era que una propuesta tecnológica se sintiera cálida, sensorial y cercana.",
         "El azul profundo conecta con calma y descanso; el nude, con piel y proximidad. La combinación tipográfica equilibra estructura y cercanía, mientras la fotografía analógica, el grano y los planos próximos devuelven textura y humanidad a la experiencia.",
@@ -103,23 +114,6 @@ export const cucharitaCase: CaseStudyContent = {
           id: "branding",
           src: "/images/projects/cucharita/branding.png",
           caption: "Paleta y tipografías",
-        },
-      ],
-    },
-    {
-      id: "sistema",
-      eyebrow: "SISTEMA",
-      title: "Una marca construida alrededor del contacto",
-      tone: "soft",
-      paragraphs: [
-        "El propio naming, Cucharita, convertía un gesto sencillo y reconocible en territorio de marca. A partir de ahí, las formas redondeadas, los recursos orgánicos y las estrellas construyeron un sistema gráfico modular alrededor de la idea de cercanía.",
-        "El spot llevó el mismo principio al movimiento: contraste entre aceleración y calma, con primeros planos de piel, caricias y gestos cotidianos. Más que explicar la tecnología, la comunicación debía hacer sentir para qué existía.",
-      ],
-      media: [
-        {
-          id: "sistema",
-          src: "/images/projects/cucharita/sistema.gif",
-          caption: "Sistema gráfico",
         },
       ],
     },

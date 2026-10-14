@@ -2,21 +2,36 @@
    BASE — reset y elementos globales
    ============================================================ */
 
+:root {
+  --page-max: 800px;
+  --page-gutter: clamp(20px, 5vw, 40px);
+  --page-inline: max(var(--page-gutter), calc((100% - var(--page-max)) / 2));
+}
+
 * {
   box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
 }
 
 html {
   scroll-behavior: smooth;
   background: var(--page-bg, var(--cream));
-  overflow-x: clip;
 }
 
 body {
-  margin: 0;
-  background: transparent;
+  background: var(--page-bg, var(--cream));
   color: var(--fg);
   transition: none;
+}
+
+.page,
+.case-page {
+  width: 100%;
 }
 
 button,
@@ -36,6 +51,93 @@ button {
 :focus-visible {
   outline: 2px solid var(--accent, var(--strawberry));
   outline-offset: 3px;
+}
+
+html.has-circle-cursor,
+html.has-circle-cursor *{
+  cursor:none !important;
+}
+
+.circle-cursor{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  width:18px;
+  height:18px;
+  border:1.5px solid var(--strawberry);
+  border-radius:50%;
+  background:color-mix(in srgb,var(--strawberry) 22%,transparent);
+  pointer-events:none;
+  will-change:transform;
+  transition:width .2s ease,height .2s ease,background .2s ease;
+}
+
+.circle-cursor.is-hover{
+  width:36px;
+  height:36px;
+  background:color-mix(in srgb,var(--strawberry) 28%,transparent);
+}
+
+.circle-cursor.is-zoom{
+  width:56px;
+  height:56px;
+  background:var(--strawberry);
+  border-color:var(--strawberry);
+}
+
+.circle-cursor-label{
+  display:none;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:1;
+  user-select:none;
+}
+
+.circle-cursor.is-zoom .circle-cursor-label{
+  display:block;
+}
+
+html.is-strawberry-bg .circle-cursor{
+  border-color:#000;
+  background:color-mix(in srgb,#000 22%,transparent);
+}
+
+html.is-strawberry-bg .circle-cursor.is-hover{
+  background:color-mix(in srgb,#000 32%,transparent);
+}
+
+html.is-strawberry-bg .circle-cursor.is-zoom{
+  background:#000;
+  border-color:#000;
+}
+
+::selection {
+  background: var(--selection-bg, var(--strawberry));
+  color: var(--selection-fg, #fff);
+}
+
+::-moz-selection {
+  background: var(--selection-bg, var(--strawberry));
+  color: var(--selection-fg, #fff);
+}
+
+/* Playground / fondos fresa: selección negra por si el tema aún no ha actualizado */
+#lab ::selection,
+#lab *::selection {
+  background: #000;
+  color: #fff;
+}
+
+#lab ::-moz-selection,
+#lab *::-moz-selection {
+  background: #000;
+  color: #fff;
 }
 
 .skip-link {

@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { MediaRef } from "../content/types";
 import FigmaCursors from "./FigmaCursors";
+import { MediaLightbox, MediaZoomTrigger, type MediaLightboxSlide } from "./MediaLightbox";
 
 type Props = {
   media?: MediaRef;
   /** Fallback cuando no hay media */
   label?: string;
   className?: string;
+  /** Índice en la galería de la sección (lightbox compartido). */
+  galleryIndex?: number;
+  onGalleryOpen?: (index: number) => void;
 };
 
 export function isVideoSrc(src: string) {
@@ -60,7 +64,7 @@ export function CaseVideo({
           el.pause();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     io.observe(el);
@@ -124,6 +128,12 @@ function ZoomBubble({ zoom }: { zoom: NonNullable<MediaRef["zoom"]> }) {
     };
   }, []);
 
+  const magnify = zoom.magnify ?? "cover";
+  const fit =
+    magnify === "fill" || magnify === "cover" || magnify === "contain"
+      ? magnify
+      : "cover";
+
   return (
     <div
       ref={ref}
@@ -135,11 +145,12 @@ function ZoomBubble({ zoom }: { zoom: NonNullable<MediaRef["zoom"]> }) {
           "--zoom-top": zoom.top,
           "--zoom-size": zoom.size ?? "40%",
           "--zoom-focus": zoom.focus ?? "50% 50%",
-          "--zoom-magnify": zoom.magnify ?? "cover",
-          "--zoom-image": `url("${zoom.src}")`,
+          "--zoom-fit": fit,
         } as CSSProperties
       }
-    />
+    >
+      <img src={zoom.src} alt="" />
+    </div>
   );
 }
 
@@ -147,29 +158,98 @@ function ZoomBubble({ zoom }: { zoom: NonNullable<MediaRef["zoom"]> }) {
  * Foto o vídeo de case study.
  * - Si hay src y carga bien → muestra el archivo
  * - Si no → placeholder con caption (edita src en content/projects/*.ts)
+ * - Las imágenes se pueden ampliar en lightbox
  */
-export default function CaseMedia({ media, label, className = "" }: Props) {
+export default function CaseMedia({
+  media,
+  label,
+  className = "",
+  galleryIndex,
+  onGalleryOpen,
+}: Props) {
   const [broken, setBroken] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const pie = mediaCaption(media, label);
   const src = media?.src?.trim();
+  const sizeClass = media?.size === "half" ? "is-half" : "";
+  const scrollVertical = media?.scroll === "vertical";
+  const useSharedGallery =
+    onGalleryOpen !== undefined && galleryIndex !== undefined && galleryIndex >= 0;
+
+  const openLightbox = () => {
+    if (useSharedGallery) onGalleryOpen(galleryIndex);
+    else setLightboxOpen(true);
+  };
 
   if (src && !broken) {
     const showCursors = Boolean(media?.cursors?.length) && !isVideoSrc(src);
-    const showZoom = Boolean(media?.zoom?.src) && !isVideoSrc(src);
-    const framed = showCursors || showZoom;
+    const showDetailZoom = Boolean(media?.zoom?.src) && !isVideoSrc(src);
+    const framed = showCursors || showDetailZoom;
+    const isImage = !isVideoSrc(src);
+
+    if (isImage && scrollVertical) {
+      return (
+        <figure className={`cx-photo cx-photo-real is-scroll-y ${sizeClass} ${className}`.trim()}>
+          <div
+            className="cx-media-scroll"
+            tabIndex={0}
+            role="region"
+            aria-label={`${pie}. Usa scroll vertical para ver la captura completa.`}
+          >
+            <img src={src} alt={pie} onError={() => setBroken(true)} />
+            <button
+              type="button"
+              className="cx-media-scroll-zoom"
+              aria-label={`Ampliar: ${pie}`}
+              onClick={openLightbox}
+            >
+              <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
+                <path d="M15.5 15.5 21 21" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <path d="M10.5 7.5v6M7.5 10.5h6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
+          </div>
+          {useSharedGallery ? null : (
+            <MediaLightbox
+              open={lightboxOpen}
+              src={src}
+              alt={pie}
+              onClose={() => setLightboxOpen(false)}
+            />
+          )}
+          <figcaption className="cx-media-caption">{pie}</figcaption>
+        </figure>
+      );
+    }
+
+    const mediaBody = isVideoSrc(src) ? (
+      <CaseVideo src={src} alt={pie} interactive onError={() => setBroken(true)} />
+    ) : framed ? (
+      <div className="cx-photo-frame">
+        <img src={src} alt="" onError={() => setBroken(true)} />
+        {showCursors ? <FigmaCursors cursors={media!.cursors!} /> : null}
+        {showDetailZoom ? <ZoomBubble zoom={media!.zoom!} /> : null}
+      </div>
+    ) : (
+      <img src={src} alt="" onError={() => setBroken(true)} />
+    );
 
     return (
-      <figure className={`cx-photo cx-photo-real ${className}`.trim()}>
-        {isVideoSrc(src) ? (
-          <CaseVideo src={src} alt={pie} interactive onError={() => setBroken(true)} />
-        ) : framed ? (
-          <div className="cx-photo-frame">
-            <img src={src} alt={pie} onError={() => setBroken(true)} />
-            {showCursors ? <FigmaCursors cursors={media!.cursors!} /> : null}
-            {showZoom ? <ZoomBubble zoom={media!.zoom!} /> : null}
-          </div>
+      <figure className={`cx-photo cx-photo-real ${sizeClass} ${className}`.trim()}>
+        {isImage ? (
+          <MediaZoomTrigger
+            src={src}
+            alt={pie}
+            open={lightboxOpen}
+            onOpen={openLightbox}
+            onClose={() => setLightboxOpen(false)}
+            lightboxExternal={useSharedGallery}
+          >
+            {mediaBody}
+          </MediaZoomTrigger>
         ) : (
-          <img src={src} alt={pie} onError={() => setBroken(true)} />
+          mediaBody
         )}
         <figcaption className="cx-media-caption">{pie}</figcaption>
       </figure>
@@ -177,8 +257,65 @@ export default function CaseMedia({ media, label, className = "" }: Props) {
   }
 
   return (
-    <div className={`cx-photo ${className}`.trim()} aria-label={pie}>
+    <div className={`cx-photo ${sizeClass} ${className}`.trim()} aria-label={pie}>
       <span>{pie}</span>
     </div>
+  );
+}
+
+function buildGallerySlides(media: MediaRef[]): MediaLightboxSlide[] {
+  return media
+    .filter((item) => {
+      const itemSrc = item.src?.trim();
+      return itemSrc && !isVideoSrc(itemSrc);
+    })
+    .map((item) => ({
+      src: item.src!.trim(),
+      alt: mediaCaption(item),
+    }));
+}
+
+function galleryIndexForMedia(media: MediaRef[], target: MediaRef): number {
+  let index = -1;
+  for (const item of media) {
+    const itemSrc = item.src?.trim();
+    if (!itemSrc || isVideoSrc(itemSrc)) continue;
+    index += 1;
+    if (item.id === target.id) return index;
+  }
+  return -1;
+}
+
+/** Lista de media con lightbox compartido y flechas si hay varias imágenes. */
+export function CaseMediaList({ media }: { media: MediaRef[] }) {
+  const slides = useMemo(() => buildGallerySlides(media), [media]);
+  const [open, setOpen] = useState(false);
+  const [index, setIndex] = useState(0);
+  const sharedGallery = slides.length > 1;
+
+  return (
+    <>
+      <div className="cx-media-list">
+        {media.map((item) => (
+          <CaseMedia
+            key={item.id}
+            media={item}
+            galleryIndex={sharedGallery ? galleryIndexForMedia(media, item) : undefined}
+            onGalleryOpen={sharedGallery ? (i) => { setIndex(i); setOpen(true); } : undefined}
+          />
+        ))}
+      </div>
+      {sharedGallery ? (
+        <MediaLightbox
+          open={open}
+          src={slides[index]?.src ?? ""}
+          alt={slides[index]?.alt ?? ""}
+          slides={slides}
+          index={index}
+          onIndexChange={setIndex}
+          onClose={() => setOpen(false)}
+        />
+      ) : null}
+    </>
   );
 }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Download } from "lucide-react";
+import CvPreview from "../components/CvPreview";
 import EmailLink from "../components/EmailLink";
 import SplitFlapRole from "../components/SplitFlapRole";
 import { CaseVideo } from "../components/CaseMedia";
@@ -52,23 +54,49 @@ function ProjectCover({
 function SocialLinks({ className }: { className: string }) {
   return (
     <div className={className} aria-label="Redes sociales">
-      <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        GH
-      </a>
-      <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-        in
-      </a>
-      <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
-        M
-      </a>
       <EmailLink aria-label="Email">
         <svg className="hero-social-mail" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <circle
+            cx="12"
+            cy="12"
+            r="4"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
           <path
-            fill="currentColor"
-            d="M3.5 5.75h17a1.25 1.25 0 0 1 1.25 1.25v10a1.25 1.25 0 0 1-1.25 1.25h-17A1.25 1.25 0 0 1 2.25 17V7A1.25 1.25 0 0 1 3.5 5.75Zm.75 2.03V17h15.5V7.78l-7.02 4.45a1.5 1.5 0 0 1-1.46 0L4.25 7.78Zm1.1-1.28 6.2 3.93a.5.5 0 0 0 .5 0l6.2-3.93H5.35Z"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"
           />
         </svg>
       </EmailLink>
+      <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg className="hero-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          />
+        </svg>
+      </a>
+      <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg className="hero-social-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+          />
+        </svg>
+      </a>
+      <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
+        <svg className="hero-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            fill="currentColor"
+            d="M13.54 12a6.82 6.82 0 0 1-6.77 6.82A6.82 6.82 0 0 1 0 12a6.82 6.82 0 0 1 6.77-6.82A6.82 6.82 0 0 1 13.54 12Zm7.4 0c0 3.54-1.51 6.42-3.38 6.42s-3.39-2.88-3.39-6.42 1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42Zm3.06 0c0 3.1-.53 5.64-1.19 5.64-.66 0-1.19-2.54-1.19-5.64s.53-5.64 1.19-5.64c.66 0 1.19 2.54 1.19 5.64Z"
+          />
+        </svg>
+      </a>
     </div>
   );
 }
@@ -78,7 +106,14 @@ export default function Home() {
   const [navScrolled, setNavScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [narrow, setNarrow] = useState(false);
+  const [hideSocials, setHideSocials] = useState(false);
+  const [cvOpen, setCvOpen] = useState(false);
   const hasCv = Boolean(site.links.cv) && site.links.cv !== "#";
+
+  const openCv = () => {
+    setMenuOpen(false);
+    setCvOpen(true);
+  };
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 760px)");
@@ -89,6 +124,23 @@ export default function Home() {
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    const footer = document.getElementById("contact");
+    if (!footer) return;
+
+    const sync = () => {
+      setHideSocials(footer.getBoundingClientRect().top < window.innerHeight);
+    };
+
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    return () => {
+      window.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", sync);
+    };
   }, []);
 
   useEffect(() => {
@@ -143,29 +195,29 @@ export default function Home() {
       },
       {
         id: "about",
+        bg: [0, 0, 0],
+        fg: [255, 255, 255],
+        muted: [180, 176, 170],
+        accent: [244, 168, 184],
+        accentContrast: [0, 0, 0],
+        surface: [24, 24, 24],
+        line: [255, 255, 255],
+        lineAlpha: 0.28,
+        ctaBg: [255, 255, 255],
+        ctaFg: [0, 0, 0],
+      },
+      {
+        id: "lab",
         bg: [196, 36, 74],
         fg: [255, 255, 255],
         muted: [255, 224, 230],
         accent: [244, 168, 184],
-        accentContrast: [25, 25, 25],
+        accentContrast: [196, 36, 74],
         surface: [168, 32, 62],
         line: [255, 255, 255],
-        lineAlpha: 0.28,
+        lineAlpha: 0.32,
         ctaBg: [255, 255, 255],
         ctaFg: [196, 36, 74],
-      },
-      {
-        id: "lab",
-        bg: [10, 10, 10],
-        fg: [248, 249, 247],
-        muted: [180, 176, 170],
-        accent: [244, 168, 184],
-        accentContrast: [10, 10, 10],
-        surface: [36, 36, 36],
-        line: [255, 255, 255],
-        lineAlpha: 0.32,
-        ctaBg: [248, 249, 247],
-        ctaFg: [10, 10, 10],
       },
     ];
 
@@ -193,6 +245,9 @@ export default function Home() {
     const applyTheme = (theme: Theme) => {
       const root = document.documentElement;
       const rgb = (c: RGB) => `${c[0]}, ${c[1]}, ${c[2]}`;
+      // Fondo fresa (Playground): selección negra; resto: fresa
+      const isStrawberryBg =
+        theme.bg[0] > 150 && theme.bg[1] < 90 && theme.bg[2] < 110;
       root.style.setProperty("--page-bg", `rgb(${rgb(theme.bg)})`);
       root.style.setProperty("--fg", `rgb(${rgb(theme.fg)})`);
       root.style.setProperty("--fg-muted", `rgb(${rgb(theme.muted)})`);
@@ -202,6 +257,9 @@ export default function Home() {
       root.style.setProperty("--line", `rgba(${rgb(theme.line)}, ${theme.lineAlpha})`);
       root.style.setProperty("--cta-bg", `rgb(${rgb(theme.ctaBg)})`);
       root.style.setProperty("--cta-fg", `rgb(${rgb(theme.ctaFg)})`);
+      root.style.setProperty("--selection-bg", isStrawberryBg ? "#000" : "var(--strawberry)");
+      root.style.setProperty("--selection-fg", "#fff");
+      root.classList.toggle("is-strawberry-bg", isStrawberryBg);
     };
 
     const sections = [
@@ -254,6 +312,16 @@ export default function Home() {
     onThemeScroll();
     window.addEventListener("scroll", onThemeScroll, { passive: true });
 
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onThemeScroll);
+      document.documentElement.classList.remove("is-strawberry-bg");
+      document.documentElement.style.removeProperty("--selection-bg");
+      document.documentElement.style.removeProperty("--selection-fg");
+    };
+  }, []);
+
+  useEffect(() => {
     const revealEls = document.querySelectorAll(".reveal, .tl-card");
     const io = new IntersectionObserver(
       (entries) => {
@@ -261,16 +329,11 @@ export default function Home() {
           if (entry.isIntersecting) entry.target.classList.add("is-visible");
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0, rootMargin: "0px 0px 22% 0px" },
     );
     revealEls.forEach((el) => io.observe(el));
-
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("scroll", onThemeScroll);
-      io.disconnect();
-    };
-  }, []);
+    return () => io.disconnect();
+  }, [view]);
 
   return (
     <div className="page">
@@ -306,14 +369,26 @@ export default function Home() {
               <span>{item.label}</span>
             </a>
           ))}
+          {hasCv ? (
+            <button
+              type="button"
+              className="nav-cta nav-cv"
+              aria-label="Ver currículum"
+              onClick={openCv}
+            >
+              CV
+              <Download className="nav-cv-icon" aria-hidden="true" strokeWidth={2.25} />
+            </button>
+          ) : null}
           <EmailLink className="nav-cta">Contacto</EmailLink>
           <SocialLinks className="nav-socials" />
         </nav>
       </header>
 
+      <SocialLinks className={`hero-socials${hideSocials ? " is-hidden" : ""}`} />
+
       <main id="main">
       <section className="hero" id="top">
-        <SocialLinks className="hero-socials" />
         <div className="hero-title">
           <SplitFlapRole words={site.hero.roles} />
           <h1>{site.hero.title}</h1>
@@ -351,7 +426,7 @@ export default function Home() {
                 style={
                   view === "grid"
                     ? {
-                        transitionDelay: `${Math.floor(index / 2) * 160 + (index % 2 === 1 ? 200 : 0)}ms`,
+                        transitionDelay: `${Math.floor(index / 2) * 90 + (index % 2 === 1 ? 80 : 0)}ms`,
                       }
                     : undefined
                 }
@@ -386,17 +461,19 @@ export default function Home() {
           </div>
         </div>
         <div className="about-grid">
-          <p className="about-lead">{site.about.lead}</p>
-          <div className="portrait" aria-label="Espacio para tu fotografía">
-            {site.about.portraitSrc ? (
-              <img src={site.about.portraitSrc} alt="Sara" />
-            ) : (
-              <span style={{ whiteSpace: "pre-line" }}>{site.about.portraitLabel}</span>
-            )}
-          </div>
-          <div className="about-note">
-            <span>✦</span>
-            <p style={{ whiteSpace: "pre-line" }}>{site.about.note}</p>
+          <p className="about-lead" style={{ whiteSpace: "pre-line" }}>{site.about.lead}</p>
+          <div className="about-side">
+            <div className="portrait" aria-label="Espacio para tu fotografía">
+              {site.about.portraitSrc ? (
+                <img src={site.about.portraitSrc} alt="Sara" />
+              ) : (
+                <span style={{ whiteSpace: "pre-line" }}>{site.about.portraitLabel}</span>
+              )}
+            </div>
+            <div className="about-note">
+              <span aria-hidden="true">→</span>
+              <p style={{ whiteSpace: "pre-line" }}>{site.about.note}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -433,22 +510,21 @@ export default function Home() {
               LinkedIn
             </a>
             {hasCv ? (
-              <a href={site.links.cv} target="_blank" rel="noopener noreferrer">
+              <button type="button" className="footer-cv" onClick={openCv}>
                 CV
-              </a>
+              </button>
             ) : null}
             <EmailLink aria-label="Email" className="footer-mail-link">
-              <svg className="footer-mail-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path
-                  fill="currentColor"
-                  d="M3.5 5.75h17a1.25 1.25 0 0 1 1.25 1.25v10a1.25 1.25 0 0 1-1.25 1.25h-17A1.25 1.25 0 0 1 2.25 17V7A1.25 1.25 0 0 1 3.5 5.75Zm.75 2.03V17h15.5V7.78l-7.02 4.45a1.5 1.5 0 0 1-1.46 0L4.25 7.78Zm1.1-1.28 6.2 3.93a.5.5 0 0 0 .5 0l6.2-3.93H5.35Z"
-                />
-              </svg>
+              <span className="footer-mail-icon" aria-hidden="true" />
             </EmailLink>
           </div>
           <p>{site.footer.location}</p>
         </div>
       </footer>
+
+      {hasCv ? (
+        <CvPreview open={cvOpen} src={site.links.cv} onClose={() => setCvOpen(false)} />
+      ) : null}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
+import RosettaEcosystem from "../components/RosettaEcosystem";
 import { rosettaCase } from "../content/projects/rosetta";
 
 const diagrams = {
@@ -26,15 +27,7 @@ const diagrams = {
       </div>
     </div>
   ),
-  role: (
-    <div className="cx-diagram cx-pipeline" aria-label="Flujo técnico simplificado">
-      {["Figma", "MCP/API + agentes IA", "Componentes / Storybook", "Supabase", "Plataforma publicada"].map(
-        (step) => (
-          <div key={step}>{step}</div>
-        ),
-      )}
-    </div>
-  ),
+  role: <RosettaEcosystem />,
   "decision-01": (
     <div className="cx-diagram cx-collab" aria-label="Ciclo visible">
       {["Decisión", "Estado", "Conversación", "Implementación", "Validación"].map((step) => (
@@ -57,18 +50,24 @@ const diagrams = {
   ),
   "design-system": (
     <div className="cx-diagram cx-pipeline" aria-label="De foundations a producto">
-      {["Foundations", "Componentes Figma", "Storybook", "Paquete NPM", "Producto"].map((step) => (
+      {["Foundations", "Componentes Figma", "Rosetta Storybook", "Paquete NPM", "Producto"].map((step) => (
         <div key={step}>{step}</div>
       ))}
     </div>
   ),
   ai: (
     <div className="cx-diagram cx-loop" aria-label="Loop de orquestación">
-      {["Diseño + reglas", "Agentes / MCP / API", "Implementación", "Revisión humana", "Iteración"].map(
-        (step) => (
-          <div key={step}>{step}</div>
-        ),
-      )}
+      {[
+        "Diseño + reglas",
+        "Agentes / MCP / API",
+        "Implementación",
+        "Revisión humana",
+        "Iteración",
+      ].map((step) => (
+        <div key={step} className={step === "Revisión humana" ? "is-value" : undefined}>
+          {step}
+        </div>
+      ))}
     </div>
   ),
 };

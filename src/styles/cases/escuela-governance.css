@@ -1,0 +1,430 @@
+/* Gobernanza del sistema — Decisión 03 */
+.escuela-case .eh-governance{
+  --eh-gov-orange:#ff8945;
+  --eh-gov-orange-deep:#b56131;
+  --eh-gov-blue:#445dad;
+  --eh-gov-navy:#283766;
+  --eh-gov-green:#16794b;
+  --eh-gov-green-soft:#eaf7f0;
+  --eh-gov-amber:#a15c00;
+  --eh-gov-amber-soft:#fff4de;
+  --eh-gov-danger:#b42318;
+  --eh-gov-danger-soft:#fef3f2;
+  --eh-gov-cream:#fcf8f5;
+  --eh-gov-muted:#5c5c5c;
+  --eh-gov-ink:#0b0b0b;
+  display:grid;
+  gap:16px;
+  margin-top:28px;
+  padding:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+.escuela-case .eh-gov-head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px 24px;
+}
+.escuela-case .eh-gov-eyebrow{
+  margin:0;
+  color:var(--eh-gov-orange-deep);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.escuela-case .eh-gov-status{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  padding:12px 16px;
+  background:var(--eh-gov-ink);
+  border-radius:999px;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.escuela-case .eh-gov-dot{
+  width:12px;
+  height:12px;
+  border-radius:999px;
+  background:var(--eh-gov-orange);
+  flex:none;
+}
+.escuela-case .eh-gov-block{
+  padding:24px;
+  border-radius:var(--radius-lg);
+}
+.escuela-case .eh-gov-block.is-navy{background:var(--eh-gov-navy);color:#fff}
+.escuela-case .eh-gov-block.is-white{background:transparent;color:var(--eh-gov-ink);border:1px solid var(--line)}
+.escuela-case .eh-gov-block.is-black{background:var(--eh-gov-ink);color:#fff}
+.escuela-case .eh-gov-block.is-green{background:var(--eh-gov-green-soft);color:var(--eh-gov-ink)}
+.escuela-case .eh-gov-kicker{
+  margin:0;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--eh-gov-orange-deep);
+}
+.escuela-case .eh-gov-block.is-navy .eh-gov-kicker,
+.escuela-case .eh-gov-kicker.is-orange{color:var(--eh-gov-orange)}
+.escuela-case .eh-gov-kicker.is-green{color:var(--eh-gov-green)}
+.escuela-case .eh-gov-block h4{
+  margin:10px 0 0;
+  max-width:28ch;
+  font-family:var(--font-display);
+  font-size:clamp(22px,2.6vw,28px);
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.escuela-case .eh-gov-note{
+  margin:12px 0 0;
+  max-width:62ch;
+  font-size:14px;
+  line-height:1.4;
+  color:var(--eh-gov-muted);
+}
+.escuela-case .eh-gov-roles{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+  margin-top:22px;
+}
+.escuela-case .eh-gov-roles article{
+  display:grid;
+  gap:8px;
+  padding:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--radius-lg);
+  color:#fff;
+}
+.escuela-case .eh-gov-roles span{
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--eh-gov-orange);
+}
+.escuela-case .eh-gov-roles strong{
+  font-family:var(--font-display);
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.02em;
+  color:#fff;
+}
+.escuela-case .eh-gov-roles p{
+  margin:0;
+  font-size:13px;
+  line-height:1.35;
+  color:rgba(255,255,255,.72);
+}
+.escuela-case .eh-gov-flow{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  grid-auto-rows:128px;
+  gap:14px 28px;
+  margin:22px 0 0;
+  padding:0;
+  list-style:none;
+}
+.escuela-case .eh-gov-flow>li{
+  position:relative;
+  display:grid;
+  gap:4px;
+  align-content:start;
+  justify-items:start;
+  min-width:0;
+  height:100%;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+  color:var(--eh-gov-ink);
+}
+/* Escala naranja 1→7 */
+.escuela-case .eh-gov-flow>li:nth-child(1){background:#fff3ec}
+.escuela-case .eh-gov-flow>li:nth-child(2){background:#ffe4d4}
+.escuela-case .eh-gov-flow>li:nth-child(3){background:#ffd0b5}
+.escuela-case .eh-gov-flow>li:nth-child(4){background:#ffb07a}
+.escuela-case .eh-gov-flow>li:nth-child(5){background:#ff8945}
+.escuela-case .eh-gov-flow>li:nth-child(6){background:#d96a2e;color:#fcf8f5}
+.escuela-case .eh-gov-flow>li:nth-child(7){background:#b56131;color:#fcf8f5}
+.escuela-case .eh-gov-flow>li:not(:last-child):not(:nth-child(4n))::after{
+  content:"→";
+  position:absolute;
+  right:-20px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--eh-gov-blue);
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+}
+.escuela-case .eh-gov-flow-num{
+  display:block;
+  margin:0 0 4px;
+  font-family:var(--font-display);
+  font-size:clamp(36px,4vw,48px);
+  font-weight:800;
+  letter-spacing:-.05em;
+  line-height:.9;
+  color:inherit;
+  opacity:.95;
+}
+.escuela-case .eh-gov-flow strong{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:0;
+  line-height:1.2;
+}
+.escuela-case .eh-gov-flow p{
+  margin:0;
+  font-size:12px;
+  line-height:1.3;
+  opacity:.88;
+}
+.escuela-case .eh-gov-envs{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:stretch;
+  gap:8px;
+  margin:22px 0 0;
+  padding:0;
+  list-style:none;
+}
+.escuela-case .eh-gov-envs>li{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-width:0;
+}
+.escuela-case .eh-gov-envs article{
+  display:grid;
+  gap:6px;
+  width:min(100%,160px);
+  min-height:104px;
+  padding:14px;
+  border-radius:var(--radius-sm);
+  background:#f7f7f7;
+}
+.escuela-case .eh-gov-envs .is-warm{background:var(--eh-gov-cream)}
+.escuela-case .eh-gov-envs .is-orange{background:var(--eh-gov-orange);color:var(--eh-gov-ink)}
+.escuela-case .eh-gov-envs .is-danger{background:var(--eh-gov-danger-soft);color:var(--eh-gov-danger)}
+.escuela-case .eh-gov-envs strong{
+  font-size:14px;
+  font-weight:900;
+}
+.escuela-case .eh-gov-envs p{
+  margin:0;
+  font-size:12px;
+  line-height:1.3;
+}
+.escuela-case .eh-gov-arrow{
+  color:var(--eh-gov-blue);
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+}
+.escuela-case .eh-gov-split{
+  display:grid;
+  grid-template-columns:minmax(0,1.9fr) minmax(240px,.95fr);
+  gap:16px;
+  align-items:stretch;
+}
+.escuela-case .eh-gov-gates{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:22px;
+}
+.escuela-case .eh-gov-gates article{
+  display:grid;
+  gap:8px;
+  padding:16px;
+  background:#f7f7f7;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+}
+.escuela-case .eh-gov-gates p{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:0;
+  font-size:13px;
+  font-weight:900;
+  color:var(--eh-gov-ink);
+}
+.escuela-case .eh-gov-gates i{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:var(--eh-gov-orange);
+  flex:none;
+}
+.escuela-case .eh-gov-gates i.is-blue{background:var(--eh-gov-blue)}
+.escuela-case .eh-gov-gates i.is-green{background:var(--eh-gov-green)}
+.escuela-case .eh-gov-gates i.is-navy{background:var(--eh-gov-navy)}
+.escuela-case .eh-gov-gates i.is-brown{background:var(--eh-gov-orange-deep)}
+.escuela-case .eh-gov-gates span{
+  font-size:13px;
+  line-height:1.35;
+  color:var(--eh-gov-muted);
+}
+.escuela-case .eh-gov-rights{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  grid-auto-rows:118px;
+  gap:14px 28px;
+  margin:22px 0 0;
+  padding:0;
+  list-style:none;
+}
+.escuela-case .eh-gov-rights>li{
+  position:relative;
+  display:grid;
+  gap:6px;
+  align-content:center;
+  justify-items:start;
+  height:100%;
+  min-width:0;
+  padding:14px;
+  background:#f7f7f7;
+  border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+}
+.escuela-case .eh-gov-rights-icon{
+  width:20px;
+  height:20px;
+  color:var(--eh-gov-orange-deep);
+  margin-bottom:2px;
+}
+.escuela-case .eh-gov-rights>li:not(:last-child):not(:nth-child(3n))::after{
+  content:"→";
+  position:absolute;
+  right:-20px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--eh-gov-blue);
+  font-size:20px;
+  font-weight:900;
+  line-height:1;
+}
+.escuela-case .eh-gov-rights strong{
+  font-size:13px;
+  font-weight:900;
+  color:var(--eh-gov-ink);
+}
+.escuela-case .eh-gov-rights span{
+  font-size:12px;
+  color:var(--eh-gov-muted);
+}
+.escuela-case .eh-gov-cadence{
+  display:grid;
+  gap:8px;
+  margin:22px 0 0;
+  padding:0;
+  list-style:none;
+}
+.escuela-case .eh-gov-cadence li{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  padding:8px 10px;
+  background:#fff;
+  border-radius:var(--radius-sm);
+}
+.escuela-case .eh-gov-cadence span{
+  min-width:7.5rem;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  color:var(--eh-gov-green);
+}
+.escuela-case .eh-gov-cadence strong{
+  font-size:13px;
+  font-weight:900;
+  color:var(--eh-gov-ink);
+}
+.escuela-case .eh-gov-done{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px 20px;
+  padding:16px 20px;
+  background:var(--eh-gov-ink);
+  border-radius:var(--radius-lg);
+  color:#fff;
+}
+.escuela-case .eh-gov-done>p{
+  margin:0;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--eh-gov-orange);
+}
+.escuela-case .eh-gov-done ul{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 14px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+.escuela-case .eh-gov-done li{
+  font-size:13px;
+  font-weight:900;
+}
+@media(max-width:980px){
+  .escuela-case .eh-gov-roles,
+  .escuela-case .eh-gov-gates,
+  .escuela-case .eh-gov-rights,
+  .escuela-case .eh-gov-flow{
+    grid-template-columns:1fr 1fr;
+  }
+  .escuela-case .eh-gov-flow>li:not(:last-child):not(:nth-child(4n))::after,
+  .escuela-case .eh-gov-rights>li:not(:last-child):not(:nth-child(3n))::after{
+    content:none;
+  }
+  .escuela-case .eh-gov-flow>li:not(:last-child):not(:nth-child(2n))::after,
+  .escuela-case .eh-gov-rights>li:not(:last-child):not(:nth-child(2n))::after{
+    content:"→";
+    position:absolute;
+    right:-20px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--eh-gov-blue);
+    font-size:20px;
+    font-weight:900;
+    line-height:1;
+  }
+}
+@media(max-width:700px){
+  .escuela-case .eh-gov-roles,
+  .escuela-case .eh-gov-gates,
+  .escuela-case .eh-gov-rights,
+  .escuela-case .eh-gov-flow{
+    grid-template-columns:1fr;
+  }
+  .escuela-case .eh-gov-envs article{
+    width:100%;
+  }
+  .escuela-case .eh-gov-envs>li{
+    width:100%;
+  }
+  .escuela-case .eh-gov-arrow,
+  .escuela-case .eh-gov-flow>li::after,
+  .escuela-case .eh-gov-rights>li::after{
+    display:none;
+  }
+}

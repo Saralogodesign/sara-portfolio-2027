@@ -45,32 +45,6 @@ const diagrams = {
       ))}
     </div>
   ),
-  research: (
-    <div className="cx-diagram cx-triangulate" aria-label="Triangulación de research">
-      <div>
-        <strong>Usuarias</strong>
-        <span>Focus groups · encuestas</span>
-      </div>
-      <div>
-        <strong>Expertas</strong>
-        <span>Legal · ciberseguridad</span>
-      </div>
-      <div>
-        <strong>Datos / contexto</strong>
-        <span>Brecha de denuncia</span>
-      </div>
-      <span className="cx-arrow">→</span>
-      <div className="is-core">
-        <strong>Insight</strong>
-        <span>Identificar · opciones · control</span>
-      </div>
-      <span className="cx-arrow">→</span>
-      <div className="is-out">
-        <strong>Principios</strong>
-        <span>Confianza antes que features</span>
-      </div>
-    </div>
-  ),
   "decision-01": (
     <div className="cx-diagram cx-principles" aria-label="Principios y decisiones">
       {principles.map((item) => (
@@ -105,16 +79,16 @@ const diagrams = {
   resultado: (
     <div className="cx-diagram cx-layers" aria-label="Tres capas conectadas">
       <div>
-        <strong>Problema social</strong>
-        <span>Research + insights</span>
+        <p className="cx-label">Problema social</p>
+        <strong>Research + insights</strong>
       </div>
       <div>
-        <strong>Identidad</strong>
-        <span>Confianza y tono</span>
+        <p className="cx-label">Identidad</p>
+        <strong>Confianza y tono</strong>
       </div>
       <div>
-        <strong>Producto + negocio</strong>
-        <span>Roadmap viable</span>
+        <p className="cx-label">Producto + negocio</p>
+        <strong>Roadmap viable</strong>
       </div>
     </div>
   ),

@@ -18,7 +18,7 @@ export const site = {
     medium: "https://medium.com/",
     email: "mailto:sara.lg.design@gmail.com?subject=Hola%20Sara",
     emailAddress: "sara.lg.design@gmail.com",
-    cv: "#",
+    cv: "/cv/Sara_Lopez_Gomez_CV_2026.pdf",
   },
   nav: [
     { href: "#work", label: "Proyectos" },
@@ -39,10 +39,10 @@ export const site = {
   about: {
     title: "AboutMe_",
     subtitle: "// La persona detrás del portfolio",
-    lead: "Soy Sara, diseñadora de producto. Me gusta convertir preguntas difíciles en experiencias sencillas, útiles y bonitas.",
+    lead: "Diseño experiencias y orden: design systems, gobernanza y flujos con IA como aliada.\n\nMenos fricción, más claridad.",
     portraitLabel: "Coloca aquí\ntu fotografía",
     /** Ruta: /images/home/portrait.jpg — vacío = placeholder */
-    portraitSrc: "",
+    portraitSrc: "/images/home/portrait.png",
     note: "Curiosa por naturaleza.\nSistemática por elección.\nSiempre aprendiendo.",
   },
   lab: {
@@ -53,11 +53,11 @@ export const site = {
   footer: {
     title: "¡Hablemos!",
     titleHover: "Escríbeme.",
-    copyright: "© 2026 Sara — Product Designer",
+    copyright: "© 2026 Sara — Product Designer Engineer",
     location: "Madrid",
   },
   caseFooter: {
-    copyright: "© 2026 Sara — Product Designer",
+    copyright: "© 2026 Sara — Product Designer Engineer",
     contactLabel: "Hablemos →",
     contactHref: "mailto:sara.lg.design@gmail.com?subject=Hola%20Sara",
     backLabel: "← Todos los proyectos",

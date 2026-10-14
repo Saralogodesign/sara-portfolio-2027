@@ -59,6 +59,7 @@
 .violeta-case .cx-triangulate>div{
   border:1px solid var(--line);
   background:white;
+  color:var(--ink);
   padding:18px 20px;
   min-width:140px;
   flex:1;
@@ -95,7 +96,7 @@
 }
 .violeta-case .cx-principles>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:24px 18px;
   min-height:140px;
 }
@@ -111,17 +112,15 @@
   gap:12px;
 }
 .violeta-case .cx-brand-board>div{
-  border:1px solid rgba(255,255,255,.28);
+  border:1px solid var(--line);
   padding:24px 16px;
   min-height:140px;
 }
 .violeta-case .cx-brand-board strong{
   display:block;
-  font-family:var(--font-display);
-  font-size:22px;
-  font-weight:300;
-  letter-spacing:-.03em;
-  line-height:1.2;
+  font-size:18px;
+  letter-spacing:-.02em;
+  line-height:1.3;
 }
 .violeta-case .cx-layers{
   display:grid;
@@ -130,24 +129,31 @@
 }
 .violeta-case .cx-layers>div{
   border:1px solid var(--line);
-  background:white;
-  padding:28px 22px;
+  background:transparent;
+  padding:24px 18px;
+  min-height:140px;
 }
 .violeta-case .cx-layers strong{
   display:block;
-  font-family:var(--font-display);
-  font-size:28px;
-  font-weight:300;
-  letter-spacing:-.03em;
-  margin-bottom:10px;
-}
-.violeta-case .cx-layers span{
-  font-size:14px;
-  color:#555;
+  font-size:18px;
+  letter-spacing:-.02em;
+  line-height:1.3;
 }
 .violeta-case .cx-hero-art{
   background:linear-gradient(145deg,var(--strawberry-900) 0%,var(--strawberry) 45%,var(--strawberry-100) 100%);
   color:white;
+}
+.violeta-case #decision-01 .cx-media-zoom,
+.violeta-case #decision-01 .cx-photo-frame{
+  background:var(--cream);
+}
+.violeta-case #branding .cx-media-zoom{
+  border:0;
+  background:var(--soft);
+}
+.violeta-case #decision-02 .cx-media-zoom{
+  border:0;
+  background:var(--cream);
 }
 @media(max-width:900px){
   .violeta-case .cx-journey,.violeta-case .cx-principles,.violeta-case .cx-brand-board,.violeta-case .cx-layers{

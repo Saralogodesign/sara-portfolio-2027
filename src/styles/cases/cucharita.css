@@ -12,8 +12,8 @@
 .cucharita-case .cx-months>div{border-top-color:var(--deep-mid)}
 .cucharita-case .cx-months em{font-style:normal;font-size:13px;color:#555;line-height:1.35}
 .cucharita-case .cx-eco-simple>div.is-core{
-  background:var(--deep);
-  border-color:var(--deep);
+  background:var(--strawberry);
+  border-color:var(--strawberry);
 }
 .cucharita-case .cx-eco-simple>span{color:var(--deep-mid)}
 .cucharita-case .cu-eco{
@@ -23,7 +23,7 @@
 }
 .cucharita-case .cu-eco>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:28px 22px;
   text-align:left;
 }
@@ -43,8 +43,8 @@
   font-weight:500;
 }
 .cucharita-case .cu-eco>div.is-core{
-  background:var(--deep);
-  border-color:var(--deep);
+  background:var(--strawberry);
+  border-color:var(--strawberry);
   color:white;
 }
 .cucharita-case .cu-eco>div.is-core em{color:rgba(255,255,255,.75)}
@@ -55,7 +55,7 @@
 }
 .cucharita-case .cx-tension>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:28px 22px;
   display:grid;
   gap:10px;
@@ -84,7 +84,7 @@
 }
 .cucharita-case .cx-concept-map>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:24px;
 }
 .cucharita-case .cx-concept-map ul{
@@ -100,8 +100,8 @@
   font-size:15px;
 }
 .cucharita-case .cx-concept-map .is-after{
-  background:var(--deep);
-  border-color:var(--deep);
+  background:var(--strawberry);
+  border-color:var(--strawberry);
   color:white;
 }
 .cucharita-case .cx-concept-map .is-after .cx-label{color:var(--nude)}
@@ -135,13 +135,13 @@
 }
 .cucharita-case .cx-brand-foundations>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:28px 20px;
   min-height:140px;
 }
 .cucharita-case .cx-brand-foundations>div:first-child{
-  background:var(--deep);
-  border-color:var(--deep);
+  background:var(--strawberry);
+  border-color:var(--strawberry);
   color:white;
 }
 .cucharita-case .cx-brand-foundations>div:first-child .cx-label{color:var(--nude)}
@@ -164,12 +164,12 @@
 }
 .cucharita-case .cx-naming>div{
   border:1px solid var(--line);
-  background:white;
+  background:transparent;
   padding:28px 22px;
 }
 .cucharita-case .cx-naming .is-name{
-  background:var(--deep);
-  border-color:var(--deep);
+  background:var(--strawberry);
+  border-color:var(--strawberry);
   color:white;
 }
 .cucharita-case .cx-naming .is-name .cx-label{color:var(--nude)}

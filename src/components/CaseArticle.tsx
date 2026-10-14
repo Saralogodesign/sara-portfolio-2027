@@ -1,12 +1,15 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import type { CaseSection, CaseStudyContent } from "../content/types";
-import CaseMedia, { CaseVideo, isVideoSrc, mediaCaption } from "./CaseMedia";
+import CaseMedia, { CaseMediaList, CaseVideo, isVideoSrc, mediaCaption } from "./CaseMedia";
 import CaseSectionNav from "./CaseSectionNav";
+import { MediaZoomTrigger } from "./MediaLightbox";
 
 type Props = {
   content: CaseStudyContent;
   /** Diagramas opcionales por id de sección */
   diagrams?: Record<string, ReactNode>;
+  /** Contenido opcional después del media de cada sección */
+  diagramsAfter?: Record<string, ReactNode>;
   /** Clase del bloque hero art (tone) */
   heroToneClass?: string;
 };
@@ -49,9 +52,16 @@ function groupSections(sections: CaseSection[]): SectionGroup[] {
 }
 
 /** Cabecera + secciones de texto/media. Los diagramas se inyectan por section.id */
-export default function CaseArticle({ content, diagrams = {}, heroToneClass = "" }: Props) {
+export default function CaseArticle({
+  content,
+  diagrams = {},
+  diagramsAfter = {},
+  heroToneClass = "",
+}: Props) {
   const { hero, sections, closing } = content;
   const groups = groupSections(sections);
+  const [heroLightboxOpen, setHeroLightboxOpen] = useState(false);
+  const heroAlt = mediaCaption(hero.heroMedia, hero.artHint);
 
   const navItems = [
     { id: "case-hero", label: "Inicio" },
@@ -64,7 +74,13 @@ export default function CaseArticle({ content, diagrams = {}, heroToneClass = ""
 
   const renderSection = (section: CaseSection) => {
     const toneClass =
-      section.tone === "dark" ? "cx-dark" : section.tone === "soft" ? "cx-soft" : "";
+      section.tone === "dark"
+        ? "cx-dark"
+        : section.tone === "soft"
+          ? "cx-soft"
+          : section.tone === "cream"
+            ? "cx-cream"
+            : "";
     return (
       <section
         key={section.id}
@@ -83,13 +99,8 @@ export default function CaseArticle({ content, diagrams = {}, heroToneClass = ""
           </div>
         </div>
         {diagrams[section.id] ?? null}
-        {section.media?.length ? (
-          <div className="cx-media-list">
-            {section.media.map((m) => (
-              <CaseMedia key={m.id} media={m} />
-            ))}
-          </div>
-        ) : null}
+        {section.media?.length ? <CaseMediaList media={section.media} /> : null}
+        {diagramsAfter[section.id] ?? null}
       </section>
     );
   };
@@ -112,36 +123,32 @@ export default function CaseArticle({ content, diagrams = {}, heroToneClass = ""
             </div>
           ))}
         </dl>
-        <figure className="cx-hero-figure">
-          <div className={`case-art ${heroToneClass} cx-hero-art`.trim()}>
-            {hero.heroMedia?.src ? (
-              isVideoSrc(hero.heroMedia.src) ? (
+        {hero.heroMedia?.src ? (
+          <figure className="cx-hero-figure">
+            <div className={`case-art ${heroToneClass} cx-hero-art`.trim()}>
+              {isVideoSrc(hero.heroMedia.src) ? (
                 <CaseVideo
                   src={hero.heroMedia.src}
-                  alt={mediaCaption(hero.heroMedia, hero.artHint)}
+                  alt={heroAlt}
                   interactive
                   onError={() => {}}
                 />
               ) : (
-                <img
+                <MediaZoomTrigger
+                  className="cx-hero-zoom"
                   src={hero.heroMedia.src}
-                  alt={mediaCaption(hero.heroMedia, hero.artHint)}
-                />
-              )
-            ) : (
-              <>
-                <span>{hero.artLabel}</span>
-                <strong>{hero.artTitle}</strong>
-                <i>{hero.artHint}</i>
-              </>
-            )}
-          </div>
-          {hero.heroMedia ? (
-            <figcaption className="cx-media-caption">
-              {mediaCaption(hero.heroMedia, hero.artHint)}
-            </figcaption>
-          ) : null}
-        </figure>
+                  alt={heroAlt}
+                  open={heroLightboxOpen}
+                  onOpen={() => setHeroLightboxOpen(true)}
+                  onClose={() => setHeroLightboxOpen(false)}
+                >
+                  <img src={hero.heroMedia.src} alt="" />
+                </MediaZoomTrigger>
+              )}
+            </div>
+            <figcaption className="cx-media-caption">{heroAlt}</figcaption>
+          </figure>
+        ) : null}
       </section>
 
       {groups.map((group) => {

@@ -12,7 +12,7 @@ type Props = {
 
 export default function CaseLayout({ children, className = "", currentSlug }: Props) {
   return (
-    <div className={`case-page conecta-case ${className}`.trim()}>
+    <div className={`case-page ${className}`.trim()}>
       <a className="skip-link" href="#case-main">
         Saltar al contenido
       </a>

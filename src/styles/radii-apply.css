@@ -18,7 +18,6 @@
 .cucharita-case .cx-brand-foundations>div,
 .cucharita-case .cx-naming>div,
 .escuela-case .eh-stakeholders>div,
-.escuela-case .eh-brand-path>div,
 .escuela-case .eh-transfer>div,
 .escuela-case .eh-compare>div{
   border-radius:var(--radius-lg);
@@ -34,7 +33,6 @@
 .violeta-case .cx-triangulate>div,
 .cucharita-case .cx-concept-map li,
 .cucharita-case .cx-naming li,
-.escuela-case .eh-brand-path li,
 .escuela-case .eh-kit>div,
 .escuela-case .eh-a11y>div,
 .escuela-case .eh-a11y-system>div>div,

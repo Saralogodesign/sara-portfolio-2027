@@ -21,7 +21,7 @@ export const escuelaCase: CaseStudyContent = {
     artHint: "2–3 pantallas del diseño original + detalle del sistema de componentes",
     heroMedia: {
       id: "hero",
-      src: "/images/projects/escuela-hosteleria/cover.jpg",
+      src: "/images/projects/escuela-hosteleria/landing.png",
       caption: "Mockup móvil de la Escuela de Hostelería: salto laboral, cursos y formulario de contacto",
     },
   },
@@ -37,7 +37,7 @@ export const escuelaCase: CaseStudyContent = {
       media: [
         {
           id: "context",
-          src: "/images/projects/escuela-hosteleria/context.jpg",
+          src: "/images/projects/escuela-hosteleria/web_publish.png",
           caption: "Captura discreta de la plataforma publicada",
         },
       ],
@@ -67,13 +67,6 @@ export const escuelaCase: CaseStudyContent = {
         "El punto de partida visual era mínimo. A partir del logo y de referencias dispersas construí un lenguaje propio para diferenciar la Escuela de otros servicios formativos, sin romper con el contexto institucional.",
         "El objetivo no era hacer una marca protagonista, sino crear suficiente personalidad y consistencia para que web y comunicación funcionaran como partes del mismo servicio.",
       ],
-      media: [
-        {
-          id: "decision-01",
-          src: "/images/projects/escuela-hosteleria/decision-01.jpg",
-          caption: "Brand foundations reconstruidas",
-        },
-      ],
     },
     {
       id: "decision-02",
@@ -87,13 +80,8 @@ export const escuelaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-02",
-          src: "/images/projects/escuela-hosteleria/decision-02.jpg",
+          src: "/images/projects/escuela-hosteleria/pruebas-de-contraste.png",
           caption: "Artefacto principal · Accessibility by design",
-        },
-        {
-          id: "decision-02-handoff",
-          src: "/images/projects/escuela-hosteleria/decision-02-handoff.jpg",
-          caption: "Artefacto de handoff · Figma como fuente de verdad",
         },
       ],
     },
@@ -101,33 +89,11 @@ export const escuelaCase: CaseStudyContent = {
       id: "decision-03",
       eyebrow: "DECISIÓN 03",
       title: "Un UI kit pequeño, pero preparado para reutilizarse",
+      tone: "soft",
       paragraphs: [
         "El presupuesto no justificaba un Design System amplio, así que trabajé un kit reducido alrededor de las piezas que realmente necesitábamos. La prioridad fue que los componentes fueran consistentes, reutilizables y suficientemente claros para desarrollo y comunicación.",
         "Ese recorte es parte de la decisión: sistematizar donde aporta valor, sin sobrediseñar una infraestructura que el proyecto no necesitaba. El kit se construyó en Figma con variantes, properties y estados pensados para reutilización y handoff.",
-      ],
-      media: [
-        {
-          id: "decision-03",
-          src: "/images/projects/escuela-hosteleria/decision-03.jpg",
-          caption: "Artefacto clave · 2–3 componentes en detalle",
-        },
-      ],
-    },
-    {
-      id: "sistema",
-      eyebrow: "SISTEMA",
-      title: "Del componente a comunicación",
-      tone: "soft",
-      paragraphs: [
-        "El lenguaje visual no se quedó dentro de la interfaz. Parte de las foundations y patrones se reutilizaron en materiales de comunicación para mantener continuidad entre captación, información del curso y experiencia digital.",
-        "Eso permitió tratar la plataforma y sus piezas de comunicación como un mismo sistema, aunque el alcance y presupuesto fueran reducidos.",
-      ],
-      media: [
-        {
-          id: "sistema",
-          src: "/images/projects/escuela-hosteleria/sistema.jpg",
-          caption: "Composición producto + comunicación",
-        },
+        "Para que el sistema no muriera en la entrega, dejé también un modelo operativo mínimo: quién decide, cómo entra un cambio, qué gates hay que pasar y cómo se versiona en Figma.",
       ],
     },
     {
@@ -141,8 +107,9 @@ export const escuelaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-04",
-          src: "/images/projects/escuela-hosteleria/decision-04.jpg",
+          src: "/images/projects/escuela-hosteleria/decision-04-documentacion.png",
           caption: "Lámina de documentación de trabajo",
+          scroll: "vertical",
         },
       ],
     },
