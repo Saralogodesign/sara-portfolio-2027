@@ -3,10 +3,12 @@ import { useEffect, useRef, useState } from "react";
 const INTERACTIVE =
   "a, button, [role='button'], input, textarea, select, label, video";
 const ZOOMABLE = ".cx-media-zoom, .cx-media-scroll-zoom, .cx-hero-zoom";
+const SCROLLABLE = ".cx-media-scroll.has-scroll-hint";
 
 /** Cursor circular custom (solo puntero fino; respeta reduced motion). */
 export default function CircleCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
+  const labelRef = useRef<HTMLSpanElement>(null);
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -26,7 +28,8 @@ export default function CircleCursor() {
     if (!enabled) return;
 
     const el = dotRef.current;
-    if (!el) return;
+    const label = labelRef.current;
+    if (!el || !label) return;
 
     let x = window.innerWidth / 2;
     let y = window.innerHeight / 2;
@@ -42,9 +45,13 @@ export default function CircleCursor() {
     const onOver = (event: PointerEvent) => {
       const target = event.target as Element | null;
       const zooming = Boolean(target?.closest(ZOOMABLE));
-      const hovering = zooming || Boolean(target?.closest(INTERACTIVE));
+      const scrolling = !zooming && Boolean(target?.closest(SCROLLABLE));
+      const hovering =
+        zooming || scrolling || Boolean(target?.closest(INTERACTIVE));
       el.classList.toggle("is-hover", hovering);
-      el.classList.toggle("is-zoom", zooming);
+      el.classList.toggle("is-zoom", zooming || scrolling);
+      el.classList.toggle("is-scroll", scrolling);
+      label.textContent = scrolling ? "Scroll" : "zoom";
     };
 
     const tick = () => {
@@ -71,7 +78,9 @@ export default function CircleCursor() {
 
   return (
     <div ref={dotRef} className="circle-cursor" aria-hidden="true">
-      <span className="circle-cursor-label">zoom</span>
+      <span ref={labelRef} className="circle-cursor-label">
+        zoom
+      </span>
     </div>
   );
 }

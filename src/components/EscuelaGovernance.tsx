@@ -7,23 +7,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-const roles = [
-  { verb: "Decide", title: "System Owner", note: "Prioridad, alcance y roadmap." },
-  { verb: "Propone", title: "Design Maintainer", note: "Tokens, componentes y documentación." },
-  { verb: "Puede bloquear", title: "A11y Reviewer", note: "Contraste, teclado, foco y semántica." },
-  { verb: "Coaprueba", title: "Engineering", note: "API, viabilidad y paridad con código." },
-];
-
-const lifecycle = [
-  { n: "1", title: "Request", note: "Problema + evidencia" },
-  { n: "2", title: "Triage", note: "Priorizar o rechazar" },
-  { n: "3", title: "Design", note: "Explorar + documentar" },
-  { n: "4", title: "Reviews", note: "A11y + ingeniería" },
-  { n: "5", title: "Pilot", note: "Probar en producto" },
-  { n: "6", title: "Publish", note: "Versionar librería" },
-  { n: "7", title: "Monitor", note: "Medir y mantener" },
-];
-
 const gates = [
   { n: "01", title: "Brand", note: "Coherencia con logo, tono y guidelines.", mark: "orange" },
   { n: "02", title: "Tokens", note: "Sin valores aislados ni duplicados.", mark: "blue" },
@@ -57,38 +40,8 @@ export default function EscuelaGovernance() {
         <p className="eh-gov-eyebrow">Design System · Gobernanza · Figma</p>
       </header>
 
-      <section className="eh-gov-block is-black">
-        <p className="eh-gov-kicker is-orange">01 / Quién gobierna</p>
-        <div className="eh-gov-roles">
-          {roles.map((role) => (
-            <article key={role.title}>
-              <span>{role.verb}</span>
-              <strong>{role.title}</strong>
-              <p>{role.note}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section className="eh-gov-block is-white">
-        <p className="eh-gov-kicker">02 / Flujo de cambio</p>
-        <p className="eh-gov-note">
-          Una petición no entra directamente en la librería: primero demuestra necesidad, calidad y
-          adopción.
-        </p>
-        <ol className="eh-gov-flow">
-          {lifecycle.map((step) => (
-            <li key={step.title}>
-              <span className="eh-gov-flow-num">{step.n}</span>
-              <strong>{step.title}</strong>
-              <p>{step.note}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="eh-gov-block is-white">
-        <p className="eh-gov-kicker">03 / Quality gates</p>
+        <p className="eh-gov-kicker">01 / Quality gates</p>
         <div className="eh-gov-gates">
           {gates.map((gate) => (
             <article key={gate.title}>
@@ -103,7 +56,7 @@ export default function EscuelaGovernance() {
       </section>
 
       <section className="eh-gov-block is-white">
-        <p className="eh-gov-kicker">04 / Decision rights</p>
+        <p className="eh-gov-kicker">02 / Decision rights</p>
         <ul className="eh-gov-rights">
           {rights.map(({ topic, who, Icon }) => (
             <li key={topic}>

@@ -188,10 +188,11 @@ export default function CaseMedia({
     const isImage = !isVideoSrc(src);
 
     if (isImage && scrollVertical) {
+      const scrollHint = media?.cursorHint === "scroll";
       return (
         <figure className={`cx-photo cx-photo-real is-scroll-y ${sizeClass} ${className}`.trim()}>
           <div
-            className="cx-media-scroll"
+            className={`cx-media-scroll${scrollHint ? " has-scroll-hint" : ""}`}
             tabIndex={0}
             role="region"
             aria-label={`${pie}. Usa scroll vertical para ver la captura completa.`}

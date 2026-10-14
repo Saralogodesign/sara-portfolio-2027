@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
 import EscuelaButtonPlayground from "../components/EscuelaButtonPlayground";
+import EscuelaFigmaHub from "../components/EscuelaFigmaHub";
 import EscuelaGovernance from "../components/EscuelaGovernance";
 import { escuelaCase } from "../content/projects/escuela";
 
@@ -105,11 +106,14 @@ const diagrams = {
     </div>
   ),
   role: (
-    <div className="cx-diagram eh-translation" aria-label="Flujo de traducción">
-      {translation.map((step) => (
-        <div key={step}>{step}</div>
-      ))}
-    </div>
+    <>
+      <div className="cx-diagram eh-translation" aria-label="Flujo de traducción">
+        {translation.map((step) => (
+          <div key={step}>{step}</div>
+        ))}
+      </div>
+      <EscuelaFigmaHub />
+    </>
   ),
   "decision-01": (
     <div className="cx-diagram eh-foundations" aria-label="Cómo nacen las foundations">
@@ -224,27 +228,14 @@ const diagrams = {
     </div>
   ),
   "decision-02": (
-    <>
-      <div className="cx-diagram eh-a11y" aria-label="Accessibility by design">
-        {a11yEvidence.map((item) => (
-          <div key={item.label}>
-            <strong>{item.label}</strong>
-            <span>{item.note}</span>
-          </div>
-        ))}
-      </div>
-      <div className="cx-diagram eh-a11y-system" aria-label="Accesibilidad en el UI kit">
-        <p className="cx-label">En el sistema</p>
-        <div>
-          {a11yInSystem.map((item) => (
-            <div key={item.label}>
-              <strong>{item.label}</strong>
-              <span>{item.note}</span>
-            </div>
-          ))}
+    <div className="cx-diagram eh-a11y" aria-label="Accessibility by design">
+      {a11yEvidence.map((item) => (
+        <div key={item.label}>
+          <strong>{item.label}</strong>
+          <span>{item.note}</span>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   ),
   "decision-03": <EscuelaGovernance />,
   "decision-04": (
@@ -284,7 +275,22 @@ export default function EscuelaCase() {
         content={escuelaCase}
         diagrams={diagrams}
         diagramsAfter={{
-          "decision-02": <EscuelaButtonPlayground />,
+          "decision-02": (
+            <>
+              <div className="cx-diagram eh-a11y-system" aria-label="Accesibilidad en el UI kit">
+                <p className="cx-label">En el sistema</p>
+                <div>
+                  {a11yInSystem.map((item) => (
+                    <div key={item.label}>
+                      <strong>{item.label}</strong>
+                      <span>{item.note}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <EscuelaButtonPlayground />
+            </>
+          ),
         }}
         heroToneClass="teal"
       />

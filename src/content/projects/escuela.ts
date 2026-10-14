@@ -51,13 +51,6 @@ export const escuelaCase: CaseStudyContent = {
         "Lideré la interlocución entre los distintos actores y convertí restricciones técnicas, de seguridad y de infraestructura en decisiones que el cliente pudiera entender y validar. A la vez, trasladaba a desarrollo las necesidades de producto y comunicación con suficiente precisión para evitar interpretaciones innecesarias.",
         "En un entorno institucional, buena parte del trabajo senior ocurre entre pantallas: gestionar dependencias, cerrar decisiones y mantener una visión común cuando cada interlocutor habla un lenguaje distinto. Todo el producto se diseñó y documentó en Figma, que funcionó como fuente única de verdad para cliente y desarrollo. La entrega final se cerró en el propio archivo: componentes, reglas, comportamientos y documentación quedaron preparados para su transferencia.",
       ],
-      media: [
-        {
-          id: "role",
-          src: "/images/projects/escuela-hosteleria/role.jpg",
-          caption: "Documentación / handoff reconstruida",
-        },
-      ],
     },
     {
       id: "decision-01",
@@ -81,7 +74,7 @@ export const escuelaCase: CaseStudyContent = {
         {
           id: "decision-02",
           src: "/images/projects/escuela-hosteleria/pruebas-de-contraste.png",
-          caption: "Artefacto principal · Accessibility by design",
+          caption: "Documentación visual · contraste",
         },
       ],
     },
@@ -107,9 +100,10 @@ export const escuelaCase: CaseStudyContent = {
       media: [
         {
           id: "decision-04",
-          src: "/images/projects/escuela-hosteleria/decision-04-documentacion.png",
-          caption: "Lámina de documentación de trabajo",
+          src: "/images/projects/escuela-hosteleria/Button.png",
+          caption: "Documentación del componente Button",
           scroll: "vertical",
+          cursorHint: "scroll",
         },
       ],
     },

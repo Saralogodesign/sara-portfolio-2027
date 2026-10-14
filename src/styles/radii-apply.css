@@ -17,8 +17,6 @@
 .cucharita-case .cx-concept-map>div,
 .cucharita-case .cx-brand-foundations>div,
 .cucharita-case .cx-naming>div,
-.escuela-case .eh-stakeholders>div,
-.escuela-case .eh-transfer>div,
 .escuela-case .eh-compare>div{
   border-radius:var(--radius-lg);
   overflow:hidden;

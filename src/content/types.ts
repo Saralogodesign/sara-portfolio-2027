@@ -13,6 +13,8 @@ export type MediaRef = {
   size?: "full" | "half";
   /** Vista con scroll interno sin agrandar el contenedor */
   scroll?: "vertical";
+  /** Etiqueta del cursor circular al pasar por la ventana (solo scroll vertical) */
+  cursorHint?: "scroll";
   /** Cursores tipo FigJam encima de la imagen */
   cursors?: { name: string; color: string }[];
   /** Plano detalle / lupa encima de la imagen */

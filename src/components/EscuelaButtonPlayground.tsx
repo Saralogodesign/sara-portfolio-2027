@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 
 type ButtonType = "org" | "bl" | "bk";
 type ButtonSize = "normal" | "medium" | "small";
@@ -84,36 +84,113 @@ function PropertyRow<T extends string>({
 }: {
   label: string;
   value: T;
-  options: { id: T; label: string; swatch?: string }[];
+  options: { id: T; label: string }[];
   onChange: (next: T) => void;
 }) {
+  const listId = useId();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [open, setOpen] = useState(false);
+  const selected = options.find((option) => option.id === value) ?? options[0];
+  const selectedIndex = Math.max(
+    0,
+    options.findIndex((option) => option.id === value),
+  );
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onPointer = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("mousedown", onPointer);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onPointer);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const choose = (next: T) => {
+    onChange(next);
+    setOpen(false);
+  };
+
+  const move = (delta: number) => {
+    const nextIndex = (selectedIndex + delta + options.length) % options.length;
+    onChange(options[nextIndex]!.id);
+  };
+
   return (
-    <div className="eh-btn-prop">
-      <span className="eh-btn-prop-label">{label}</span>
-      <div className="eh-btn-prop-options" role="group" aria-label={label}>
-        {options.map((option) => (
-          <button
-            key={option.id}
-            type="button"
-            className={[
-              value === option.id ? "is-active" : "",
-              option.swatch ? "has-swatch" : "",
-            ]
-              .filter(Boolean)
-              .join(" ") || undefined}
-            aria-pressed={value === option.id}
-            onClick={() => onChange(option.id)}
-          >
-            {option.swatch ? (
-              <span
-                className="eh-btn-swatch"
-                style={{ background: option.swatch }}
-                aria-hidden="true"
-              />
-            ) : null}
-            {option.label}
-          </button>
-        ))}
+    <div className="eh-btn-prop" ref={rootRef}>
+      <span className="eh-btn-prop-label" id={`${listId}-label`}>
+        {label}
+      </span>
+      <div className={`eh-btn-prop-select-wrap${open ? " is-open" : ""}`}>
+        <button
+          type="button"
+          className="eh-btn-prop-select"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          aria-controls={listId}
+          aria-labelledby={`${listId}-label`}
+          onClick={() => setOpen((prev) => !prev)}
+          onKeyDown={(event) => {
+            if (event.key === "ArrowDown") {
+              event.preventDefault();
+              if (!open) setOpen(true);
+              else move(1);
+            }
+            if (event.key === "ArrowUp") {
+              event.preventDefault();
+              if (!open) setOpen(true);
+              else move(-1);
+            }
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              setOpen((prev) => !prev);
+            }
+          }}
+        >
+          <span>{selected?.label}</span>
+          <svg className="eh-btn-prop-chevron" viewBox="0 0 12 12" aria-hidden="true" focusable="false">
+            <path
+              d="M2.5 4.5 6 8l3.5-3.5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {open ? (
+          <ul className="eh-btn-prop-menu" id={listId} role="listbox" aria-labelledby={`${listId}-label`}>
+            {options.map((option) => {
+              const active = option.id === value;
+              return (
+                <li key={option.id} role="presentation">
+                  <button
+                    type="button"
+                    role="option"
+                    className={`eh-btn-prop-option${active ? " is-active" : ""}`}
+                    aria-selected={active}
+                    onClick={() => choose(option.id)}
+                  >
+                    <span className="eh-btn-prop-check" aria-hidden="true">
+                      {active ? "✓" : ""}
+                    </span>
+                    <span>{option.label}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
       </div>
     </div>
   );
@@ -190,6 +267,10 @@ export default function EscuelaButtonPlayground() {
         <PropertyRow label="State" value={state} options={STATES} onChange={setState} />
         <PropertyRow label="Icon" value={icon} options={ICONS} onChange={setIcon} />
       </div>
+
+      <p className="cx-media-caption eh-btn-playground-caption">
+        Properties · Variables · Variantes
+      </p>
     </div>
   );
 }

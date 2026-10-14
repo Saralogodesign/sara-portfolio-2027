@@ -21,6 +21,10 @@
   margin-top:22px;
   align-items:stretch;
 }
+.escuela-case .eh-btn-playground-caption{
+  grid-column:1 / -1;
+  padding-top:4px;
+}
 .escuela-case .cx-dark .eh-btn-panel-title,
 .escuela-case .cx-dark .eh-btn-prop-label{
   color:rgba(255,255,255,.55);
@@ -29,21 +33,36 @@
   background:rgba(255,255,255,.06);
   border-color:rgba(255,255,255,.2);
 }
-.escuela-case .cx-dark .eh-btn-prop-options button{
+.escuela-case .cx-dark .eh-btn-prop-select{
   background:rgba(255,255,255,.08);
   border-color:rgba(255,255,255,.22);
   color:#fff;
 }
-.escuela-case .cx-dark .eh-btn-prop-options button:hover{
+.escuela-case .cx-dark .eh-btn-prop-select:hover{
   border-color:rgba(255,255,255,.45);
 }
-.escuela-case .cx-dark .eh-btn-prop-options button.is-active{
-  background:#fff;
-  border-color:#fff;
-  color:var(--ink);
+.escuela-case .cx-dark .eh-btn-prop-select:focus-visible,
+.escuela-case .cx-dark .eh-btn-prop-select-wrap.is-open .eh-btn-prop-select{
+  border-color:var(--eh-orange-500);
+  box-shadow:0 0 0 2px rgba(255,137,69,.35);
 }
-.escuela-case .cx-dark .eh-btn-prop-options button:focus-visible{
-  outline-color:#fff;
+.escuela-case .cx-dark .eh-btn-prop-chevron{
+  color:rgba(255,255,255,.7);
+}
+.escuela-case .cx-dark .eh-btn-prop-menu{
+  background:#2a2a2a;
+  border-color:rgba(255,255,255,.18);
+  color:#fff;
+}
+.escuela-case .cx-dark .eh-btn-prop-option{
+  color:#fff;
+}
+.escuela-case .cx-dark .eh-btn-prop-option:hover{
+  background:rgba(255,255,255,.08);
+}
+.escuela-case .cx-dark .eh-btn-prop-option.is-active{
+  background:var(--eh-orange-500);
+  color:var(--eh-black-500);
 }
 .escuela-case .eh-btn-stage{
   display:grid;
@@ -110,8 +129,7 @@
   border:1px solid rgba(11,11,11,.12);
 }
 .escuela-case .eh-btn-stage-label,
-.escuela-case .eh-btn-panel-title,
-.escuela-case .eh-btn-prop-label{
+.escuela-case .eh-btn-panel-title{
   margin:0;
   font-size:11px;
   font-weight:800;
@@ -139,61 +157,137 @@
   line-height:1.45;
   word-break:break-word;
 }
-.escuela-case .eh-btn-swatch{
-  display:inline-block;
-  width:12px;
-  height:12px;
-  border-radius:999px;
-  border:1px solid rgba(11,11,11,.2);
-  flex:none;
-}
-.escuela-case .eh-btn-prop-options button.has-swatch{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-}
 .escuela-case .eh-btn-panel{
+  position:relative;
   display:grid;
-  gap:14px;
+  gap:10px;
   align-content:start;
-  padding:20px;
-  background:#f7f7f7;
+  padding:16px;
+  background:#fff;
   border:1px solid var(--line);
   border-radius:var(--radius-lg);
+  font-family:"Lato",sans-serif;
+  overflow:visible;
+}
+.escuela-case .eh-btn-panel-title{
+  margin-bottom:6px;
 }
 .escuela-case .eh-btn-prop{
   display:grid;
-  gap:8px;
+  grid-template-columns:64px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  min-height:36px;
 }
-.escuela-case .eh-btn-prop-options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-}
-.escuela-case .eh-btn-prop-options button{
-  appearance:none;
-  border:1px solid var(--line);
-  background:#fff;
-  color:var(--ink);
-  border-radius:999px;
-  padding:7px 12px;
-  font:inherit;
+.escuela-case .eh-btn-prop-label{
+  margin:0;
+  font-family:"Lato",sans-serif;
   font-size:12px;
-  font-weight:700;
+  font-weight:400;
+  letter-spacing:0;
+  text-transform:none;
+  color:#757575;
+}
+.escuela-case .eh-btn-prop-select-wrap{
+  position:relative;
+  z-index:1;
+  min-width:0;
+}
+.escuela-case .eh-btn-prop-select-wrap.is-open{
+  z-index:5;
+}
+.escuela-case .eh-btn-prop-chevron{
+  width:12px;
+  height:12px;
+  color:#555;
+  flex:none;
+  transition:transform .15s ease,color .15s ease;
+}
+.escuela-case .eh-btn-prop-select-wrap.is-open .eh-btn-prop-chevron{
+  transform:rotate(180deg);
+  color:var(--eh-orange-700);
+}
+.escuela-case .eh-btn-prop-select{
+  appearance:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  width:100%;
+  min-height:36px;
+  padding:8px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--eh-white);
+  color:var(--eh-black-500);
+  font-family:"Lato",sans-serif;
+  font-size:12px;
+  font-weight:400;
+  line-height:1.2;
+  text-align:left;
   cursor:pointer;
-  transition:background .2s ease,border-color .2s ease,color .2s ease;
+  transition:border-color .15s ease,box-shadow .15s ease;
 }
-.escuela-case .eh-btn-prop-options button:hover{
-  border-color:#999;
+.escuela-case .eh-btn-prop-select:hover{
+  border-color:#bdbdbd;
 }
-.escuela-case .eh-btn-prop-options button.is-active{
-  background:var(--ink);
-  border-color:var(--ink);
-  color:#fff;
+.escuela-case .eh-btn-prop-select:focus-visible,
+.escuela-case .eh-btn-prop-select-wrap.is-open .eh-btn-prop-select{
+  outline:none;
+  border-color:var(--eh-orange-500);
+  box-shadow:0 0 0 2px rgba(255,137,69,.28);
 }
-.escuela-case .eh-btn-prop-options button:focus-visible{
-  outline:2px solid var(--ink);
-  outline-offset:2px;
+.escuela-case .eh-btn-prop-menu{
+  position:absolute;
+  top:calc(100% + 6px);
+  left:0;
+  right:0;
+  z-index:6;
+  margin:0;
+  padding:6px;
+  list-style:none;
+  background:rgba(252,248,245,.96);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:0 12px 28px rgba(11,11,11,.16);
+  backdrop-filter:blur(10px);
+}
+.escuela-case .eh-btn-prop-option{
+  appearance:none;
+  display:grid;
+  grid-template-columns:18px minmax(0,1fr);
+  align-items:center;
+  gap:6px;
+  width:100%;
+  min-height:32px;
+  padding:6px 8px;
+  border:0;
+  border-radius:6px;
+  background:transparent;
+  color:var(--eh-black-500);
+  font-family:"Lato",sans-serif;
+  font-size:12px;
+  font-weight:400;
+  text-align:left;
+  cursor:pointer;
+}
+.escuela-case .eh-btn-prop-option:hover,
+.escuela-case .eh-btn-prop-option:focus-visible{
+  outline:none;
+  background:rgba(255,137,69,.12);
+}
+.escuela-case .eh-btn-prop-option.is-active{
+  background:var(--eh-orange-500);
+  color:var(--eh-black-500);
+  font-weight:700;
+}
+.escuela-case .eh-btn-prop-check{
+  display:grid;
+  place-items:center;
+  width:18px;
+  font-size:12px;
+  font-weight:800;
+  line-height:1;
 }
 
 /* Button component */

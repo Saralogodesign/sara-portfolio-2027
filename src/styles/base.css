@@ -99,8 +99,15 @@ html.has-circle-cursor *{
   user-select:none;
 }
 
-.circle-cursor.is-zoom .circle-cursor-label{
+.circle-cursor.is-zoom .circle-cursor-label,
+.circle-cursor.is-scroll .circle-cursor-label{
   display:block;
+}
+
+.circle-cursor.is-scroll .circle-cursor-label{
+  text-transform:none;
+  letter-spacing:.02em;
+  font-size:11px;
 }
 
 html.is-strawberry-bg .circle-cursor{
