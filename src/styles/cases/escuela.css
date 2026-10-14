@@ -109,7 +109,7 @@
 }
 .escuela-case .eh-foundations-source{
   justify-self:center;
-  width:min(100%,420px);
+  width:min(100%,315px);
   text-align:center;
 }
 .escuela-case .eh-foundations-source img{
@@ -313,6 +313,7 @@
   grid-template-columns:repeat(5,minmax(0,1fr));
   column-gap:10px;
   row-gap:0;
+  margin-bottom:28px;
 }
 .escuela-case .eh-transfer>div{
   display:grid;
@@ -379,6 +380,7 @@
   border:0;
 }
 .escuela-case #decision-04 .cx-media-scroll{
+  height:373px;
   border:0;
   background:transparent;
 }

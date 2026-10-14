@@ -86,6 +86,7 @@ function SocialLinks({ className }: { className: string }) {
           />
         </svg>
       </a>
+      {/* GitHub oculto de momento
       <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
         <svg className="hero-social-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
           <path
@@ -94,6 +95,7 @@ function SocialLinks({ className }: { className: string }) {
           />
         </svg>
       </a>
+      */}
       <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
         <svg className="hero-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path

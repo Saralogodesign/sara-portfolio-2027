@@ -103,6 +103,7 @@ export const rosettaCase: CaseStudyContent = {
           src: "/images/projects/rosetta/Button-npm-2.png",
           caption: "Storybook real de un componente + documentación o referencia al paquete NPM",
           scroll: "vertical",
+          cursorHint: "scroll",
         },
       ],
     },

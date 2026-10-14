@@ -510,3 +510,7 @@
     grid-template-columns:1fr;
   }
 }
+
+.rosetta-case #design-system .cx-media-scroll{
+  height:373px;
+}

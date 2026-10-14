@@ -12,11 +12,8 @@
 .violeta-case .cx-principles>div,
 .violeta-case .cx-brand-board>div,
 .violeta-case .cx-layers>div,
-.cucharita-case .cu-eco>div,
 .cucharita-case .cx-tension>div,
 .cucharita-case .cx-concept-map>div,
-.cucharita-case .cx-brand-foundations>div,
-.cucharita-case .cx-naming>div,
 .escuela-case .eh-compare>div{
   border-radius:var(--radius-lg);
   overflow:hidden;
@@ -30,7 +27,6 @@
 .cx-collab>div,
 .violeta-case .cx-triangulate>div,
 .cucharita-case .cx-concept-map li,
-.cucharita-case .cx-naming li,
 .escuela-case .eh-kit>div,
 .escuela-case .eh-a11y>div,
 .escuela-case .eh-a11y-system>div>div,

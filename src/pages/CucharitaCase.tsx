@@ -99,31 +99,6 @@ const diagrams = {
       ))}
     </div>
   ),
-  sistema: (
-    <div className="cx-diagram cx-naming" aria-label="Naming a sistema">
-      <div className="is-name">
-        <p className="cx-label">Naming</p>
-        <strong>Cucharita</strong>
-        <span>Un gesto → territorio de marca</span>
-      </div>
-      <div>
-        <p className="cx-label">Sistema</p>
-        <ul>
-          <li>Formas redondeadas</li>
-          <li>Recursos orgánicos</li>
-          <li>Estrellas modulares</li>
-        </ul>
-      </div>
-      <div>
-        <p className="cx-label">Spot</p>
-        <ul>
-          <li>Aceleración ↔ calma</li>
-          <li>Planos de piel</li>
-          <li>Gestos cotidianos</li>
-        </ul>
-      </div>
-    </div>
-  ),
   mvp: (
     <div className="cx-diagram cx-months" aria-label="MVP loop">
       {mvpLoop.map((item, index) => (
