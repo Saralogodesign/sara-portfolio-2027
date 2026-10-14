@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import ConectaCase from "./ConectaCase";
 import CucharitaCase from "./CucharitaCase";
 import EscuelaCase from "./EscuelaCase";
+import ProductosMadridCase from "./ProductosMadridCase";
 import RosettaCase from "./RosettaCase";
 import VioletaCase from "./VioletaCase";
 
@@ -12,6 +13,7 @@ const casePages: Record<string, ComponentType> = {
   violeta: VioletaCase,
   cucharita: CucharitaCase,
   "escuela-hosteleria": EscuelaCase,
+  "productos-madrid": ProductosMadridCase,
 };
 
 export default function Project() {
