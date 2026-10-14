@@ -5,3 +5,8 @@ dist
 .env*
 npm-debug.log*
 .vite
+.tmp-home/
+.vercel-xdg-data/
+.vercel-xdg/
+.ssh-tmp/
+.vercel-cli-config/

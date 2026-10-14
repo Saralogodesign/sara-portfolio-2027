@@ -5,8 +5,13 @@ import CvPreview from "../components/CvPreview";
 import EmailLink from "../components/EmailLink";
 import SplitFlapRole from "../components/SplitFlapRole";
 import { CaseVideo } from "../components/CaseMedia";
+import { showPlayground } from "../config/features";
 import { projects } from "../content/projects";
 import { site } from "../content/site";
+
+const navItems = showPlayground
+  ? site.nav
+  : site.nav.filter((item) => item.href !== "#lab");
 
 function ProjectCover({
   image,
@@ -206,19 +211,23 @@ export default function Home() {
         ctaBg: [255, 255, 255],
         ctaFg: [0, 0, 0],
       },
-      {
-        id: "lab",
-        bg: [196, 36, 74],
-        fg: [255, 255, 255],
-        muted: [255, 224, 230],
-        accent: [244, 168, 184],
-        accentContrast: [196, 36, 74],
-        surface: [168, 32, 62],
-        line: [255, 255, 255],
-        lineAlpha: 0.32,
-        ctaBg: [255, 255, 255],
-        ctaFg: [196, 36, 74],
-      },
+      ...(showPlayground
+        ? [
+            {
+              id: "lab",
+              bg: [196, 36, 74] as RGB,
+              fg: [255, 255, 255] as RGB,
+              muted: [255, 224, 230] as RGB,
+              accent: [244, 168, 184] as RGB,
+              accentContrast: [196, 36, 74] as RGB,
+              surface: [168, 32, 62] as RGB,
+              line: [255, 255, 255] as RGB,
+              lineAlpha: 0.32,
+              ctaBg: [255, 255, 255] as RGB,
+              ctaFg: [196, 36, 74] as RGB,
+            } satisfies Theme,
+          ]
+        : []),
     ];
 
     const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -265,7 +274,9 @@ export default function Home() {
     const sections = [
       { id: "work", el: document.getElementById("work") },
       { id: "about", el: document.getElementById("about") },
-      { id: "lab", el: document.getElementById("lab") },
+      ...(showPlayground
+        ? [{ id: "lab", el: document.getElementById("lab") }]
+        : []),
     ];
 
     const onThemeScroll = () => {
@@ -364,7 +375,7 @@ export default function Home() {
           inert={narrow && !menuOpen ? true : undefined}
           onClick={() => setMenuOpen(false)}
         >
-          {site.nav.map((item) => (
+          {navItems.map((item) => (
             <a key={item.href} href={item.href}>
               <span>{item.label}</span>
             </a>
@@ -478,21 +489,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="lab reveal" id="lab">
-        <div className="section-heading light">
-          <div>
-            <h2>{site.lab.title}</h2>
-            <p>{site.lab.subtitle}</p>
-          </div>
-        </div>
-        <div className="lab-grid">
-          {site.lab.items.map((item) => (
-            <div key={item} style={{ whiteSpace: "pre-line" }}>
-              {item}
+      {showPlayground ? (
+        <section className="lab reveal" id="lab">
+          <div className="section-heading light">
+            <div>
+              <h2>{site.lab.title}</h2>
+              <p>{site.lab.subtitle}</p>
             </div>
-          ))}
-        </div>
-      </section>
+          </div>
+          <div className="lab-grid">
+            {site.lab.items.map((item) => (
+              <div key={item} style={{ whiteSpace: "pre-line" }}>
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
       </main>
       <footer className="reveal" id="contact">
         <h2>
