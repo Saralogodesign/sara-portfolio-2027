@@ -122,13 +122,6 @@ export const escuelaCase: CaseStudyContent = {
         "Seguridad, infraestructura institucional, presupuesto y alcance limitaron muchas decisiones. En lugar de esconder esas restricciones, el proyecto me obligó a priorizar: qué sistematizar, qué documentar y dónde invertir el esfuerzo para que la solución pudiera implementarse y mantenerse.",
         "La implementación actual ha evolucionado después de la entrega y no representa por completo el sistema visual original. En el portfolio muestro principalmente el diseño y los artefactos entregados, utilizando la plataforma publicada como evidencia de que el servicio llegó a producción.",
       ],
-      media: [
-        {
-          id: "restricciones",
-          src: "/images/projects/escuela-hosteleria/restricciones.jpg",
-          caption: "Comparativa controlada · Designed system / Implemented service",
-        },
-      ],
     },
   ],
   closing: {
