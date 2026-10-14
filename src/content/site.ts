@@ -6,7 +6,7 @@
 export const site = {
   brand: "SARA",
   /** CAMBIAR AQUÍ: dominio canónico al publicar (OG, sitemap, JSON-LD) */
-  url: "https://sara-portfolio-2027.vercel.app",
+  url: "https://portfolio-sara-2026.vercel.app",
   title: "Sara — Product Designer · Product Engineer",
   description:
     "Portfolio de Sara: product design y product engineering. Diseño, orquesto y ejecuto.",

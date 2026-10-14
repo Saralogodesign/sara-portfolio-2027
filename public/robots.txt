@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sara-portfolio-2027.vercel.app/sitemap.xml
+Sitemap: https://portfolio-sara-2026.vercel.app/sitemap.xml

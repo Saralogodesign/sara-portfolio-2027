@@ -108,7 +108,7 @@ export default function Home() {
   const [narrow, setNarrow] = useState(false);
   const [hideSocials, setHideSocials] = useState(false);
   const [cvOpen, setCvOpen] = useState(false);
-  const hasCv = Boolean(site.links.cv) && site.links.cv !== "#";
+  const hasCv = Boolean(site.links.cv) && !site.links.cv.startsWith("#");
 
   const openCv = () => {
     setMenuOpen(false);
