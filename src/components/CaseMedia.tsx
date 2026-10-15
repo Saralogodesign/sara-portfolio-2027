@@ -188,14 +188,25 @@ export default function CaseMedia({
     return (
       <figure className={`cx-photo cx-photo-real cx-photo-embed ${sizeClass} ${className}`.trim()}>
         <div className={`cx-media-embed${isPdf ? " is-pdf" : ""}`}>
-          <iframe
-            src={embed}
-            title={pie}
-            loading="eager"
-            allowFullScreen
-            allow="fullscreen"
-            referrerPolicy="strict-origin-when-cross-origin"
-          />
+          {isPdf ? (
+            <object data={embed} type="application/pdf" title={pie}>
+              <iframe
+                src={embed}
+                title={pie}
+                loading="eager"
+                allowFullScreen
+              />
+            </object>
+          ) : (
+            <iframe
+              src={embed}
+              title={pie}
+              loading="eager"
+              allowFullScreen
+              allow="fullscreen"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+          )}
         </div>
         <figcaption className="cx-media-caption">
           {pie}

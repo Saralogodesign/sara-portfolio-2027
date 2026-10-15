@@ -61,9 +61,9 @@ const diagrams = {
 
 const diagramsAfter = {
   identidad: (
-    <p className="cx-media-caption" style={{ marginTop: 8 }}>
+    <p className="cx-media-caption" style={{ marginTop: 4 }}>
       <a href="/images/projects/conecta/origen-principios.pdf" target="_blank" rel="noreferrer">
-        Descargar presentación · Origen y principios (PDF)
+        Descargar presentación · Guidelines Conecta (PDF)
       </a>
     </p>
   ),

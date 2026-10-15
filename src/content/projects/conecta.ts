@@ -97,28 +97,14 @@ export const conectaCase: CaseStudyContent = {
         "Partí del universo visual existente y lo reinterpreté para producto digital. El objetivo era que Conecta tuviera personalidad propia y se reconociera de inmediato como una herramienta diferente, pero siguiera perteneciendo a la misma familia de marca.",
         "El sistema dark, la jerarquía visual y el tratamiento de contenidos multimedia ayudaron a dar protagonismo al artista y a hacer tangible el valor del producto desde las primeras pantallas.",
       ],
-      media: [
-        {
-          id: "identidad",
-          src: "/images/projects/conecta/identidad.png",
-          caption: "Sistema de color",
-        },
-        {
-          id: "identidad-color",
-          src: "/images/projects/conecta/identidad-color.png",
-          caption: "Gradientes de marca",
-        },
-        {
-          id: "identidad-tipo",
-          src: "/images/projects/conecta/identidad-tipo.png",
-          caption: "Tipografía",
-        },
-        {
-          id: "identidad-landing",
-          src: "/images/projects/conecta/identidad-landing.png",
-          caption: "Identidad aplicada · landing",
-        },
-      ],
+      media: Array.from({ length: 21 }, (_, i) => {
+        const n = String(i + 1).padStart(2, "0");
+        return {
+          id: `origen-${n}`,
+          src: `/images/projects/conecta/origen-principios-${n}.jpg`,
+          caption: `Guidelines Conecta · ${n}`,
+        };
+      }),
     },
     {
       id: "colaboracion",
