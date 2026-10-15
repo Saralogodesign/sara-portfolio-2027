@@ -35,7 +35,7 @@
   border-color: color-mix(in srgb, var(--strawberry) 35%, #333);
 }
 .project-art.pm-home-cover{
-  border:1px solid color-mix(in srgb, var(--strawberry) 35%, #333);
+  aspect-ratio:16/10;
 }
 .pm-reel strong{
   font-family:inherit;
@@ -304,33 +304,47 @@
 
 /* Miniatura home */
 .pm-reel.is-compact{
-  padding:clamp(12px, 2.2vw, 20px) clamp(12px, 2.4vw, 22px) clamp(10px, 1.8vw, 16px);
-  gap:4px;
+  padding:10px 12px 8px;
+  gap:2px;
 }
 .pm-reel.is-compact .pm-reel-kicker{
   font-size:9px;
   letter-spacing:.1em;
 }
 .pm-reel.is-compact .pm-reel-question{
-  font-size:clamp(12px, 1.7vw, 15px);
-  max-width:34ch;
+  font-size:12px;
+  line-height:1.15;
 }
 .pm-reel.is-compact .pm-reel-format{
   font-size:10px;
 }
 .pm-reel.is-compact .pm-reel-stagewrap{
-  margin-top:4px;
+  margin-top:2px;
+  min-height:0;
+}
+.pm-reel.is-compact .pm-reel-pie{
+  height:100%;
+  min-height:0;
+  align-items:center;
+  gap:8px;
 }
 .pm-reel.is-compact .pm-reel-pie-svg{
-  max-width:min(120px, 38%);
+  max-width:min(92px,34%);
+  max-height:100%;
 }
 .pm-reel.is-compact .pm-reel-legend{
-  gap:6px;
+  gap:4px;
+  min-width:0;
 }
 .pm-reel.is-compact .pm-reel-legend li{
   font-size:10px;
+  line-height:1.15;
   gap:6px;
+  align-items:center;
   grid-template-columns:8px minmax(0,1fr) auto;
+}
+.pm-reel.is-compact .pm-reel-legend span{
+  min-width:0;
 }
 .pm-reel.is-compact .pm-reel-legend i{
   width:8px;

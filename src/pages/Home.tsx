@@ -513,8 +513,8 @@ export default function Home() {
           </div>
           <div className="lab-grid">
             {site.lab.items.map((item) => (
-              <div key={item} style={{ whiteSpace: "pre-line" }}>
-                {item}
+              <div key={item}>
+                <span>{item}</span>
               </div>
             ))}
           </div>
