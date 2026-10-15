@@ -43,7 +43,7 @@ export const site = {
     portraitLabel: "Coloca aquí\ntu fotografía",
     /** Ruta: /images/home/portrait.jpg — vacío = placeholder */
     portraitSrc: "/images/home/portrait.png",
-    note: "Curiosa por naturaleza.\nSistemática por elección.\nSiempre aprendiendo.",
+    note: "Curiosa por naturaleza.\nCreativa y sistemática.\nSiempre aprendiendo.",
   },
   lab: {
     title: "Playground_",
