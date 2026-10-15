@@ -100,9 +100,23 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "identidad",
-          embed:
-            "https://embed.figma.com/slides/mRXOPVAxkUbJMDCUQbN4Fw/Origen_Pricipios?embed-host=share&footer=false",
-          caption: "Origen y principios · presentación interactiva",
+          src: "/images/projects/conecta/identidad.png",
+          caption: "Sistema de color",
+        },
+        {
+          id: "identidad-color",
+          src: "/images/projects/conecta/identidad-color.png",
+          caption: "Gradientes de marca",
+        },
+        {
+          id: "identidad-tipo",
+          src: "/images/projects/conecta/identidad-tipo.png",
+          caption: "Tipografía",
+        },
+        {
+          id: "identidad-landing",
+          src: "/images/projects/conecta/identidad-landing.png",
+          caption: "Identidad aplicada · landing",
         },
       ],
     },
