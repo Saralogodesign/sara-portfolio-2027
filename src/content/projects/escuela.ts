@@ -48,8 +48,8 @@ export const escuelaCase: CaseStudyContent = {
       title: "Traducir entre diseño, cliente e IT",
       tone: "soft",
       paragraphs: [
-        "Lideré la interlocución entre los distintos actores y convertí restricciones técnicas, de seguridad y de infraestructura en decisiones que el cliente pudiera entender y validar. A la vez, trasladaba a desarrollo las necesidades de producto y comunicación con suficiente precisión para evitar interpretaciones innecesarias.",
-        "En un entorno institucional, buena parte del trabajo senior ocurre entre pantallas: gestionar dependencias, cerrar decisiones y mantener una visión común cuando cada interlocutor habla un lenguaje distinto. Todo el producto se diseñó y documentó en Figma, que funcionó como fuente única de verdad para cliente y desarrollo. La entrega final se cerró en el propio archivo: componentes, reglas, comportamientos y documentación quedaron preparados para su transferencia.",
+        "Lideré la interlocución entre los distintos actores y convertí restricciones técnicas, de seguridad y de infraestructura en decisiones que el cliente pudiera entender y validar. A la vez, trasladaba a desarrollo las necesidades de producto y comunicación con suficiente precisión para evitar interpretaciones innecesarias. Todo el producto se diseñó y documentó en Figma, que funcionó como fuente única de verdad para cliente y desarrollo.",
+        "En un entorno institucional, buena parte del trabajo senior ocurre entre pantallas: gestionar dependencias, cerrar decisiones y mantener una visión común cuando cada interlocutor habla un lenguaje distinto. La entrega final se cerró en el propio archivo: componentes, reglas, comportamientos y documentación quedaron preparados para su transferencia.",
       ],
     },
     {
@@ -67,8 +67,8 @@ export const escuelaCase: CaseStudyContent = {
       title: "Accesibilidad como requisito de producto",
       tone: "dark",
       paragraphs: [
-        "Al tratarse de un servicio público, la accesibilidad formaba parte de los requisitos del producto desde el inicio. No la traté como una revisión al final, sino como una capa transversal que condicionaba decisiones visuales, de interacción y de contenido.",
-        "Trabajé contraste y legibilidad, jerarquía semántica y visual, estados de foco e interacción, formularios comprensibles y contenido no textual preparado para alternativas como alt text. Estos criterios se trasladaron también al handoff para que desarrollo pudiera mantenerlos durante la implementación.",
+        "Al tratarse de un servicio público, la accesibilidad formaba parte de los requisitos del producto desde el inicio. No la traté como una revisión al final, sino como una capa transversal que condicionaba decisiones visuales, de interacción y de contenido. Trabajé contraste y legibilidad, jerarquía semántica y visual, y estados de foco e interacción.",
+        "También formularios comprensibles y contenido no textual preparado para alternativas como alt text. Estos criterios se trasladaron al handoff para que desarrollo pudiera mantenerlos durante la implementación.",
       ],
       media: [
         {
@@ -94,8 +94,8 @@ export const escuelaCase: CaseStudyContent = {
       eyebrow: "DECISIÓN 04",
       title: "Diseñar el handoff para el siguiente proveedor",
       paragraphs: [
-        "La documentación tenía un objetivo poco habitual: no solo ayudar al equipo que desarrollaba en ese momento, sino permitir que otra empresa pudiera hacerse cargo del servicio después.",
-        "Por eso el handoff debía explicar estructura, uso y comportamiento con claridad. Todo el producto se construyó y documentó en Figma: foundations, componentes, variants, properties, estados, responsive y notas funcionales. El archivo se entregó cerrado como fuente única de verdad para desarrollo y como documentación transferible al siguiente proveedor, reduciendo conocimiento implícito y dependencia del equipo original.",
+        "La documentación tenía un objetivo poco habitual: no solo ayudar al equipo que desarrollaba en ese momento, sino permitir que otra empresa pudiera hacerse cargo del servicio después. Por eso el handoff debía explicar estructura, uso y comportamiento con claridad.",
+        "Todo el producto se construyó y documentó en Figma: foundations, componentes, variants, properties, estados, responsive y notas funcionales. El archivo se entregó cerrado como fuente única de verdad y como documentación transferible al siguiente proveedor.",
       ],
       media: [
         {

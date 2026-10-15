@@ -67,8 +67,8 @@ export const rosettaCase: CaseStudyContent = {
       title: "Abrir el proceso",
       tone: "dark",
       paragraphs: [
-        "Centralizar el trabajo implicaba algo más incómodo que cambiar de herramienta: hacer visible el proceso. Decisiones, avances, bloqueos y complejidad quedaban expuestos al cliente en tiempo casi real.",
-        "Elegí esa transparencia a propósito. El objetivo era reducir intermediación y, al mismo tiempo, poner en valor el trabajo que hay detrás de un producto digital sólido. Para mí fue un salto al vacío: abrir el libro de par en par y confiar en el proceso.",
+        "Centralizar el trabajo implicaba algo más incómodo que cambiar de herramienta: hacer visible el proceso. Decisiones, avances, bloqueos y complejidad quedaban expuestos al cliente en tiempo casi real. Elegí esa transparencia a propósito.",
+        "El objetivo era reducir intermediación y, al mismo tiempo, poner en valor el trabajo que hay detrás de un producto digital sólido. Para mí fue un salto al vacío: abrir el libro de par en par y confiar en el proceso.",
       ],
       media: [
         {
@@ -120,7 +120,7 @@ export const rosettaCase: CaseStudyContent = {
         {
           id: "resultado",
           src: "/images/projects/rosetta/RDS_01.png",
-          caption: "Vista más completa o madura de Rosetta · cierre a sangre",
+          caption: "Rosetta Onboarding",
         },
       ],
     },

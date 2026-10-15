@@ -413,18 +413,8 @@
 }
 .escuela-case .cx-dark .eh-photo-note{color:rgba(255,255,255,.55)}
 .escuela-case .cx-dark .cx-photo{margin-top:22px}
-.escuela-case .cx-decision-stack > #decision-02{
-  padding-top:80px;
-  padding-bottom:80px;
-}
 .escuela-case #decision-02 .cx-media-list{
   margin-bottom:36px;
-}
-@media(max-width:760px){
-  .escuela-case .cx-decision-stack > #decision-02{
-    padding-top:64px;
-    padding-bottom:64px;
-  }
 }
 .escuela-case .eh-a11y{
   display:grid;

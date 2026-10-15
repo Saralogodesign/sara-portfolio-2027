@@ -39,7 +39,7 @@ export const site = {
   about: {
     title: "AboutMe_",
     subtitle: "// La persona detrás del portfolio",
-    lead: "Diseño productos digitales combinando estrategia, criterio visual y design systems, con la IA como aliada del proceso.\n\nMás claridad. Mejor experiencia.",
+    lead: "Diseño productos digitales combinando estrategia, criterio visual y design systems, con la IA como aliada del proceso.\n\nMás claridad.\nMejor experiencia.",
     portraitLabel: "Coloca aquí\ntu fotografía",
     /** Ruta: /images/home/portrait.jpg — vacío = placeholder */
     portraitSrc: "/images/home/portrait.png",

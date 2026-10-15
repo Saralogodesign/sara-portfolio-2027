@@ -72,8 +72,8 @@ export const conectaCase: CaseStudyContent = {
       title: "Convertir categorías en arquitectura",
       tone: "soft",
       paragraphs: [
-        "El buscador dependía de una taxonomía musical consistente. Géneros, formatos y tipos de artista se solapaban, y además la información introducida en el perfil tenía que alimentar después los filtros de búsqueda.",
-        "Facilité un workshop online en FigJam para ordenar categorías, detectar duplicidades y definir una lógica común entre alta de datos y filtrado. No era solo diseñar filtros: era diseñar la estructura que hacía posible que el buscador funcionara.",
+        "El buscador dependía de una taxonomía musical consistente. Géneros, formatos y tipos de artista se solapaban, y además la información introducida en el perfil tenía que alimentar después los filtros de búsqueda. Facilité un workshop online en FigJam para ordenar categorías y detectar duplicidades.",
+        "Definimos una lógica común entre alta de datos y filtrado. No era solo diseñar filtros: era diseñar la estructura que hacía posible que el buscador funcionara.",
       ],
       media: [
         {
@@ -100,8 +100,9 @@ export const conectaCase: CaseStudyContent = {
       media: [
         {
           id: "identidad",
-          src: "/images/projects/conecta/identidad.jpg",
-          caption: "1 elemento Somos Música + 1–2 pantallas Conecta",
+          embed:
+            "https://embed.figma.com/slides/mRXOPVAxkUbJMDCUQbN4Fw/Origen_Pricipios?embed-host=share&footer=false",
+          caption: "Origen y principios · presentación interactiva",
         },
       ],
     },
@@ -127,8 +128,8 @@ export const conectaCase: CaseStudyContent = {
       eyebrow: "RESULTADO",
       title: "De idea difusa a MVP entregado",
       paragraphs: [
-        "Entre finales de septiembre y diciembre, Conecta pasó de una oportunidad de negocio sin producto definido a un MVP completo y entregado llave en mano. El cliente decidió mantenerlo de momento en entorno interno y continuar con una segunda fase de evolución.",
-        "Al no existir todavía lanzamiento público, no presento métricas de uso como si fueran impacto. El resultado demostrable es la capacidad de convertir ambigüedad, múltiples interlocutores y un plazo exigente en un producto coherente, documentado y preparado para crecer.",
+        "Entre finales de septiembre y diciembre, Conecta pasó de una oportunidad de negocio sin producto definido a un MVP completo y entregado llave en mano. El cliente decidió mantenerlo de momento en entorno interno y continuar con una segunda fase de evolución. Al no existir todavía lanzamiento público, no presento métricas de uso como si fueran impacto.",
+        "El resultado demostrable es la capacidad de convertir ambigüedad, múltiples interlocutores y un plazo exigente en un producto coherente, documentado y preparado para crecer.",
       ],
       media: [
         {

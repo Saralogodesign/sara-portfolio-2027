@@ -33,8 +33,8 @@ export const productosMadridCase: CaseStudyContent = {
       eyebrow: "CONTEXTO",
       title: "El reto de conectar dos realidades",
       paragraphs: [
-        "Mostrar productos es solo el comienzo. La pregunta es qué necesita HORECA para evaluar una oferta y qué información pueden facilitar y mantener productores y distribuidores. La neutralidad institucional excluye rankings entre proveedores.",
-        "Mi enfoque conecta research, definición de producto y estructura del dato. La prioridad es entender qué ayuda a decidir antes de convertirlo en campos, filtros o funcionalidades. Product First orienta la exploración; su adecuación a cada contexto de compra sigue pendiente de contraste.",
+        "Mostrar productos es solo el comienzo. La pregunta es qué necesita HORECA para evaluar una oferta y qué información pueden facilitar y mantener productores y distribuidores. La neutralidad institucional excluye rankings entre proveedores. Mi enfoque conecta research, definición de producto y estructura del dato.",
+        "La prioridad es entender qué ayuda a decidir antes de convertirlo en campos, filtros o funcionalidades. Product First orienta la exploración; su adecuación a cada contexto de compra sigue pendiente de contraste.",
       ],
     },
     {
@@ -52,9 +52,10 @@ export const productosMadridCase: CaseStudyContent = {
       eyebrow: "DECISIÓN 02",
       title: "Separar el producto de la oferta",
       paragraphs: [
-        "Propuesta inicial pendiente de validación. Los niveles indican profundidad de información y alcance del filtro, no una obligación de completar pasos en ese orden. Los atributos de producto y oferta permanecen separados.",
-        "Los filtros del nivel 2 reducen productos; los del nivel 3 reducen ofertas. Un producto solo permanece tras filtrar ofertas si al menos una cumple todos los criterios seleccionados a la vez. Así se evita combinar la cobertura de un proveedor con el mínimo de otro.",
-        "La taxonomía requiere auditoría del catálogo y pruebas de comprensión. Precio, stock y plazos no se convierten en filtros mientras no puedan compararse y mantenerse. Temporada no significa disponibilidad actual.",
+        "Propuesta inicial pendiente de validación. Los niveles indican profundidad de información y alcance del filtro, no una obligación de completar pasos en ese orden. Los atributos de producto y oferta permanecen separados. Los filtros del nivel 2 reducen productos; los del nivel 3 reducen ofertas.",
+        "Un producto solo permanece tras filtrar ofertas si al menos una cumple todos los criterios seleccionados a la vez. Así se evita combinar la cobertura de un proveedor con el mínimo de otro. La taxonomía requiere auditoría del catálogo y pruebas de comprensión.",
+        "* Precio, stock y plazos no se convierten en filtros mientras no puedan compararse y mantenerse.",
+        "* Temporada no significa disponibilidad actual.",
       ],
     },
     {
@@ -80,6 +81,6 @@ export const productosMadridCase: CaseStudyContent = {
       "Stakeholder alignment",
     ],
     text:
-      "Criterio de producto, investigación y pensamiento sistémico: relacionar necesidades de usuario con información, operación y restricciones técnicas. Resultado real hasta ahora: research documental, instrumentos de investigación, arquitectura de trabajo y modelo inicial de información. Pendiente: investigación primaria, focus group, validación de categorías y filtros, y cierre del MVP. Los resultados simulados deben sustituirse por evidencia real antes de presentarlos como investigación realizada.",
+      "Criterio de producto, investigación y pensamiento sistémico: relacionar necesidades de usuario con información, operación y restricciones técnicas. Resultado real hasta ahora: research documental, instrumentos de investigación, arquitectura de trabajo y modelo inicial de información. Pendiente: investigación primaria, focus group, validación de categorías y filtros, y cierre del MVP.",
   },
 };

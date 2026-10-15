@@ -97,9 +97,23 @@ export default function CaseArticle({
             <h2>{section.title}</h2>
           </header>
           <div className="cx-prose">
-            {section.paragraphs.map((p, i) => (
-              <p key={`${section.id}-${i}`}>{p}</p>
-            ))}
+            {section.paragraphs.map((p, i) => {
+              const isCallout = p.startsWith("* ");
+              const text = isCallout ? p.slice(2) : p;
+              return (
+                <p
+                  key={`${section.id}-${i}`}
+                  className={isCallout ? "cx-callout" : undefined}
+                >
+                  {isCallout ? (
+                    <span className="cx-callout-mark" aria-hidden="true">
+                      *
+                    </span>
+                  ) : null}
+                  {text}
+                </p>
+              );
+            })}
           </div>
         </div>
         {diagrams[section.id] ?? null}

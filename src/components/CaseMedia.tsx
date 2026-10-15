@@ -181,6 +181,24 @@ export default function CaseMedia({
     else setLightboxOpen(true);
   };
 
+  const embed = media?.embed?.trim();
+  if (embed) {
+    return (
+      <figure className={`cx-photo cx-photo-real cx-photo-embed ${sizeClass} ${className}`.trim()}>
+        <div className="cx-media-embed">
+          <iframe
+            src={embed}
+            title={pie}
+            loading="lazy"
+            allowFullScreen
+            allow="fullscreen"
+          />
+        </div>
+        <figcaption className="cx-media-caption">{pie}</figcaption>
+      </figure>
+    );
+  }
+
   if (src && !broken) {
     const showCursors = Boolean(media?.cursors?.length) && !isVideoSrc(src);
     const showDetailZoom = Boolean(media?.zoom?.src) && !isVideoSrc(src);

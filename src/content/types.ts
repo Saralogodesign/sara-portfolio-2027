@@ -9,6 +9,8 @@ export type MediaRef = {
   src?: string;
   /** Pie de foto o vídeo. También se usa como texto alternativo. */
   caption: string;
+  /** URL de embed (p. ej. Figma Slides) — sustituye la imagen/vídeo */
+  embed?: string;
   /** Ancho visual en el case: full (100%) o half (~50%) */
   size?: "full" | "half";
   /** Vista con scroll interno sin agrandar el contenedor */

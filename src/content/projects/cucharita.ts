@@ -70,7 +70,7 @@ export const cucharitaCase: CaseStudyContent = {
       id: "decision-02",
       eyebrow: "DECISIÓN 02",
       title: "Vender slow también tenía que ser slow",
-      tone: "dark",
+      tone: "soft",
       paragraphs: [
         "El modelo de lanzamiento debía ser coherente con la filosofía del producto. Trabajamos una lógica de pre-order y producción bajo demanda para evitar sobreproducción y acercar la venta al territorio no-waste.",
         "No era una capa de sostenibilidad añadida al final. Era una forma de hacer que slow life, slow sex, branding y experiencia comercial funcionaran bajo una misma idea.",
@@ -87,7 +87,7 @@ export const cucharitaCase: CaseStudyContent = {
       id: "sistema",
       eyebrow: "SISTEMA",
       title: "Una marca construida alrededor del contacto",
-      tone: "cream",
+      tone: "dark",
       paragraphs: [
         "El propio naming, Cucharita, convertía un gesto sencillo y reconocible en territorio de marca. A partir de ahí, las formas redondeadas, los recursos orgánicos y las estrellas construyeron un sistema gráfico modular alrededor de la idea de cercanía.",
         "El spot llevó el mismo principio al movimiento: contraste entre aceleración y calma, con primeros planos de piel, caricias y gestos cotidianos. Más que explicar la tecnología, la comunicación debía hacer sentir para qué existía.",
