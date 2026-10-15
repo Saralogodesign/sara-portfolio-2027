@@ -12,6 +12,8 @@ type Props = {
   diagramsAfter?: Record<string, ReactNode>;
   /** Clase del bloque hero art (tone) */
   heroToneClass?: string;
+  /** Sustituye la imagen/vídeo del hero (p. ej. animación) */
+  heroVisual?: ReactNode;
 };
 
 type SectionGroup =
@@ -57,11 +59,13 @@ export default function CaseArticle({
   diagrams = {},
   diagramsAfter = {},
   heroToneClass = "",
+  heroVisual,
 }: Props) {
   const { hero, sections, closing } = content;
   const groups = groupSections(sections);
   const [heroLightboxOpen, setHeroLightboxOpen] = useState(false);
   const heroAlt = mediaCaption(hero.heroMedia, hero.artHint);
+  const showHeroMedia = Boolean(heroVisual) || Boolean(hero.heroMedia?.src);
 
   const navItems = [
     { id: "case-hero", label: "Inicio" },
@@ -123,17 +127,19 @@ export default function CaseArticle({
             </div>
           ))}
         </dl>
-        {hero.heroMedia?.src ? (
+        {showHeroMedia ? (
           <figure className="cx-hero-figure">
             <div className={`case-art ${heroToneClass} cx-hero-art`.trim()}>
-              {isVideoSrc(hero.heroMedia.src) ? (
+              {heroVisual ? (
+                heroVisual
+              ) : hero.heroMedia?.src && isVideoSrc(hero.heroMedia.src) ? (
                 <CaseVideo
                   src={hero.heroMedia.src}
                   alt={heroAlt}
                   interactive
                   onError={() => {}}
                 />
-              ) : (
+              ) : hero.heroMedia?.src ? (
                 <MediaZoomTrigger
                   className="cx-hero-zoom"
                   src={hero.heroMedia.src}
@@ -144,7 +150,7 @@ export default function CaseArticle({
                 >
                   <img src={hero.heroMedia.src} alt="" />
                 </MediaZoomTrigger>
-              )}
+              ) : null}
             </div>
             <figcaption className="cx-media-caption">{heroAlt}</figcaption>
           </figure>

@@ -19,11 +19,12 @@ export const productosMadridCase: CaseStudyContent = {
     ],
     artLabel: "CONECTOR / HERO",
     artTitle: "Productos de Madrid",
-    artHint: "Conectar HORECA con productores y distribuidores madrileños",
+    artHint: "Resultados de encuesta HORECA: descarte de oferta en quesito, columnas y barras",
     heroMedia: {
       id: "hero",
       src: "/images/projects/productos-madrid/cover.jpg",
-      caption: "Conector entre HORECA y el sector agroalimentario madrileño",
+      caption:
+        "Reel formativo · encuesta HORECA (n = 40): descarte de oferta en quesito, columnas y barras",
     },
   },
   sections: [
@@ -32,7 +33,7 @@ export const productosMadridCase: CaseStudyContent = {
       eyebrow: "CONTEXTO",
       title: "El reto de conectar dos realidades",
       paragraphs: [
-        "Mostrar productos es solo el comienzo. La pregunta es qué necesita HORECA para evaluar una oferta y qué información pueden facilitar y mantener productores y distribuidores. El alcance acordado es un conector: la negociación y el pedido continúan fuera, y la neutralidad institucional excluye rankings entre proveedores.",
+        "Mostrar productos es solo el comienzo. La pregunta es qué necesita HORECA para evaluar una oferta y qué información pueden facilitar y mantener productores y distribuidores. La neutralidad institucional excluye rankings entre proveedores.",
         "Mi enfoque conecta research, definición de producto y estructura del dato. La prioridad es entender qué ayuda a decidir antes de convertirlo en campos, filtros o funcionalidades. Product First orienta la exploración; su adecuación a cada contexto de compra sigue pendiente de contraste.",
       ],
     },
@@ -42,8 +43,8 @@ export const productosMadridCase: CaseStudyContent = {
       title: "Investigar la necesidad y la capacidad de respuesta",
       tone: "soft",
       paragraphs: [
-        "El Deep Research y el benchmark organizaron cuatro líneas: productores, HORECA, distribución e información de producto. La encuesta se reformuló como una entrada por perfil, con duración objetivo de cuatro minutos y variables comparables.",
-        "Los gráficos siguientes son una maqueta de resultados simulados (120 respuestas ficticias, 40 por sector) para explorar el producto. No son una exportación real ni reproducen el cuestionario definitivo. Los porcentajes usan como denominador las 40 respuestas del sector.",
+        "El Deep Research y el benchmark organizaron cuatro líneas: oferta, demanda, distribución e información de producto. La encuesta se reformuló como una entrada por perfil, con duración objetivo de cuatro minutos y variables comparables.",
+        "Los gráficos siguientes son resultados que nos sirven para explorar cómo se comportará el producto. Los porcentajes usan como denominador las 40 respuestas del sector.",
       ],
     },
     {
@@ -60,7 +61,7 @@ export const productosMadridCase: CaseStudyContent = {
       id: "decision-03",
       eyebrow: "DECISIÓN 03",
       title: "Hacer trazable el paso de research a producto",
-      tone: "dark",
+      tone: "soft",
       paragraphs: [
         "La arquitectura organiza estados del conocimiento. Cada herramienta tiene una función y cada transformación conserva su fuente, estado y revisión. El mapa representa el flujo de trabajo previsto; no acredita una automatización integral entre aplicaciones.",
         "AGENTS.md gobierna las reglas del agente; las Skills ejecutan procedimientos. Notion conserva el seguimiento. El orden admite iteraciones: una contradicción devuelve el trabajo a research. Acta no equivale a decisión.",

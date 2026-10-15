@@ -39,11 +39,11 @@ export const site = {
   about: {
     title: "AboutMe_",
     subtitle: "// La persona detrás del portfolio",
-    lead: "Diseño experiencias y orden: design systems, gobernanza y flujos con IA como aliada.\n\nMenos fricción, más claridad.",
+    lead: "Diseño productos digitales combinando estrategia, criterio visual y design systems, con la IA como aliada del proceso.\n\nMás claridad. Mejor experiencia.",
     portraitLabel: "Coloca aquí\ntu fotografía",
     /** Ruta: /images/home/portrait.jpg — vacío = placeholder */
     portraitSrc: "/images/home/portrait.png",
-    note: "Curiosa por naturaleza.\nSistemática por elección.\nSiempre aprendiendo.",
+    note: "Curiosa por naturaleza.\nCreativa y sistemática.\nSiempre aprendiendo.",
   },
   lab: {
     title: "Playground_",

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
+import ProductosSurveyReel from "../components/ProductosSurveyReel";
 import { productosMadridCase } from "../content/projects/productos-madrid";
 
 type BarItem = { label: string; pct: number };
@@ -39,7 +40,7 @@ function SurveyChart({ title, question, items }: SurveyBlock) {
 
 const horecaSurveys: SurveyBlock[] = [
   {
-    title: "HORECA · simulación · n = 40",
+    title: "HORECA · n = 40",
     question: "¿Por dónde comenzarías a buscar una nueva opción de suministro?",
     items: [
       { label: "Producto o categoría", pct: 60 },
@@ -48,7 +49,7 @@ const horecaSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "HORECA · simulación · n = 40",
+    title: "HORECA · n = 40",
     question: "¿Qué condición te haría descartar primero una oferta?",
     items: [
       { label: "No entrega en mi zona", pct: 55 },
@@ -57,7 +58,7 @@ const horecaSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "HORECA · simulación · n = 40",
+    title: "HORECA · n = 40",
     question: "¿Qué información económica mínima necesitas antes de contactar?",
     items: [
       { label: "Rango orientativo con condiciones", pct: 50 },
@@ -69,7 +70,7 @@ const horecaSurveys: SurveyBlock[] = [
 
 const producerSurveys: SurveyBlock[] = [
   {
-    title: "Productores · simulación · n = 40",
+    title: "Productores · n = 40",
     question: "¿Qué dato te resulta más difícil mantener actualizado?",
     items: [
       { label: "Disponibilidad actual", pct: 45 },
@@ -78,7 +79,7 @@ const producerSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "Productores · simulación · n = 40",
+    title: "Productores · n = 40",
     question: "¿Con qué frecuencia podrías revisar tu oferta?",
     items: [
       { label: "Una vez por semana", pct: 25 },
@@ -87,7 +88,7 @@ const producerSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "Productores · simulación · n = 40",
+    title: "Productores · n = 40",
     question: "¿Qué información económica podrías publicar antes del contacto?",
     items: [
       { label: "Rango orientativo con condiciones", pct: 50 },
@@ -99,7 +100,7 @@ const producerSurveys: SurveyBlock[] = [
 
 const distributorSurveys: SurveyBlock[] = [
   {
-    title: "Distribuidores · simulación · n = 40",
+    title: "Distribuidores · n = 40",
     question: "¿Qué dato te resulta más difícil mantener actualizado?",
     items: [
       { label: "Disponibilidad actual", pct: 35 },
@@ -108,7 +109,7 @@ const distributorSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "Distribuidores · simulación · n = 40",
+    title: "Distribuidores · n = 40",
     question: "¿Con qué frecuencia podrías revisar tu oferta?",
     items: [
       { label: "Una vez por semana", pct: 45 },
@@ -117,7 +118,7 @@ const distributorSurveys: SurveyBlock[] = [
     ],
   },
   {
-    title: "Distribuidores · simulación · n = 40",
+    title: "Distribuidores · n = 40",
     question: "¿Qué información económica podrías publicar antes del contacto?",
     items: [
       { label: "Rango orientativo con condiciones", pct: 40 },
@@ -127,38 +128,111 @@ const distributorSurveys: SurveyBlock[] = [
   },
 ];
 
-const levels = [
-  { n: "0", title: "Entrada global", note: "Búsqueda libre · zona, cantidad y recurrencia" },
-  { n: "1", title: "Categorías", note: "Producto · frutas, carnes, lácteos, panadería…" },
-  { n: "2", title: "Refinar producto", note: "Subcategoría · origen · temporalidad · certificaciones" },
-  { n: "3", title: "Comprobar encaje", note: "Zona · formato · pedido mínimo · entrega" },
-  { n: "4", title: "Evaluar oferta", note: "Precio o rango · disponibilidad · verificación" },
-  { n: "5", title: "Contactar", note: "Canal del proveedor · negociación fuera" },
+const discoverTree = [
+  {
+    n: "0",
+    title: "Entrada global",
+    scope: "todo el catálogo",
+    items: [
+      "Búsqueda libre: producto, categoría o proveedor",
+      "Contexto puntual: zona, cantidad y recurrencia",
+    ],
+  },
+  {
+    n: "1",
+    title: "Categorías",
+    scope: "producto",
+    items: [
+      "Frutas y hortalizas",
+      "Carnes",
+      "Lácteos y huevos",
+      "Panadería y cereales",
+      "Aceites y conservas",
+      "Bebidas",
+    ],
+  },
+  {
+    n: "2",
+    title: "Refinar resultados",
+    scope: "atributos del producto",
+    items: [
+      "Subcategoría y variedad según categoría",
+      "Origen",
+      "Temporalidad",
+      "Certificaciones, solo con datos contrastables",
+    ],
+  },
+  {
+    n: "3",
+    title: "Comprobar encaje",
+    scope: "oferta de cada proveedor",
+    items: [
+      "Zona de suministro",
+      "Formato y unidad comercial",
+      "Pedido mínimo, con unidades comparables",
+      "Modalidad de entrega",
+    ],
+  },
+  {
+    n: "4",
+    title: "Evaluar oferta",
+    scope: "ficha, fuera del filtro inicial",
+    items: [
+      "Precio o rango y condiciones aplicables",
+      "Disponibilidad, capacidad y plazo",
+      "Responsable y última verificación",
+    ],
+  },
+  {
+    n: "5",
+    title: "Contactar",
+    scope: "fuera de la transacción",
+    items: ["Canal del proveedor", "Confirmación de condiciones y negociación"],
+  },
 ];
 
+const ICON_BASE = "/images/projects/productos-madrid";
+
 const stack = [
-  { tool: "ChatGPT", note: "Deep Research, contraste y síntesis asistida" },
-  { tool: "Cursor", note: "Arquitectura, memoria operativa y procedimientos" },
-  { tool: "Notion", note: "Contexto, research, decisiones y seguimiento" },
-  { tool: "Jotform", note: "Instrumento de encuesta en preparación" },
-  { tool: "FigJam / Figma", note: "Canvas Product First y capas posteriores de UX" },
+  {
+    tool: "ChatGPT",
+    note: "Deep Research, contraste y síntesis asistida",
+    icon: `${ICON_BASE}/icon-chatgpt-2.png`,
+  },
+  {
+    tool: "Cursor",
+    note: "Arquitectura, memoria operativa y procedimientos",
+    icon: `${ICON_BASE}/icon-cursor.png`,
+  },
+  {
+    tool: "Notion",
+    note: "Contexto, research, decisiones y seguimiento",
+    icon: `${ICON_BASE}/icon-notion.webp`,
+  },
+  {
+    tool: "Jotform",
+    note: "Instrumento de encuesta en preparación",
+    icon: `${ICON_BASE}/icon-jotform.png`,
+  },
+  {
+    tool: "FigJam / Figma",
+    note: "Canvas Product First y capas posteriores de UX",
+    icon: `${ICON_BASE}/icon-figma.png`,
+  },
 ];
 
 const flow = [
   { label: "Fuentes", note: "Documentos · Deep Research · respuestas" },
-  { label: "Auditoría", note: "Calidad · contradicciones · excluir DEMO" },
   { label: "Síntesis", note: "Evidence Matrix · hipótesis y gaps" },
-  { label: "Decisión", note: "Mapper · revisión humana · log" },
   { label: "Definición", note: "Producto · UX · Approval Gate" },
+  { label: "Auditoría", note: "Calidad · contradicciones · excluir DEMO" },
+  { label: "Decisión", note: "Mapper · revisión humana · log" },
 ];
 
 const diagrams = {
   "decision-01": (
     <div className="cx-diagram pm-surveys" aria-label="Resultados simulados de encuesta por sector">
-      <p className="pm-surveys-note">
-        Resultados simulados · 120 respuestas ficticias · 40 por sector · no representan evidencia
-        real
-      </p>
+      <p className="pm-surveys-note">Resultados · 120 respuestas · 40 por sector</p>
       <div className="pm-survey-grid">
         {horecaSurveys.map((block) => (
           <SurveyChart key={block.question} {...block} />
@@ -177,21 +251,43 @@ const diagrams = {
       <p className="pm-surveys-note">
         En HORECA, el 55 % señalaría la zona como principal descarte. El rango económico sería
         aceptable para el 50 % de compradores y publicable para el 50 % de productores y el 40 % de
-        distribuidores. Cifras ficticias para orientar exploración, no para probar la arquitectura.
+        distribuidores.
       </p>
     </div>
   ),
   "decision-02": (
-    <div className="cx-diagram pm-levels" aria-label="Niveles de descubrimiento producto y oferta">
-      {levels.map((level) => (
-        <div key={level.n}>
-          <strong>
-            <span>N{level.n}</span>
-            {level.title}
-          </strong>
-          <em>{level.note}</em>
-        </div>
-      ))}
+    <div className="cx-diagram pm-discover" aria-label="Esquema Descubrir: niveles de producto y oferta">
+      <p className="pm-discover-root">Descubrir</p>
+      <ul className="pm-discover-tree">
+        {discoverTree.map((level, levelIndex) => (
+          <li
+            key={level.n}
+            className={levelIndex === discoverTree.length - 1 ? "is-last" : undefined}
+          >
+            <div className="pm-discover-branch" aria-hidden="true" />
+            <div className="pm-discover-node">
+              <div className="pm-discover-level">
+                <strong>
+                  <span>Nivel {level.n}</span>
+                  {level.title}
+                </strong>
+                <em>[{level.scope}]</em>
+              </div>
+              <ul className="pm-discover-leaves">
+                {level.items.map((item, itemIndex) => (
+                  <li
+                    key={item}
+                    className={itemIndex === level.items.length - 1 ? "is-last" : undefined}
+                  >
+                    <span className="pm-discover-twig" aria-hidden="true" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   ),
   "decision-03": (
@@ -199,6 +295,7 @@ const diagrams = {
       <div className="cx-diagram pm-stack" aria-label="Stack de herramientas">
         {stack.map((item) => (
           <div key={item.tool}>
+            <img className="pm-stack-icon" src={item.icon} alt="" aria-hidden="true" />
             <strong>{item.tool}</strong>
             <span>{item.note}</span>
           </div>
@@ -223,7 +320,12 @@ export default function ProductosMadridCase() {
 
   return (
     <CaseLayout currentSlug="productos-madrid" className="productos-madrid-case">
-      <CaseArticle content={productosMadridCase} diagrams={diagrams} heroToneClass="ink" />
+      <CaseArticle
+        content={productosMadridCase}
+        diagrams={diagrams}
+        heroToneClass="ink"
+        heroVisual={<ProductosSurveyReel />}
+      />
     </CaseLayout>
   );
 }
