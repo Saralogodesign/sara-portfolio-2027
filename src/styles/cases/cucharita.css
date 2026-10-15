@@ -161,7 +161,7 @@
   gap:12px;
 }
 .cucharita-case .cx-slow-line>div{
-  border-top:2px solid rgba(255,255,255,.35);
+  border-top:2px solid var(--deep-mid);
   padding:18px 10px 8px;
   display:grid;
   gap:8px;
@@ -169,11 +169,17 @@
 .cucharita-case .cx-slow-line strong{
   font-size:18px;
   letter-spacing:-.02em;
+  color:var(--ink);
 }
 .cucharita-case .cx-slow-line span{
   font-size:13px;
-  color:rgba(255,255,255,.7);
+  color:#555;
 }
+.cucharita-case .cx-dark .cx-slow-line>div{
+  border-top-color:rgba(255,255,255,.35);
+}
+.cucharita-case .cx-dark .cx-slow-line strong{color:#fff}
+.cucharita-case .cx-dark .cx-slow-line span{color:rgba(255,255,255,.7)}
 .cucharita-case .cx-brand-foundations{
   display:grid;
   grid-template-columns:repeat(4,minmax(0,1fr));

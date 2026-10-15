@@ -26,14 +26,14 @@
 .cx-tech span{border:1px solid rgba(255,255,255,.4);padding:12px 16px;border-radius:999px;font-size:14px}
 .cx-closing{margin:0;max-width:920px;font-size:clamp(22px,3vw,36px);line-height:1.25;letter-spacing:-.03em;font-family:var(--font-display);font-weight:300;color:rgba(255,255,255,.92)}
 .cx-reuse{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:12px 0}
-.cx-reuse>div,.cx-reuse-grid b{border:1px solid var(--line);padding:18px 20px;font-weight:700;color:var(--ink)}
+.cx-reuse>div:not(.cx-reuse-grid),.cx-reuse-grid b{border:1px solid var(--line);padding:18px 20px;font-weight:700;color:var(--ink)}
 .cx-reuse .is-origin{opacity:.75}
-.cx-reuse .is-core{background:var(--blue);border-color:var(--blue);color:#fff;font-family:var(--font-display);font-size:24px;font-weight:300}
+.cx-reuse>div.is-core{background:var(--blue);border-color:var(--blue);color:#fff;font-family:var(--font-display);font-size:24px;font-weight:300}
 .cx-reuse>span{color:var(--strawberry);font-size:20px;font-weight:700}
-.cx-reuse-grid{display:grid;gap:8px}
+.cx-reuse-grid{display:grid;gap:8px;border:0;padding:0}
 .cx-reuse-grid b{font-weight:600;font-size:14px;text-align:center}
-.cx-dark .cx-reuse>div,.cx-dark .cx-reuse-grid b{border-color:rgba(255,255,255,.28);color:#fff}
-.cx-dark .cx-reuse .is-core{border-color:var(--blue);color:#fff}
+.cx-dark .cx-reuse>div:not(.cx-reuse-grid),.cx-dark .cx-reuse-grid b{border-color:rgba(255,255,255,.28);color:#fff}
+.cx-dark .cx-reuse>div.is-core{border-color:var(--blue);color:#fff}
 .cx-dark .cx-reuse>span{color:var(--strawberry-200)}
 .cx-loop{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .cx-loop>div{border:1px solid var(--line);background:white;padding:14px 16px;font-size:14px;font-weight:600}
@@ -44,16 +44,15 @@
 .conecta-meta div{border-top:1px solid var(--line);padding-top:14px}
 .conecta-meta dt{font-size:11px;text-transform:uppercase;letter-spacing:.12em}
 .conecta-meta dd{margin:7px 0 0;color:#555;font-size:15px;line-height:1.35}
-.cx-section{padding:90px var(--page-inline)}
+.cx-section{padding:var(--case-block-y,90px) var(--page-inline)}
 .cx-text-row{
-  column-count:2;
-  column-gap:clamp(32px,6vw,80px);
+  display:flex;
+  flex-direction:column;
+  gap:22px;
   margin:14px 0 48px;
 }
 .cx-text-head{
-  break-inside:avoid;
-  column-span:all;
-  margin:0 0 22px;
+  margin:0;
 }
 .cx-pad h2,.cx-text-head h2{
   font-size:clamp(36px,4.6vw,64px);
@@ -63,17 +62,38 @@
   max-width:none;
 }
 .cx-prose{
-  display:contents;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:clamp(32px,6vw,80px);
+  row-gap:22px;
+  align-items:start;
 }
 .cx-prose p{
   font-size:16px;
   line-height:1.55;
   color:#555;
-  margin:0 0 22px;
-  orphans:3;
-  widows:3;
+  margin:0;
+  min-width:0;
 }
-.cx-prose p:last-child{margin-bottom:0}
+.cx-prose p:only-child,
+.cx-prose p:nth-child(n+3){
+  grid-column:1 / -1;
+}
+.cx-prose .cx-callout{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  column-gap:10px;
+  align-items:start;
+  color:var(--ink);
+  font-weight:600;
+}
+.cx-prose .cx-callout-mark{
+  color:var(--strawberry);
+  font-weight:700;
+  line-height:1.55;
+}
+.cx-dark .cx-prose .cx-callout{color:#fff}
+.cx-dark .cx-prose .cx-callout-mark{color:var(--strawberry-200)}
 .cx-close h2{margin:14px 0 40px;max-width:980px;font-size:clamp(42px,6vw,78px);line-height:1}
 .cx-close .cx-tech{margin:0 0 36px}
 .cx-label{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin:0 0 16px;font-weight:700}
@@ -103,12 +123,12 @@
 @media(max-width:900px){
   .case-hero .conecta-meta,.conecta-meta,.cx-compare,.cx-pipeline,.cx-months{grid-template-columns:1fr 1fr}
   .cx-pipeline{grid-template-columns:1fr 1fr 1fr}
-  .cx-text-row{column-count:1}
+  .cx-prose{grid-template-columns:1fr}
 }
 @media(max-width:760px){
   .case-hero .conecta-meta,.conecta-meta,.cx-compare,.cx-pipeline,.cx-months,.cx-brand-pair,.cx-journey,.cx-principles,.cx-brand-board,.cx-layers{grid-template-columns:1fr}
-  .cx-section{padding:70px var(--page-inline)}
-  .cx-text-row{column-count:1;margin-bottom:36px}
+  .cx-text-row{margin-bottom:36px}
+  .cx-prose{grid-template-columns:1fr}
   .cx-eco-simple{flex-direction:column}
   .cx-triangulate{flex-direction:column;align-items:stretch}
   .cx-triangulate .cx-arrow{transform:rotate(90deg)}
@@ -127,6 +147,34 @@
   min-height:0;
   border-radius:0;
 }
+.cx-media-embed{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+  background:#111;
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+.cx-media-embed.is-pdf{
+  aspect-ratio:16/10;
+  min-height:min(68vh,620px);
+  background:#f4f4f4;
+}
+.cx-media-embed iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+}
+.cx-media-caption a{
+  color:inherit;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.cx-media-caption a:hover{color:var(--strawberry)}
 .cx-photo-real.is-half{
   width:min(50%, 420px);
   max-width:100%;
@@ -409,18 +457,8 @@
   overflow:hidden;
 }
 .conecta-case #identidad .cx-text-row{
-  column-count:1;
-  display:flex;
-  flex-direction:column;
-  gap:0;
+  gap:28px;
   margin-bottom:48px;
-}
-.conecta-case #identidad .cx-text-head{
-  margin:0 0 28px;
-}
-.conecta-case #identidad .cx-prose{
-  display:block;
-  max-width:820px;
 }
 .conecta-case .cx-compare>div{
   background:transparent;
@@ -591,28 +629,6 @@
 .cx-decision-stack{
   display:flex;
   flex-direction:column;
-}
-.cx-decision-stack > .cx-section{
-  padding-top:48px;
-  padding-bottom:48px;
-}
-.cx-decision-stack > .cx-section:first-child{
-  padding-top:90px;
-}
-.cx-decision-stack > .cx-section:last-child{
-  padding-bottom:90px;
-}
-.cx-decision-stack > .cx-section + .cx-section{
-  padding-top:28px;
-}
-@media(max-width:760px){
-  .cx-decision-stack > .cx-section{
-    padding-top:36px;
-    padding-bottom:36px;
-  }
-  .cx-decision-stack > .cx-section:first-child{padding-top:70px}
-  .cx-decision-stack > .cx-section:last-child{padding-bottom:70px}
-  .cx-decision-stack > .cx-section + .cx-section{padding-top:20px}
 }
 
 /* —— Navegación flotante de secciones —— */

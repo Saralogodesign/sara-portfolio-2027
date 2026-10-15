@@ -60,6 +60,6 @@ body {
 .cx-closing,
 .cx-eco-simple > div.is-core,
 .cx-brand-pair strong,
-.cx-reuse .is-core {
+.cx-reuse > div.is-core {
   font-family: var(--font-display);
 }

@@ -5,6 +5,7 @@ import CvPreview from "../components/CvPreview";
 import EmailLink from "../components/EmailLink";
 import SplitFlapRole from "../components/SplitFlapRole";
 import { CaseVideo } from "../components/CaseMedia";
+import ProductosSurveyReel from "../components/ProductosSurveyReel";
 import { showPlayground } from "../config/features";
 import { projects } from "../content/projects";
 import { site } from "../content/site";
@@ -14,12 +15,14 @@ const navItems = showPlayground
   : site.nav.filter((item) => item.href !== "#lab");
 
 function ProjectCover({
+  slug,
   image,
   video,
   title,
   tone,
   index,
 }: {
+  slug: string;
   image?: string;
   video?: string;
   title: string;
@@ -36,6 +39,14 @@ function ProjectCover({
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
   }, []);
+
+  if (slug === "productos-madrid") {
+    return (
+      <div className={`project-art ${tone} pm-home-cover`} aria-hidden="true">
+        <ProductosSurveyReel compact />
+      </div>
+    );
+  }
 
   const showVideo = Boolean(video) && !broken && !reduceMotion;
   const showImage = Boolean(image) && !showVideo;
@@ -454,6 +465,7 @@ export default function Home() {
                 </div>
                 {view === "timeline" && <span className="tl-dot" aria-hidden="true" />}
                 <ProjectCover
+                  slug={project.slug}
                   image={project.image}
                   video={project.video}
                   title={project.title}

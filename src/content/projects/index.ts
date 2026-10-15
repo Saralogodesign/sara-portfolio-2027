@@ -8,6 +8,15 @@ import type { ProjectCard } from "../types";
 
 export const projects: ProjectCard[] = [
   {
+    slug: "productos-madrid",
+    year: "04 · 2026",
+    category: "PRODUCT DISCOVERY · EN CURSO",
+    title: "Productos de Madrid",
+    tone: "ink",
+    image: "/images/projects/productos-madrid/cover.jpg",
+    description: "Definir qué necesita saber un profesional para encontrar un proveedor viable.",
+  },
+  {
     slug: "rosetta",
     year: "01 · 2026",
     category: "DESIGN SYSTEM · PLATFORM · EN PROCESO",

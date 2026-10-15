@@ -12,6 +12,8 @@ type Props = {
   diagramsAfter?: Record<string, ReactNode>;
   /** Clase del bloque hero art (tone) */
   heroToneClass?: string;
+  /** Sustituye la imagen/vídeo del hero (p. ej. animación) */
+  heroVisual?: ReactNode;
 };
 
 type SectionGroup =
@@ -57,11 +59,13 @@ export default function CaseArticle({
   diagrams = {},
   diagramsAfter = {},
   heroToneClass = "",
+  heroVisual,
 }: Props) {
   const { hero, sections, closing } = content;
   const groups = groupSections(sections);
   const [heroLightboxOpen, setHeroLightboxOpen] = useState(false);
   const heroAlt = mediaCaption(hero.heroMedia, hero.artHint);
+  const showHeroMedia = Boolean(heroVisual) || Boolean(hero.heroMedia?.src);
 
   const navItems = [
     { id: "case-hero", label: "Inicio" },
@@ -93,9 +97,23 @@ export default function CaseArticle({
             <h2>{section.title}</h2>
           </header>
           <div className="cx-prose">
-            {section.paragraphs.map((p, i) => (
-              <p key={`${section.id}-${i}`}>{p}</p>
-            ))}
+            {section.paragraphs.map((p, i) => {
+              const isCallout = p.startsWith("* ");
+              const text = isCallout ? p.slice(2) : p;
+              return (
+                <p
+                  key={`${section.id}-${i}`}
+                  className={isCallout ? "cx-callout" : undefined}
+                >
+                  {isCallout ? (
+                    <span className="cx-callout-mark" aria-hidden="true">
+                      *
+                    </span>
+                  ) : null}
+                  {text}
+                </p>
+              );
+            })}
           </div>
         </div>
         {diagrams[section.id] ?? null}
@@ -123,17 +141,19 @@ export default function CaseArticle({
             </div>
           ))}
         </dl>
-        {hero.heroMedia?.src ? (
+        {showHeroMedia ? (
           <figure className="cx-hero-figure">
             <div className={`case-art ${heroToneClass} cx-hero-art`.trim()}>
-              {isVideoSrc(hero.heroMedia.src) ? (
+              {heroVisual ? (
+                heroVisual
+              ) : hero.heroMedia?.src && isVideoSrc(hero.heroMedia.src) ? (
                 <CaseVideo
                   src={hero.heroMedia.src}
                   alt={heroAlt}
                   interactive
                   onError={() => {}}
                 />
-              ) : (
+              ) : hero.heroMedia?.src ? (
                 <MediaZoomTrigger
                   className="cx-hero-zoom"
                   src={hero.heroMedia.src}
@@ -144,7 +164,7 @@ export default function CaseArticle({
                 >
                   <img src={hero.heroMedia.src} alt="" />
                 </MediaZoomTrigger>
-              )}
+              ) : null}
             </div>
             <figcaption className="cx-media-caption">{heroAlt}</figcaption>
           </figure>

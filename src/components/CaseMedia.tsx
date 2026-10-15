@@ -181,6 +181,33 @@ export default function CaseMedia({
     else setLightboxOpen(true);
   };
 
+  const embed = media?.embed?.trim();
+  if (embed) {
+    const embedHref = embed.split("#")[0] || embed;
+    const isPdf = /\.pdf(\?|#|$)/i.test(embed);
+    return (
+      <figure className={`cx-photo cx-photo-real cx-photo-embed ${sizeClass} ${className}`.trim()}>
+        <div className={`cx-media-embed${isPdf ? " is-pdf" : ""}`}>
+          <iframe
+            src={embed}
+            title={pie}
+            loading="eager"
+            allowFullScreen
+            allow="fullscreen"
+            referrerPolicy="strict-origin-when-cross-origin"
+          />
+        </div>
+        <figcaption className="cx-media-caption">
+          {pie}
+          {" · "}
+          <a href={embedHref} target="_blank" rel="noreferrer">
+            Abrir presentación
+          </a>
+        </figcaption>
+      </figure>
+    );
+  }
+
   if (src && !broken) {
     const showCursors = Boolean(media?.cursors?.length) && !isVideoSrc(src);
     const showDetailZoom = Boolean(media?.zoom?.src) && !isVideoSrc(src);
