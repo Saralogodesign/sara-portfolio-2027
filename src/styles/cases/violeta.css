@@ -108,19 +108,21 @@
 }
 .violeta-case .cx-brand-board{
   display:grid;
-  grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
   gap:12px;
 }
 .violeta-case .cx-brand-board>div{
   border:1px solid var(--line);
   padding:24px 16px;
   min-height:140px;
+  min-width:0;
 }
 .violeta-case .cx-brand-board strong{
   display:block;
-  font-size:18px;
+  font-size:clamp(15px,1.6vw,18px);
   letter-spacing:-.02em;
   line-height:1.3;
+  overflow-wrap:break-word;
 }
 .violeta-case .cx-layers{
   display:grid;
@@ -156,8 +158,16 @@
   background:var(--cream);
 }
 @media(max-width:900px){
-  .violeta-case .cx-journey,.violeta-case .cx-principles,.violeta-case .cx-brand-board,.violeta-case .cx-layers{
+  .violeta-case .cx-journey,.violeta-case .cx-principles,.violeta-case .cx-layers{
     grid-template-columns:1fr 1fr;
+  }
+  .violeta-case .cx-brand-board{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(max-width:760px){
+  .violeta-case .cx-journey,.violeta-case .cx-principles,.violeta-case .cx-brand-board,.violeta-case .cx-layers{
+    grid-template-columns:1fr;
   }
 }
 

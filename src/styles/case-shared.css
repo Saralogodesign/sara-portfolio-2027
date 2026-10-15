@@ -52,6 +52,7 @@
 }
 .cx-text-head{
   break-inside:avoid;
+  column-span:all;
   margin:0 0 22px;
 }
 .cx-pad h2,.cx-text-head h2{

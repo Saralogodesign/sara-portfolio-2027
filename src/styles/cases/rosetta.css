@@ -416,8 +416,12 @@
   }
   .ro-eco-join-line{width:70%}
   .ro-eco-stack{
-    justify-content:center;
-    justify-self:center;
+    width:100%;
+    max-width:none;
+    justify-content:flex-start;
+    justify-self:stretch;
+    overflow-x:auto;
+    padding-bottom:8px;
   }
 }
 @keyframes ro-eco-bidir-v-forth{
@@ -439,9 +443,11 @@
   .ro-eco-stack{
     flex-direction:row;
     flex-wrap:nowrap;
+    justify-content:flex-start;
+    width:100%;
+    max-width:none;
     overflow-x:auto;
-    max-width:100%;
-    padding-bottom:4px;
+    padding-bottom:8px;
   }
 }
 
