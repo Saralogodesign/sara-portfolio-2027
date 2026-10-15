@@ -59,16 +59,6 @@ const diagrams = {
   ),
 };
 
-const diagramsAfter = {
-  identidad: (
-    <p className="cx-media-caption" style={{ marginTop: 4 }}>
-      <a href="/images/projects/conecta/origen-principios.pdf" target="_blank" rel="noreferrer">
-        Descargar presentación · Guidelines Conecta (PDF)
-      </a>
-    </p>
-  ),
-};
-
 export default function ConectaCase() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -76,12 +66,7 @@ export default function ConectaCase() {
 
   return (
     <CaseLayout currentSlug="conecta" className="conecta-case">
-      <CaseArticle
-        content={conectaCase}
-        diagrams={diagrams}
-        diagramsAfter={diagramsAfter}
-        heroToneClass="navy"
-      />
+      <CaseArticle content={conectaCase} diagrams={diagrams} heroToneClass="navy" />
     </CaseLayout>
   );
 }

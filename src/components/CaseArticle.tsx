@@ -117,7 +117,9 @@ export default function CaseArticle({
           </div>
         </div>
         {diagrams[section.id] ?? null}
-        {section.media?.length ? <CaseMediaList media={section.media} /> : null}
+        {section.media?.length ? (
+          <CaseMediaList media={section.media} layout={section.mediaLayout} />
+        ) : null}
         {diagramsAfter[section.id] ?? null}
       </section>
     );

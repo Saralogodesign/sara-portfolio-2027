@@ -325,12 +325,72 @@ function galleryIndexForMedia(media: MediaRef[], target: MediaRef): number {
   return -1;
 }
 
-/** Lista de media con lightbox compartido y flechas si hay varias imágenes. */
-export function CaseMediaList({ media }: { media: MediaRef[] }) {
+/** Lista de media con lightbox compartido; opcional carousel (una slide + flechas). */
+export function CaseMediaList({
+  media,
+  layout = "stack",
+}: {
+  media: MediaRef[];
+  layout?: "stack" | "carousel";
+}) {
   const slides = useMemo(() => buildGallerySlides(media), [media]);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const sharedGallery = slides.length > 1;
+  const isCarousel = layout === "carousel" && slides.length > 1;
+
+  if (isCarousel) {
+    const active = slides[index] ?? slides[0];
+    const canPrev = index > 0;
+    const canNext = index < slides.length - 1;
+    return (
+      <>
+        <div className="cx-media-carousel" aria-roledescription="carrusel">
+          <div className="cx-media-carousel-stage">
+            <CaseMedia
+              key={media[index]?.id ?? index}
+              media={media[index]}
+              galleryIndex={index}
+              onGalleryOpen={(i) => {
+                setIndex(i);
+                setOpen(true);
+              }}
+            />
+            <button
+              type="button"
+              className="cx-media-carousel-btn cx-media-carousel-prev"
+              aria-label="Diapositiva anterior"
+              disabled={!canPrev}
+              onClick={() => setIndex((i) => Math.max(0, i - 1))}
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className="cx-media-carousel-btn cx-media-carousel-next"
+              aria-label="Diapositiva siguiente"
+              disabled={!canNext}
+              onClick={() => setIndex((i) => Math.min(slides.length - 1, i + 1))}
+            >
+              ›
+            </button>
+          </div>
+          <p className="cx-media-carousel-meta" aria-live="polite">
+            {active?.alt ?? ""} · {index + 1}/{slides.length}
+          </p>
+        </div>
+        <MediaLightbox
+          open={open}
+          src={active?.src ?? ""}
+          alt={active?.alt ?? ""}
+          slides={slides}
+          index={index}
+          onIndexChange={setIndex}
+          onClose={() => setOpen(false)}
+        />
+      </>
+    );
+  }
 
   return (
     <>

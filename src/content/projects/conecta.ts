@@ -97,6 +97,7 @@ export const conectaCase: CaseStudyContent = {
         "Partí del universo visual existente y lo reinterpreté para producto digital. El objetivo era que Conecta tuviera personalidad propia y se reconociera de inmediato como una herramienta diferente, pero siguiera perteneciendo a la misma familia de marca.",
         "El sistema dark, la jerarquía visual y el tratamiento de contenidos multimedia ayudaron a dar protagonismo al artista y a hacer tangible el valor del producto desde las primeras pantallas.",
       ],
+      mediaLayout: "carousel",
       media: Array.from({ length: 21 }, (_, i) => {
         const n = String(i + 1).padStart(2, "0");
         return {

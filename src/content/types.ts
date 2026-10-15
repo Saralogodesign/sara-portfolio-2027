@@ -58,6 +58,8 @@ export type CaseSection = {
   /** soft | dark | cream | default */
   tone?: "default" | "soft" | "dark" | "cream";
   media?: MediaRef[];
+  /** stack = todas visibles; carousel = una a la vez con flechas */
+  mediaLayout?: "stack" | "carousel";
 };
 
 export type CaseStudyContent = {
