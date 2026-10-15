@@ -615,6 +615,11 @@
   margin-top:28px;
   min-width:0;
 }
+.conecta-case #identidad .cx-media-carousel{
+  width:66.666%;
+  max-width:100%;
+  margin-inline:auto;
+}
 .cx-media-carousel-stage{
   position:relative;
 }
@@ -654,6 +659,7 @@
   color:#666;
 }
 @media(max-width:760px){
+  .conecta-case #identidad .cx-media-carousel{width:100%}
   .cx-media-carousel-btn{width:42px;height:42px;font-size:20px}
   .cx-media-carousel-prev{left:8px}
   .cx-media-carousel-next{right:8px}
