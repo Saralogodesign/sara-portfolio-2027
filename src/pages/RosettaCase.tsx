@@ -5,28 +5,6 @@ import RosettaEcosystem from "../components/RosettaEcosystem";
 import { rosettaCase } from "../content/projects/rosetta";
 
 const diagrams = {
-  context: (
-    <div className="cx-diagram cx-compare" aria-label="Antes / después">
-      <div>
-        <p className="cx-label">Antes</p>
-        <ol>
-          <li>Múltiples canales</li>
-          <li>Herramientas dispersas</li>
-          <li>Decisiones difíciles de seguir</li>
-        </ol>
-        <span className="cx-note">Teléfono escacharrado</span>
-      </div>
-      <div className="is-after">
-        <p className="cx-label">Después</p>
-        <ol>
-          <li className="is-value">Rosetta · punto común</li>
-          <li>Diseño y desarrollo en paralelo</li>
-          <li>Stakeholders con contexto</li>
-        </ol>
-        <span className="cx-note">Un mismo entorno visible</span>
-      </div>
-    </div>
-  ),
   role: <RosettaEcosystem />,
   "decision-01": (
     <div className="cx-diagram cx-collab" aria-label="Ciclo visible">

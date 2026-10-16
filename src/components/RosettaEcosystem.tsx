@@ -11,6 +11,18 @@ const ICONS = {
   github: "/images/projects/rosetta/icons/github.png",
 } as const;
 
+const TOOLS = [
+  { id: "figma", label: "Figma", note: "Fuente de verdad", icon: ICONS.figma },
+  { id: "mcp", label: "MCP", note: "Conexión bidireccional", icon: ICONS.mcp },
+  { id: "cursor", label: "Cursor", note: "Agente de código", icon: ICONS.cursor },
+  { id: "chatgpt", label: "ChatGPT", note: "Orquestación", icon: ICONS.chatgpt },
+  { id: "notion", label: "Notion", note: "Seguimiento · actas · texto", icon: ICONS.notion },
+  { id: "github", label: "GitHub", note: "Changelog", icon: ICONS.github },
+  { id: "rosetta", label: "Rosetta", note: "Plataforma", icon: undefined },
+  { id: "supabase", label: "Supabase", note: "Datos y auth", icon: ICONS.supabase },
+  { id: "vercel", label: "Vercel", note: "Publicación", icon: ICONS.vercel },
+] as const;
+
 function EcoIcon({ src }: { src: string }) {
   return <img className="ro-eco-logo" src={src} alt="" aria-hidden="true" />;
 }
@@ -99,22 +111,30 @@ export default function RosettaEcosystem() {
     >
       <p className="ro-eco-kicker">Figma como fuente de verdad · orquestación con IA</p>
 
+      {/* Lista compacta · iPad y móvil */}
+      <ul className="ro-eco-list">
+        {TOOLS.map((tool) => (
+          <li key={tool.id} className={`ro-eco-list-item is-${tool.id}`}>
+            <span className="ro-eco-list-icon">
+              {tool.icon ? (
+                <EcoIcon src={tool.icon} />
+              ) : (
+                <span className="ro-eco-mark" aria-hidden="true">
+                  R
+                </span>
+              )}
+            </span>
+            <span className="ro-eco-list-text">
+              <span className="ro-eco-list-label">{tool.label}</span>
+              <span className="ro-eco-list-note">{tool.note}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Diagrama completo · solo desktop */}
       <div className="ro-eco-board">
         <div className="ro-eco-main">
-          {/* Columna agentes: Notion sale de Cursor */}
-          <div className="ro-eco-notion">
-            <EcoCard
-              id="notion"
-              label="Notion"
-              note="Seguimiento · actas · texto"
-              icon={ICONS.notion}
-            />
-          </div>
-          <span className="ro-eco-arrow-up" aria-hidden="true">
-            <span className="ro-eco-arrow-up-line" />
-            <span className="ro-eco-arrow-up-head" />
-          </span>
-
           <div className="ro-eco-source">
             <EcoCard
               id="figma"
@@ -128,9 +148,6 @@ export default function RosettaEcosystem() {
           <div className="ro-eco-mcp-cursor">
             <McpBridge label="MCP API · Figma ↔ Cursor" />
           </div>
-          <div className="ro-eco-mcp-chatgpt">
-            <McpBridge label="MCP API · Figma ↔ ChatGPT" />
-          </div>
 
           <div className="ro-eco-cursor">
             <EcoCard
@@ -140,6 +157,24 @@ export default function RosettaEcosystem() {
               icon={ICONS.cursor}
             />
           </div>
+
+          <span className="ro-eco-arrow-up" aria-hidden="true">
+            <span className="ro-eco-arrow-up-line" />
+            <span className="ro-eco-arrow-up-head" />
+          </span>
+          <div className="ro-eco-notion">
+            <EcoCard
+              id="notion"
+              label="Notion"
+              note="Seguimiento · actas · texto"
+              icon={ICONS.notion}
+            />
+          </div>
+
+          <div className="ro-eco-mcp-chatgpt">
+            <McpBridge label="MCP API · Figma ↔ ChatGPT" />
+          </div>
+
           <div className="ro-eco-chatgpt">
             <EcoCard
               id="chatgpt"

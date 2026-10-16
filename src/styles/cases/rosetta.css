@@ -322,6 +322,82 @@
   color:#555;
 }
 
+/* Lista compacta · oculta en desktop */
+.ro-eco-list{
+  display:none;
+  list-style:none;
+  margin:0;
+  padding:0;
+  grid-template-columns:repeat(auto-fill, minmax(140px, 1fr));
+  gap:10px 12px;
+  width:100%;
+}
+.ro-eco-list-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-height:48px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:var(--radius-lg);
+}
+.ro-eco-list-icon{
+  display:grid;
+  place-items:center;
+  flex:none;
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  background:var(--soft);
+  overflow:hidden;
+}
+.ro-eco-list-icon .ro-eco-logo{
+  width:20px;
+  height:20px;
+}
+.ro-eco-list-icon .ro-eco-mark{
+  font-size:16px;
+}
+.ro-eco-list-item.is-rosetta{
+  background:var(--blue);
+  border-color:var(--blue);
+  color:#fff;
+}
+.ro-eco-list-item.is-rosetta .ro-eco-list-icon{
+  background:rgba(255,255,255,.16);
+}
+.ro-eco-list-item.is-rosetta .ro-eco-mark{color:#fff}
+.ro-eco-list-item.is-figma{
+  border-color:var(--strawberry-200);
+}
+.ro-eco-list-item.is-figma .ro-eco-list-icon{
+  background:var(--strawberry-50);
+}
+.ro-eco-list-text{
+  display:grid;
+  gap:2px;
+  min-width:0;
+}
+.ro-eco-list-label{
+  font-size:14px;
+  font-weight:700;
+  letter-spacing:-.02em;
+  line-height:1.2;
+}
+.ro-eco-list-note{
+  font-size:11px;
+  line-height:1.3;
+  color:#666;
+}
+.ro-eco-list-item.is-rosetta .ro-eco-list-note{
+  color:rgba(255,255,255,.78);
+}
+.ro-eco-list-item.is-figma .ro-eco-list-note{
+  color:var(--blue);
+  font-weight:700;
+}
+
 .ro-eco.is-paused .ro-eco-mcp-pulse,
 .ro-eco.is-paused .ro-eco-join-pulse,
 .ro-eco.is-paused .ro-eco-arrow-up-line,
@@ -367,88 +443,27 @@
   50%{box-shadow:0 0 0 6px var(--strawberry-ghost-mid)}
 }
 
-@media(max-width:980px){
-  .ro-eco-main{
-    grid-template-columns:1fr;
-    grid-template-rows:none;
-    justify-items:center;
-    row-gap:12px;
+/* iPad y móvil: lista de herramientas; diagrama solo en desktop */
+@media(max-width:1100px){
+  .ro-eco-board{display:none}
+  .ro-eco-list{display:grid}
+  .ro-eco-caption{
+    text-align:left;
+    margin-top:18px;
   }
-  .ro-eco-notion,
-  .ro-eco-arrow-up,
-  .ro-eco-source,
-  .ro-eco-mcp-cursor,
-  .ro-eco-mcp-chatgpt,
-  .ro-eco-cursor,
-  .ro-eco-chatgpt,
-  .ro-eco-join,
-  .ro-eco-stack{
-    grid-column:1;
-    grid-row:auto;
-    width:min(100%, 280px);
-  }
-  .ro-eco-arrow-up{height:24px}
-  .ro-eco-mcp-rail{
-    left:50%;
-    right:auto;
-    top:4px;
-    bottom:4px;
-    width:2px;
-    height:auto;
-    margin:0 0 0 -1px;
-  }
-  .ro-eco-mcp{min-height:56px}
-  .ro-eco-mcp-pulse.is-forth{animation-name:ro-eco-bidir-v-forth}
-  .ro-eco-mcp-pulse.is-back{animation-name:ro-eco-bidir-v-back}
-  .ro-eco-join{
-    min-height:36px;
-    grid-template-columns:1fr;
-    justify-items:center;
-  }
-  .ro-eco-brace{
-    width:70%;
-    height:14px;
-    min-height:0;
-    border:2px solid rgba(25,25,25,.28);
-    border-top:0;
-    border-radius:0 0 10px 10px;
-    justify-self:center;
-  }
-  .ro-eco-join-line{width:70%}
-  .ro-eco-stack{
-    width:100%;
-    max-width:none;
-    justify-content:flex-start;
-    justify-self:stretch;
-    overflow-x:auto;
-    padding-bottom:8px;
-  }
-}
-@keyframes ro-eco-bidir-v-forth{
-  0%{top:0;left:-3px;opacity:0}
-  12%{opacity:1}
-  88%{opacity:1}
-  100%{top:calc(100% - 8px);left:-3px;opacity:0}
-}
-@keyframes ro-eco-bidir-v-back{
-  0%{top:calc(100% - 8px);left:-3px;opacity:0}
-  12%{opacity:1}
-  88%{opacity:1}
-  100%{top:0;left:-3px;opacity:0}
 }
 
 @media(max-width:760px){
   .ro-eco{padding:8px 0 0}
-  .ro-eco-card{min-width:96px;padding:14px 10px 12px}
-  .ro-eco-stack{
-    flex-direction:row;
-    flex-wrap:nowrap;
-    justify-content:flex-start;
-    width:100%;
-    max-width:none;
-    overflow-x:auto;
-    padding-bottom:8px;
+  .ro-eco-list{
+    grid-template-columns:1fr 1fr;
+    gap:8px;
   }
+  .ro-eco-list-item{
+    min-height:44px;
+    padding:8px 10px;
+  }
+  .ro-eco-list-label{font-size:13px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -462,10 +477,6 @@
 
 .rosetta-case .cx-hero-art{
   background:#242424;
-}
-
-.rosetta-case .cx-compare>div{
-  background:transparent;
 }
 
 .rosetta-case #context .cx-media-list{

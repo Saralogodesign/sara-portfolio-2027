@@ -13,7 +13,7 @@ export const projects: ProjectCard[] = [
     category: "PRODUCT DISCOVERY · EN CURSO",
     title: "Productos de Madrid",
     tone: "ink",
-    image: "/images/projects/productos-madrid/cover.jpg",
+    image: "/images/projects/productos-madrid/carousel.png",
     description: "Definir qué necesita saber un profesional para encontrar un proveedor viable.",
   },
   {

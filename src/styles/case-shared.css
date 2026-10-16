@@ -464,6 +464,7 @@
 }
 .conecta-case .cx-compare>div{
   background:transparent;
+  border:0;
 }
 .conecta-case #decision-02 .cx-photo-frame{
   border:1px solid var(--line);
