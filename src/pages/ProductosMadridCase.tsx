@@ -4,129 +4,95 @@ import CaseArticle from "../components/CaseArticle";
 import ProductosSurveyReel from "../components/ProductosSurveyReel";
 import { productosMadridCase } from "../content/projects/productos-madrid";
 
-type BarItem = { label: string; pct: number };
+type PieSlice = { label: string; pct: number; color: string };
 
-type SurveyBlock = {
+type PieBlock = {
+  kicker: string;
   title: string;
-  question: string;
-  items: BarItem[];
+  slices: PieSlice[];
 };
 
-function SurveyChart({ title, question, items }: SurveyBlock) {
+const PIE_COLORS = [
+  "var(--strawberry)",
+  "var(--strawberry-400)",
+  "var(--strawberry-200)",
+] as const;
+
+function polar(cx: number, cy: number, r: number, angle: number) {
+  const rad = ((angle - 90) * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+function piePath(cx: number, cy: number, r: number, start: number, end: number) {
+  const a = polar(cx, cy, r, end);
+  const b = polar(cx, cy, r, start);
+  const large = end - start > 180 ? 1 : 0;
+  return `M ${cx} ${cy} L ${a.x} ${a.y} A ${r} ${r} 0 ${large} 0 ${b.x} ${b.y} Z`;
+}
+
+/** Tres hallazgos clave de las encuestas (120 respuestas) en quesitos. */
+const surveyPies: PieBlock[] = [
+  {
+    kicker: "HORECA · Búsqueda",
+    title: "Empiezan por el producto",
+    slices: [
+      { label: "Producto o categoría", pct: 60, color: PIE_COLORS[0] },
+      { label: "Proveedor conocido", pct: 25, color: PIE_COLORS[1] },
+      { label: "Recomendación", pct: 15, color: PIE_COLORS[2] },
+    ],
+  },
+  {
+    kicker: "HORECA · Descarte",
+    title: "La zona tumba la oferta",
+    slices: [
+      { label: "No entrega en zona", pct: 55, color: PIE_COLORS[0] },
+      { label: "Pedido mínimo alto", pct: 30, color: PIE_COLORS[1] },
+      { label: "Info insuficiente", pct: 15, color: PIE_COLORS[2] },
+    ],
+  },
+  {
+    kicker: "Los tres sectores · Precio",
+    title: "El rango orientativo encaja",
+    slices: [
+      { label: "Rango con condiciones", pct: 47, color: PIE_COLORS[0] },
+      { label: "Precio exacto", pct: 30, color: PIE_COLORS[1] },
+      { label: "Solo al contactar", pct: 23, color: PIE_COLORS[2] },
+    ],
+  },
+];
+
+function SurveyPie({ kicker, title, slices }: PieBlock) {
+  let angle = 0;
+  const arcs = slices.map((slice) => {
+    const start = angle;
+    const end = angle + slice.pct * 3.6;
+    angle = end;
+    return { ...slice, d: piePath(100, 100, 78, start, end) };
+  });
+
   return (
-    <article className="pm-survey" aria-label={`${title}. ${question}`}>
-      <p className="cx-label">{title}</p>
-      <h4>{question}</h4>
-      <ul>
-        {items.map((item) => (
-          <li key={item.label}>
-            <div className="pm-survey-meta">
-              <span>{item.label}</span>
-              <strong>{item.pct}%</strong>
-            </div>
-            <div
-              className="pm-survey-track"
-              role="img"
-              aria-label={`${item.label}: ${item.pct} por ciento`}
-            >
-              <i style={{ width: `${item.pct}%` }} />
-            </div>
-          </li>
-        ))}
-      </ul>
+    <article className="pm-pie" aria-label={`${kicker}. ${title}`}>
+      <p className="cx-label">{kicker}</p>
+      <h4>{title}</h4>
+      <div className="pm-pie-visual">
+        <svg viewBox="0 0 200 200" className="pm-pie-svg" aria-hidden="true">
+          {arcs.map((arc) => (
+            <path key={arc.label} d={arc.d} fill={arc.color} />
+          ))}
+        </svg>
+        <ul className="pm-pie-legend">
+          {slices.map((slice) => (
+            <li key={slice.label}>
+              <i style={{ background: slice.color }} aria-hidden="true" />
+              <span>{slice.label}</span>
+              <strong>{slice.pct}%</strong>
+            </li>
+          ))}
+        </ul>
+      </div>
     </article>
   );
 }
-
-const horecaSurveys: SurveyBlock[] = [
-  {
-    title: "HORECA · n = 40",
-    question: "¿Por dónde comenzarías a buscar una nueva opción de suministro?",
-    items: [
-      { label: "Producto o categoría", pct: 60 },
-      { label: "Proveedor conocido", pct: 25 },
-      { label: "Recomendación profesional", pct: 15 },
-    ],
-  },
-  {
-    title: "HORECA · n = 40",
-    question: "¿Qué condición te haría descartar primero una oferta?",
-    items: [
-      { label: "No entrega en mi zona", pct: 55 },
-      { label: "Pedido mínimo excesivo", pct: 30 },
-      { label: "Información insuficiente", pct: 15 },
-    ],
-  },
-  {
-    title: "HORECA · n = 40",
-    question: "¿Qué información económica mínima necesitas antes de contactar?",
-    items: [
-      { label: "Rango orientativo con condiciones", pct: 50 },
-      { label: "Precio exacto", pct: 35 },
-      { label: "Puedo consultarlo al contactar", pct: 15 },
-    ],
-  },
-];
-
-const producerSurveys: SurveyBlock[] = [
-  {
-    title: "Productores · n = 40",
-    question: "¿Qué dato te resulta más difícil mantener actualizado?",
-    items: [
-      { label: "Disponibilidad actual", pct: 45 },
-      { label: "Precio o condiciones económicas", pct: 35 },
-      { label: "Zona y plazos de entrega", pct: 20 },
-    ],
-  },
-  {
-    title: "Productores · n = 40",
-    question: "¿Con qué frecuencia podrías revisar tu oferta?",
-    items: [
-      { label: "Una vez por semana", pct: 25 },
-      { label: "Una vez al mes", pct: 45 },
-      { label: "Solo cuando haya cambios", pct: 30 },
-    ],
-  },
-  {
-    title: "Productores · n = 40",
-    question: "¿Qué información económica podrías publicar antes del contacto?",
-    items: [
-      { label: "Rango orientativo con condiciones", pct: 50 },
-      { label: "Precio exacto", pct: 20 },
-      { label: "Solo consulta directa", pct: 30 },
-    ],
-  },
-];
-
-const distributorSurveys: SurveyBlock[] = [
-  {
-    title: "Distribuidores · n = 40",
-    question: "¿Qué dato te resulta más difícil mantener actualizado?",
-    items: [
-      { label: "Disponibilidad actual", pct: 35 },
-      { label: "Precio o condiciones económicas", pct: 40 },
-      { label: "Zona y plazos de entrega", pct: 25 },
-    ],
-  },
-  {
-    title: "Distribuidores · n = 40",
-    question: "¿Con qué frecuencia podrías revisar tu oferta?",
-    items: [
-      { label: "Una vez por semana", pct: 45 },
-      { label: "Una vez al mes", pct: 20 },
-      { label: "Solo cuando haya cambios", pct: 35 },
-    ],
-  },
-  {
-    title: "Distribuidores · n = 40",
-    question: "¿Qué información económica podrías publicar antes del contacto?",
-    items: [
-      { label: "Rango orientativo con condiciones", pct: 40 },
-      { label: "Precio exacto", pct: 35 },
-      { label: "Solo consulta directa", pct: 25 },
-    ],
-  },
-];
 
 const discoverTree = [
   {
@@ -231,28 +197,16 @@ const flow = [
 
 const diagrams = {
   "decision-01": (
-    <div className="cx-diagram pm-surveys" aria-label="Resultados simulados de encuesta por sector">
-      <p className="pm-surveys-note">Resultados · 120 respuestas · 40 por sector</p>
-      <div className="pm-survey-grid">
-        {horecaSurveys.map((block) => (
-          <SurveyChart key={block.question} {...block} />
+    <div
+      className="cx-diagram pm-surveys"
+      aria-label="Tres hallazgos clave de las encuestas: búsqueda, descarte y precio"
+    >
+      <p className="pm-surveys-note">120 respuestas · 40 por sector · tres lecturas</p>
+      <div className="pm-pie-grid">
+        {surveyPies.map((pie) => (
+          <SurveyPie key={pie.title} {...pie} />
         ))}
       </div>
-      <div className="pm-survey-grid">
-        {producerSurveys.map((block) => (
-          <SurveyChart key={block.question} {...block} />
-        ))}
-      </div>
-      <div className="pm-survey-grid">
-        {distributorSurveys.map((block) => (
-          <SurveyChart key={block.question} {...block} />
-        ))}
-      </div>
-      <p className="pm-surveys-note">
-        En HORECA, el 55 % señalaría la zona como principal descarte. El rango económico sería
-        aceptable para el 50 % de compradores y publicable para el 50 % de productores y el 40 % de
-        distribuidores.
-      </p>
     </div>
   ),
   "decision-02": (
