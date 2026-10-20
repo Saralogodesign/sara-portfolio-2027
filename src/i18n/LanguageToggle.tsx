@@ -5,10 +5,9 @@ type Props = {
   className?: string;
 };
 
-/** Interruptor: izquierda = EN, derecha = ES */
+/** Segmentado EN | ES · mismo patrón que Grid / Timeline, más compacto */
 export default function LanguageToggle({ className = "" }: Props) {
   const { locale, setLocale } = useLocale();
-  const isEs = locale === "es";
 
   const stop = (event: MouseEvent) => event.stopPropagation();
 
@@ -21,24 +20,14 @@ export default function LanguageToggle({ className = "" }: Props) {
     >
       <button
         type="button"
-        className={`lang-toggle-label${!isEs ? " is-active" : ""}`}
-        aria-pressed={!isEs}
+        aria-pressed={locale === "en"}
         onClick={() => setLocale("en")}
       >
         EN
       </button>
       <button
         type="button"
-        className={`lang-toggle-track${isEs ? " is-es" : " is-en"}`}
-        aria-label={isEs ? "Switch to English" : "Cambiar a español"}
-        onClick={() => setLocale(isEs ? "en" : "es")}
-      >
-        <span className="lang-toggle-knob" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        className={`lang-toggle-label${isEs ? " is-active" : ""}`}
-        aria-pressed={isEs}
+        aria-pressed={locale === "es"}
         onClick={() => setLocale("es")}
       >
         ES
