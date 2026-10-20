@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
 import EscuelaButtonPlayground from "../components/EscuelaButtonPlayground";
 import EscuelaFigmaHub from "../components/EscuelaFigmaHub";
 import EscuelaGovernance from "../components/EscuelaGovernance";
-import { escuelaCase } from "../content/projects/escuela";
+import { getCase } from "../content/projects/getCase";
+import { useLocale } from "../i18n/LocaleContext";
 
 const stakeholders = [
   { label: "Administración", note: "Cliente final" },
@@ -265,6 +266,9 @@ const diagrams = {
 };
 
 export default function EscuelaCase() {
+  const { locale } = useLocale();
+  const content = useMemo(() => getCase("escuela-hosteleria", locale)!, [locale]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -272,7 +276,7 @@ export default function EscuelaCase() {
   return (
     <CaseLayout currentSlug="escuela-hosteleria" className="escuela-case">
       <CaseArticle
-        content={escuelaCase}
+        content={content}
         diagrams={diagrams}
         diagramsAfter={{
           "decision-02": (

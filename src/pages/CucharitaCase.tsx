@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
-import { cucharitaCase } from "../content/projects/cucharita";
+import { getCase } from "../content/projects/getCase";
+import { useLocale } from "../i18n/LocaleContext";
 
 const tension = [
   { from: "Estrés", to: "Pausa" },
@@ -113,13 +114,16 @@ const diagrams = {
 };
 
 export default function CucharitaCase() {
+  const { locale } = useLocale();
+  const content = useMemo(() => getCase("cucharita", locale)!, [locale]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <CaseLayout currentSlug="cucharita" className="cucharita-case">
-      <CaseArticle content={cucharitaCase} diagrams={diagrams} heroToneClass="navy" />
+      <CaseArticle content={content} diagrams={diagrams} heroToneClass="navy" />
     </CaseLayout>
   );
 }

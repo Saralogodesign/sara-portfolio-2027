@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { useLocale } from "../i18n/LocaleContext";
 
 const ICONS = {
   figma: "/images/projects/rosetta/icons/figma.png",
@@ -11,17 +12,30 @@ const ICONS = {
   github: "/images/projects/rosetta/icons/github.png",
 } as const;
 
-const TOOLS = [
-  { id: "figma", label: "Figma", note: "Fuente de verdad", icon: ICONS.figma },
-  { id: "mcp", label: "MCP", note: "Conexión bidireccional", icon: ICONS.mcp },
-  { id: "cursor", label: "Cursor", note: "Agente de código", icon: ICONS.cursor },
-  { id: "chatgpt", label: "ChatGPT", note: "Orquestación", icon: ICONS.chatgpt },
-  { id: "notion", label: "Notion", note: "Seguimiento · actas · texto", icon: ICONS.notion },
-  { id: "github", label: "GitHub", note: "Changelog", icon: ICONS.github },
-  { id: "rosetta", label: "Rosetta", note: "Plataforma", icon: undefined },
-  { id: "supabase", label: "Supabase", note: "Datos y auth", icon: ICONS.supabase },
-  { id: "vercel", label: "Vercel", note: "Publicación", icon: ICONS.vercel },
-] as const;
+const TOOLS = {
+  es: [
+    { id: "figma", label: "Figma", note: "Fuente de verdad", icon: ICONS.figma },
+    { id: "mcp", label: "MCP", note: "Conexión bidireccional", icon: ICONS.mcp },
+    { id: "cursor", label: "Cursor", note: "Agente de código", icon: ICONS.cursor },
+    { id: "chatgpt", label: "ChatGPT", note: "Orquestación", icon: ICONS.chatgpt },
+    { id: "notion", label: "Notion", note: "Seguimiento · actas · texto", icon: ICONS.notion },
+    { id: "github", label: "GitHub", note: "Changelog", icon: ICONS.github },
+    { id: "rosetta", label: "Rosetta", note: "Plataforma", icon: undefined as string | undefined },
+    { id: "supabase", label: "Supabase", note: "Datos y auth", icon: ICONS.supabase },
+    { id: "vercel", label: "Vercel", note: "Publicación", icon: ICONS.vercel },
+  ],
+  en: [
+    { id: "figma", label: "Figma", note: "Source of truth", icon: ICONS.figma },
+    { id: "mcp", label: "MCP", note: "Bidirectional link", icon: ICONS.mcp },
+    { id: "cursor", label: "Cursor", note: "Coding agent", icon: ICONS.cursor },
+    { id: "chatgpt", label: "ChatGPT", note: "Orchestration", icon: ICONS.chatgpt },
+    { id: "notion", label: "Notion", note: "Tracking · notes · copy", icon: ICONS.notion },
+    { id: "github", label: "GitHub", note: "Changelog", icon: ICONS.github },
+    { id: "rosetta", label: "Rosetta", note: "Platform", icon: undefined as string | undefined },
+    { id: "supabase", label: "Supabase", note: "Data and auth", icon: ICONS.supabase },
+    { id: "vercel", label: "Vercel", note: "Publishing", icon: ICONS.vercel },
+  ],
+} as const;
 
 function EcoIcon({ src }: { src: string }) {
   return <img className="ro-eco-logo" src={src} alt="" aria-hidden="true" />;
@@ -75,6 +89,45 @@ function McpBridge({ label }: { label: string }) {
 
 /** Ecosistema de construcción de Rosetta según el flujo real. */
 export default function RosettaEcosystem() {
+  const { locale } = useLocale();
+  const tools = TOOLS[locale];
+  const copy = useMemo(
+    () =>
+      locale === "en"
+        ? {
+            kicker: "Figma as source of truth · AI orchestration",
+            aria: "Build flow: Figma connects bidirectionally with Cursor and ChatGPT via MCP API. Cursor feeds Notion for tracking. Cursor and ChatGPT move through the GitHub changelog into Rosetta, Supabase, and Vercel publishing.",
+            caption:
+              "Figma ↔ Cursor and Figma ↔ ChatGPT via MCP API (round trip). Cursor documents progress in Notion. Both agents move through the GitHub changelog into Rosetta, Supabase, and Vercel.",
+            notes: {
+              figma: "Source of truth",
+              cursor: "Coding agent",
+              notion: "Tracking · notes · copy",
+              chatgpt: "Orchestration",
+              github: "Changelog",
+              rosetta: "Platform",
+              supabase: "Data and auth",
+              vercel: "Publishing",
+            },
+          }
+        : {
+            kicker: "Figma como fuente de verdad · orquestación con IA",
+            aria: "Flujo de construcción: Figma conecta de forma bidireccional con Cursor y ChatGPT vía MCP API. Cursor alimenta Notion para seguimiento. Cursor y ChatGPT pasan por el changelog de GitHub hacia Rosetta, Supabase y la publicación en Vercel.",
+            caption:
+              "Figma ↔ Cursor y Figma ↔ ChatGPT por MCP API (ida y vuelta). Cursor documenta el seguimiento en Notion. Ambos agentes pasan por el changelog de GitHub hacia Rosetta, Supabase y Vercel.",
+            notes: {
+              figma: "Fuente de verdad",
+              cursor: "Agente de código",
+              notion: "Seguimiento · actas · texto",
+              chatgpt: "Orquestación",
+              github: "Changelog",
+              rosetta: "Plataforma",
+              supabase: "Datos y auth",
+              vercel: "Publicación",
+            },
+          },
+    [locale],
+  );
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -107,13 +160,13 @@ export default function RosettaEcosystem() {
       ref={ref}
       className="cx-diagram ro-eco"
       role="img"
-      aria-label="Flujo de construcción: Figma conecta de forma bidireccional con Cursor y ChatGPT vía MCP API. Cursor alimenta Notion para seguimiento. Cursor y ChatGPT pasan por el changelog de GitHub hacia Rosetta, Supabase y la publicación en Vercel."
+      aria-label={copy.aria}
     >
-      <p className="ro-eco-kicker">Figma como fuente de verdad · orquestación con IA</p>
+      <p className="ro-eco-kicker">{copy.kicker}</p>
 
       {/* Lista compacta · iPad y móvil */}
       <ul className="ro-eco-list">
-        {TOOLS.map((tool) => (
+        {tools.map((tool) => (
           <li key={tool.id} className={`ro-eco-list-item is-${tool.id}`}>
             <span className="ro-eco-list-icon">
               {tool.icon ? (
@@ -139,7 +192,7 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="figma"
               label="Figma"
-              note="Fuente de verdad"
+              note={copy.notes.figma}
               icon={ICONS.figma}
               kind="source"
             />
@@ -153,7 +206,7 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="cursor"
               label="Cursor"
-              note="Agente de código"
+              note={copy.notes.cursor}
               icon={ICONS.cursor}
             />
           </div>
@@ -166,7 +219,7 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="notion"
               label="Notion"
-              note="Seguimiento · actas · texto"
+              note={copy.notes.notion}
               icon={ICONS.notion}
             />
           </div>
@@ -179,7 +232,7 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="chatgpt"
               label="ChatGPT"
-              note="Orquestación"
+              note={copy.notes.chatgpt}
               icon={ICONS.chatgpt}
             />
           </div>
@@ -195,17 +248,17 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="github"
               label="GitHub"
-              note="Changelog"
+              note={copy.notes.github}
               icon={ICONS.github}
               kind="stack"
             />
             <span className="ro-eco-dash" aria-hidden="true" />
-            <EcoCard id="rosetta" label="Rosetta" note="Plataforma" kind="core" />
+            <EcoCard id="rosetta" label="Rosetta" note={copy.notes.rosetta} kind="core" />
             <span className="ro-eco-dash" aria-hidden="true" />
             <EcoCard
               id="supabase"
               label="Supabase"
-              note="Datos y auth"
+              note={copy.notes.supabase}
               icon={ICONS.supabase}
               kind="stack"
             />
@@ -213,7 +266,7 @@ export default function RosettaEcosystem() {
             <EcoCard
               id="vercel"
               label="Vercel"
-              note="Publicación"
+              note={copy.notes.vercel}
               icon={ICONS.vercel}
               kind="stack"
             />
@@ -221,10 +274,7 @@ export default function RosettaEcosystem() {
         </div>
       </div>
 
-      <p className="ro-eco-caption">
-        Figma ↔ Cursor y Figma ↔ ChatGPT por MCP API (ida y vuelta). Cursor documenta el seguimiento
-        en Notion. Ambos agentes pasan por el changelog de GitHub hacia Rosetta, Supabase y Vercel.
-      </p>
+      <p className="ro-eco-caption">{copy.caption}</p>
     </div>
   );
 }

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
-import { violetaCase } from "../content/projects/violeta";
+import { getCase } from "../content/projects/getCase";
+import { useLocale } from "../i18n/LocaleContext";
 
 const journey = [
   { label: "Agresión digital", note: "Ciberacoso · deepfakes" },
@@ -95,13 +96,16 @@ const diagrams = {
 };
 
 export default function VioletaCase() {
+  const { locale } = useLocale();
+  const content = useMemo(() => getCase("violeta", locale)!, [locale]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <CaseLayout currentSlug="violeta" className="violeta-case">
-      <CaseArticle content={violetaCase} diagrams={diagrams} heroToneClass="violet" />
+      <CaseArticle content={content} diagrams={diagrams} heroToneClass="violet" />
     </CaseLayout>
   );
 }

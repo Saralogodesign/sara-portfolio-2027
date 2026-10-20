@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import CaseLayout from "../components/CaseLayout";
 import CaseArticle from "../components/CaseArticle";
 import ProductosSurveyReel from "../components/ProductosSurveyReel";
-import { productosMadridCase } from "../content/projects/productos-madrid";
+import { getCase } from "../content/projects/getCase";
+import { useLocale } from "../i18n/LocaleContext";
 
 type PieSlice = { label: string; pct: number; color: string };
 
@@ -268,6 +269,9 @@ const diagrams = {
 };
 
 export default function ProductosMadridCase() {
+  const { locale } = useLocale();
+  const content = useMemo(() => getCase("productos-madrid", locale)!, [locale]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -275,7 +279,7 @@ export default function ProductosMadridCase() {
   return (
     <CaseLayout currentSlug="productos-madrid" className="productos-madrid-case">
       <CaseArticle
-        content={productosMadridCase}
+        content={content}
         diagrams={diagrams}
         heroToneClass="ink"
         heroVisual={<ProductosSurveyReel />}

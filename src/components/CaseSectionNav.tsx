@@ -1,4 +1,6 @@
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useLocale } from "../i18n/LocaleContext";
+import { getUi } from "../i18n/ui";
 
 export type SectionNavItem = {
   id: string;
@@ -11,6 +13,9 @@ type Props = {
 
 /** Botón flotante a la derecha con submenú de secciones del case */
 export default function CaseSectionNav({ items }: Props) {
+  const { locale } = useLocale();
+  const ui = useMemo(() => getUi(locale), [locale]);
+
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
   const rootRef = useRef<HTMLDivElement>(null);
@@ -73,7 +78,7 @@ export default function CaseSectionNav({ items }: Props) {
         <button
           type="button"
           className="case-section-top"
-          aria-label="Subir al inicio de la página"
+          aria-label={locale === "en" ? "Back to top" : "Subir al inicio de la página"}
           onClick={goTop}
         >
           ↑
@@ -83,7 +88,7 @@ export default function CaseSectionNav({ items }: Props) {
       <button
         type="button"
         className="case-section-fab"
-        aria-label={open ? "Cerrar secciones" : "Abrir secciones del proyecto"}
+        aria-label={open ? ui.closeSections : ui.openSections}
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((value) => !value)}
@@ -92,7 +97,7 @@ export default function CaseSectionNav({ items }: Props) {
       </button>
 
       {open ? (
-        <nav id={menuId} className="case-section-menu" aria-label="Secciones del proyecto">
+        <nav id={menuId} className="case-section-menu" aria-label={ui.sectionsAria}>
           {items.map((item) => (
             <button
               key={item.id}

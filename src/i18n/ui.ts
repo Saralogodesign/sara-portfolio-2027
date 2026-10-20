@@ -1,0 +1,56 @@
+import type { Locale } from "./types";
+
+const ui = {
+  es: {
+    skipToWork: "Saltar a proyectos",
+    skipToContent: "Saltar al contenido",
+    homeAria: "Ir al inicio",
+    mainNavAria: "Navegación principal",
+    openNav: "Abrir navegación",
+    closeNav: "Cerrar navegación",
+    viewCv: "Ver currículum",
+    contact: "Contacto",
+    socialsAria: "Redes sociales",
+    viewToggleAria: "Cambiar vista de proyectos",
+    viewProject: (title: string) => `Ver proyecto ${title}`,
+    portraitAria: "Espacio para tu fotografía",
+    moreExploring: "SEGUIR EXPLORANDO",
+    moreProjects: "Más proyectos",
+    prevProjects: "Proyectos anteriores",
+    nextProjects: "Proyectos siguientes",
+    sectionsAria: "Secciones del proyecto",
+    openSections: "Abrir secciones del proyecto",
+    closeSections: "Cerrar secciones del proyecto",
+    missingTitle: "Proyecto no encontrado",
+    missingBack: "Volver al portfolio",
+    emailSubject: "Hola%20Sara",
+  },
+  en: {
+    skipToWork: "Skip to projects",
+    skipToContent: "Skip to content",
+    homeAria: "Go to home",
+    mainNavAria: "Main navigation",
+    openNav: "Open navigation",
+    closeNav: "Close navigation",
+    viewCv: "View résumé",
+    contact: "Contact",
+    socialsAria: "Social links",
+    viewToggleAria: "Change projects view",
+    viewProject: (title: string) => `View ${title} project`,
+    portraitAria: "Space for your photo",
+    moreExploring: "KEEP EXPLORING",
+    moreProjects: "More projects",
+    prevProjects: "Previous projects",
+    nextProjects: "Next projects",
+    sectionsAria: "Project sections",
+    openSections: "Open project sections",
+    closeSections: "Close project sections",
+    missingTitle: "Project not found",
+    missingBack: "Back to portfolio",
+    emailSubject: "Hi%20Sara",
+  },
+} as const;
+
+export function getUi(locale: Locale) {
+  return ui[locale];
+}

@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { projects } from "../content/projects";
-import { site } from "../content/site";
+import { getProjects } from "../content/projects";
+import { getSite } from "../content/site";
 import type { ProjectCard } from "../content/types";
+import { useLocale } from "../i18n/LocaleContext";
+import { getUi } from "../i18n/ui";
 
 type Props = {
   currentSlug: string;
 };
 
-function buildOthers(currentSlug: string): ProjectCard[] {
+function buildOthers(projects: ProjectCard[], currentSlug: string): ProjectCard[] {
   const index = projects.findIndex((item) => item.slug === currentSlug);
   if (index < 0 || projects.length < 2) return [];
 
@@ -22,9 +24,17 @@ function buildOthers(currentSlug: string): ProjectCard[] {
 
 /** Carrusel: anterior + siguientes, con flechas para ver el resto */
 export default function MoreProjectsCarousel({ currentSlug }: Props) {
-  const others = buildOthers(currentSlug);
+  const { locale } = useLocale();
+  const site = useMemo(() => getSite(locale), [locale]);
+  const ui = useMemo(() => getUi(locale), [locale]);
+  const projects = useMemo(() => getProjects(locale), [locale]);
+  const others = useMemo(() => buildOthers(projects, currentSlug), [projects, currentSlug]);
   const [offset, setOffset] = useState(() => Math.max(0, others.length - 1));
   const [visibleCount, setVisibleCount] = useState(3);
+
+  useEffect(() => {
+    setOffset(Math.max(0, others.length - 1));
+  }, [others.length, locale]);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 760px)");
@@ -49,14 +59,14 @@ export default function MoreProjectsCarousel({ currentSlug }: Props) {
 
   return (
     <section className="more-projects" aria-labelledby="more-projects-title">
-      <p className="eyebrow">SEGUIR EXPLORANDO</p>
-      <h2 id="more-projects-title">Más proyectos</h2>
+      <p className="eyebrow">{ui.moreExploring}</p>
+      <h2 id="more-projects-title">{ui.moreProjects}</h2>
 
       <div className="more-carousel">
         <button
           type="button"
           className="more-carousel-btn more-carousel-prev"
-          aria-label="Proyectos anteriores"
+          aria-label={ui.prevProjects}
           disabled={!canNavigate}
           onClick={() => shift(-1)}
         >
@@ -77,7 +87,7 @@ export default function MoreProjectsCarousel({ currentSlug }: Props) {
         <button
           type="button"
           className="more-carousel-btn more-carousel-next"
-          aria-label="Proyectos siguientes"
+          aria-label={ui.nextProjects}
           disabled={!canNavigate}
           onClick={() => shift(1)}
         >

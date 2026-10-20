@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Download } from "lucide-react";
 import CvPreview from "../components/CvPreview";
@@ -7,12 +7,11 @@ import SplitFlapRole from "../components/SplitFlapRole";
 import { CaseVideo } from "../components/CaseMedia";
 import ProductosSurveyReel from "../components/ProductosSurveyReel";
 import { showPlayground } from "../config/features";
-import { projects } from "../content/projects";
-import { site } from "../content/site";
-
-const navItems = showPlayground
-  ? site.nav
-  : site.nav.filter((item) => item.href !== "#lab");
+import { getProjects } from "../content/projects";
+import { getSite } from "../content/site";
+import LanguageToggle from "../i18n/LanguageToggle";
+import { useLocale } from "../i18n/LocaleContext";
+import { getUi } from "../i18n/ui";
 
 function ProjectCover({
   slug,
@@ -67,9 +66,19 @@ function ProjectCover({
   );
 }
 
-function SocialLinks({ className }: { className: string }) {
+function SocialLinks({
+  className,
+  linkedin,
+  medium,
+  socialsAria,
+}: {
+  className: string;
+  linkedin: string;
+  medium: string;
+  socialsAria: string;
+}) {
   return (
-    <div className={className} aria-label="Redes sociales">
+    <div className={className} aria-label={socialsAria}>
       <EmailLink aria-label="Email">
         <svg className="hero-social-mail" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <circle
@@ -89,7 +98,7 @@ function SocialLinks({ className }: { className: string }) {
           />
         </svg>
       </EmailLink>
-      <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+      <a href={linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
         <svg className="hero-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path
             fill="currentColor"
@@ -97,17 +106,7 @@ function SocialLinks({ className }: { className: string }) {
           />
         </svg>
       </a>
-      {/* GitHub oculto de momento
-      <a href={site.links.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-        <svg className="hero-social-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-          <path
-            fill="currentColor"
-            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
-          />
-        </svg>
-      </a>
-      */}
-      <a href={site.links.medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
+      <a href={medium} target="_blank" rel="noopener noreferrer" aria-label="Medium">
         <svg className="hero-social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path
             fill="currentColor"
@@ -120,6 +119,14 @@ function SocialLinks({ className }: { className: string }) {
 }
 
 export default function Home() {
+  const { locale } = useLocale();
+  const site = useMemo(() => getSite(locale), [locale]);
+  const projects = useMemo(() => getProjects(locale), [locale]);
+  const ui = useMemo(() => getUi(locale), [locale]);
+  const navItems = useMemo(
+    () => (showPlayground ? [...site.nav] : site.nav.filter((item) => item.href !== "#lab")),
+    [site],
+  );
   const [view, setView] = useState<"grid" | "timeline">("grid");
   const [navScrolled, setNavScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -362,17 +369,17 @@ export default function Home() {
   return (
     <div className="page">
       <a className="skip-link" href="#work">
-        Saltar a proyectos
+        {ui.skipToWork}
       </a>
       <header className={`site-nav ${navScrolled ? "is-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
-        <a className="brand" href="#top" aria-label="Ir al inicio">
+        <a className="brand" href="#top" aria-label={ui.homeAria}>
           {site.brand}
           <span>.</span>
         </a>
         <button
           type="button"
           className="menu-toggle"
-          aria-label={menuOpen ? "Cerrar navegación" : "Abrir navegación"}
+          aria-label={menuOpen ? ui.closeNav : ui.openNav}
           aria-expanded={menuOpen}
           aria-controls="site-menu"
           onClick={() => setMenuOpen((open) => !open)}
@@ -383,7 +390,7 @@ export default function Home() {
         </button>
         <nav
           id="site-menu"
-          aria-label="Navegación principal"
+          aria-label={ui.mainNavAria}
           aria-hidden={narrow && !menuOpen}
           inert={narrow && !menuOpen ? true : undefined}
           onClick={() => setMenuOpen(false)}
@@ -397,19 +404,20 @@ export default function Home() {
             <button
               type="button"
               className="nav-cta nav-cv"
-              aria-label="Ver currículum"
+              aria-label={ui.viewCv}
               onClick={openCv}
             >
               CV
               <Download className="nav-cv-icon" aria-hidden="true" strokeWidth={2.25} />
             </button>
           ) : null}
-          <EmailLink className="nav-cta">Contacto</EmailLink>
-          <SocialLinks className="nav-socials" />
+          <EmailLink className="nav-cta">{ui.contact}</EmailLink>
+          <LanguageToggle />
+          <SocialLinks className="nav-socials" linkedin={site.links.linkedin} medium={site.links.medium} socialsAria={ui.socialsAria} />
         </nav>
       </header>
 
-      <SocialLinks className={`hero-socials${hideSocials ? " is-hidden" : ""}`} />
+      <SocialLinks className={`hero-socials${hideSocials ? " is-hidden" : ""}`} linkedin={site.links.linkedin} medium={site.links.medium} socialsAria={ui.socialsAria} />
 
       <main id="main">
       <section className="hero" id="top">
@@ -429,7 +437,7 @@ export default function Home() {
             <h2>{site.work.title}</h2>
             <p>{site.work.subtitle}</p>
           </div>
-          <div className="view-toggle" role="group" aria-label="Cambiar vista de proyectos">
+          <div className="view-toggle" role="group" aria-label={ui.viewToggleAria}>
             <button type="button" aria-pressed={view === "grid"} onClick={() => setView("grid")}>
               Grid
             </button>
@@ -446,7 +454,7 @@ export default function Home() {
                 to={`/projects/${project.slug}`}
                 className={view === "timeline" ? `project tl-card ${fromSide}` : "project reveal"}
                 key={project.slug}
-                aria-label={`Ver proyecto ${project.title}`}
+                aria-label={ui.viewProject(project.title)}
                 style={
                   view === "grid"
                     ? {
@@ -488,7 +496,7 @@ export default function Home() {
         <div className="about-grid">
           <p className="about-lead" style={{ whiteSpace: "pre-line" }}>{site.about.lead}</p>
           <div className="about-side">
-            <div className="portrait" aria-label="Espacio para tu fotografía">
+            <div className="portrait" aria-label={ui.portraitAria}>
               {site.about.portraitSrc ? (
                 <img src={site.about.portraitSrc} alt="Sara" />
               ) : (

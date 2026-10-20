@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { getProject } from "../content/projects";
-import { site } from "../content/site";
-
-const origin = site.url.replace(/\/$/, "");
+import { getSite } from "../content/site";
+import { useLocale } from "../i18n/LocaleContext";
+import { getUi } from "../i18n/ui";
 
 function setMeta(attr: "name" | "property", key: string, content: string) {
   const selector = `meta[${attr}="${key}"]`;
@@ -37,32 +37,38 @@ function setJsonLd(data: unknown) {
   el.textContent = JSON.stringify(data);
 }
 
-function personNode() {
-  return {
-    "@type": "Person",
-    "@id": `${origin}/#person`,
-    name: "Sara",
-    jobTitle: "Product Designer · Product Engineer",
-    email: `mailto:${site.links.emailAddress}`,
-    url: origin,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Madrid",
-      addressCountry: "ES",
-    },
-  };
-}
-
 /** Actualiza title, canonical, Open Graph, Twitter y JSON-LD en cada ruta */
 export default function DocumentMeta() {
   const { pathname } = useLocation();
+  const { locale } = useLocale();
+  const site = getSite(locale);
+  const ui = getUi(locale);
+  const origin = site.url.replace(/\/$/, "");
+
+  function personNode() {
+    return {
+      "@type": "Person",
+      "@id": `${origin}/#person`,
+      name: "Sara",
+      jobTitle: "Product Designer · Product Engineer",
+      email: `mailto:${site.links.emailAddress}`,
+      url: origin,
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Madrid",
+        addressCountry: "ES",
+      },
+    };
+  }
 
   useEffect(() => {
     const slugMatch = pathname.match(/^\/projects\/([^/]+)\/?$/);
     const slug = slugMatch?.[1];
-    const project = slug ? getProject(slug) : undefined;
+    const project = slug ? getProject(slug, locale) : undefined;
     const isHome = pathname === "/";
     const image = `${origin}${site.ogImage}`;
+    const inLanguage = locale === "en" ? "en" : "es";
+    const ogLocale = locale === "en" ? "en_US" : "es_ES";
 
     let title: string = site.title;
     let description: string = site.description;
@@ -76,7 +82,7 @@ export default function DocumentMeta() {
           name: "Sara — Portfolio",
           url: origin,
           description: site.description,
-          inLanguage: "es",
+          inLanguage,
           publisher: { "@id": origin + "/#person" },
         },
       ],
@@ -92,11 +98,11 @@ export default function DocumentMeta() {
         name: project.title,
         description: project.description,
         url: canonical,
-        inLanguage: "es",
+        inLanguage,
         author: personNode(),
       };
     } else if (slug && !project) {
-      title = "Proyecto no encontrado — Sara";
+      title = `${ui.missingTitle} — Sara`;
       description = site.description;
       canonical = `${origin}${pathname}`;
     }
@@ -105,7 +111,7 @@ export default function DocumentMeta() {
     setMeta("name", "description", description);
     setLink("canonical", canonical);
     setMeta("property", "og:type", isHome ? "website" : "article");
-    setMeta("property", "og:locale", "es_ES");
+    setMeta("property", "og:locale", ogLocale);
     setMeta("property", "og:site_name", "Sara — Portfolio");
     setMeta("property", "og:title", title);
     setMeta("property", "og:description", description);
@@ -116,7 +122,7 @@ export default function DocumentMeta() {
     setMeta("name", "twitter:description", description);
     setMeta("name", "twitter:image", image);
     setJsonLd(jsonLd);
-  }, [pathname]);
+  }, [pathname, locale, site, ui.missingTitle, origin]);
 
   return null;
 }

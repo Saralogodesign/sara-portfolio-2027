@@ -1,12 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocale } from "../i18n/LocaleContext";
 
 type Slice = { label: string; pct: number; color: string };
 
-const SLICES: Slice[] = [
-  { label: "No entrega en mi zona", pct: 55, color: "var(--strawberry)" },
-  { label: "Pedido mínimo excesivo", pct: 30, color: "var(--strawberry-400)" },
-  { label: "Información insuficiente", pct: 15, color: "var(--strawberry-200)" },
-];
+const SLICES_BY_LOCALE: Record<"es" | "en", Slice[]> = {
+  es: [
+    { label: "No entrega en mi zona", pct: 55, color: "var(--strawberry)" },
+    { label: "Pedido mínimo excesivo", pct: 30, color: "var(--strawberry-400)" },
+    { label: "Información insuficiente", pct: 15, color: "var(--strawberry-200)" },
+  ],
+  en: [
+    { label: "No delivery in my area", pct: 55, color: "var(--strawberry)" },
+    { label: "Excessive minimum order", pct: 30, color: "var(--strawberry-400)" },
+    { label: "Insufficient information", pct: 15, color: "var(--strawberry-200)" },
+  ],
+};
 
 type Mode = "pie" | "columns" | "bars";
 
@@ -28,9 +36,9 @@ function piePath(cx: number, cy: number, r: number, start: number, end: number) 
   return `M ${cx} ${cy} L ${a.x} ${a.y} A ${r} ${r} 0 ${large} 0 ${b.x} ${b.y} Z`;
 }
 
-function PieChart({ active }: { active: boolean }) {
+function PieChart({ active, slices }: { active: boolean; slices: Slice[] }) {
   let angle = 0;
-  const arcs = SLICES.map((slice) => {
+  const arcs = slices.map((slice) => {
     const start = angle;
     const end = angle + slice.pct * 3.6;
     angle = end;
@@ -50,7 +58,7 @@ function PieChart({ active }: { active: boolean }) {
         ))}
       </svg>
       <ul className="pm-reel-legend">
-        {SLICES.map((slice) => (
+        {slices.map((slice) => (
           <li key={slice.label}>
             <i style={{ background: slice.color }} aria-hidden="true" />
             <span>{slice.label}</span>
@@ -62,11 +70,11 @@ function PieChart({ active }: { active: boolean }) {
   );
 }
 
-function ColumnsChart({ active }: { active: boolean }) {
+function ColumnsChart({ active, slices }: { active: boolean; slices: Slice[] }) {
   return (
     <div className={`pm-reel-stage pm-reel-columns${active ? " is-active" : ""}`}>
       <div className="pm-reel-columns-chart" aria-hidden="true">
-        {SLICES.map((slice, i) => (
+        {slices.map((slice, i) => (
           <div key={slice.label} className="pm-reel-col" style={{ ["--pm-i" as string]: i }}>
             <strong>{slice.pct}%</strong>
             <div className="pm-reel-col-track">
@@ -80,11 +88,11 @@ function ColumnsChart({ active }: { active: boolean }) {
   );
 }
 
-function BarsChart({ active }: { active: boolean }) {
+function BarsChart({ active, slices }: { active: boolean; slices: Slice[] }) {
   return (
     <div className={`pm-reel-stage pm-reel-bars${active ? " is-active" : ""}`}>
       <ul>
-        {SLICES.map((slice, i) => (
+        {slices.map((slice, i) => (
           <li key={slice.label} style={{ ["--pm-i" as string]: i }}>
             <div className="pm-reel-bars-meta">
               <span>{slice.label}</span>
@@ -107,6 +115,27 @@ type Props = {
 
 /** Reel formativo: quesito → columnas → barras con los datos de encuesta HORECA. */
 export default function ProductosSurveyReel({ compact = false }: Props) {
+  const { locale } = useLocale();
+  const slices = useMemo(() => SLICES_BY_LOCALE[locale], [locale]);
+  const copy = useMemo(
+    () =>
+      locale === "en"
+        ? {
+            aria: "Educational animation of HORECA survey results: offer rejection. 55% no delivery in area, 30% excessive minimum order, 15% insufficient information. Shown as pie, columns, and bars.",
+            question: "What would make you reject an offer first?",
+            pie: "Pie",
+            columns: "Columns",
+            bars: "Bars",
+          }
+        : {
+            aria: "Animación formativa de resultados de encuesta HORECA: descarte de oferta. 55% no entrega en zona, 30% pedido mínimo excesivo, 15% información insuficiente. Se muestran en quesito, columnas y barras.",
+            question: "¿Qué condición te haría descartar primero una oferta?",
+            pie: "Quesito",
+            columns: "Columnas",
+            bars: "Barras",
+          },
+    [locale],
+  );
   const [index, setIndex] = useState(0);
   const [reduced, setReduced] = useState(false);
   const mode = SEQUENCE[index]!.mode;
@@ -131,29 +160,27 @@ export default function ProductosSurveyReel({ compact = false }: Props) {
     <div
       className={`pm-reel${compact ? " is-compact" : ""}${reduced ? " is-reduced" : ""}`}
       role="img"
-      aria-label="Animación formativa de resultados de encuesta HORECA: descarte de oferta. 55% no entrega en zona, 30% pedido mínimo excesivo, 15% información insuficiente. Se muestran en quesito, columnas y barras."
+      aria-label={copy.aria}
     >
       <p className="pm-reel-kicker">HORECA · n = 40</p>
-      <h3 className="pm-reel-question">
-        ¿Qué condición te haría descartar primero una oferta?
-      </h3>
+      <h3 className="pm-reel-question">{copy.question}</h3>
       <p className="pm-reel-format" aria-live="polite">
         {reduced
-          ? "Barras"
+          ? copy.bars
           : mode === "pie"
-            ? "Quesito"
+            ? copy.pie
             : mode === "columns"
-              ? "Columnas"
-              : "Barras"}
+              ? copy.columns
+              : copy.bars}
       </p>
       <div className="pm-reel-stagewrap">
         {reduced ? (
-          <BarsChart active />
+          <BarsChart active slices={slices} />
         ) : (
           <>
-            <PieChart active={mode === "pie"} />
-            <ColumnsChart active={mode === "columns"} />
-            <BarsChart active={mode === "bars"} />
+            <PieChart active={mode === "pie"} slices={slices} />
+            <ColumnsChart active={mode === "columns"} slices={slices} />
+            <BarsChart active={mode === "bars"} slices={slices} />
           </>
         )}
       </div>

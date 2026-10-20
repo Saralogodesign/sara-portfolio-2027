@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
-import type { ReactNode } from "react";
-import { site } from "../content/site";
+import { useMemo, type ReactNode } from "react";
+import { getSite } from "../content/site";
+import LanguageToggle from "../i18n/LanguageToggle";
+import { useLocale } from "../i18n/LocaleContext";
+import { getUi } from "../i18n/ui";
 import EmailLink from "./EmailLink";
 import MoreProjectsCarousel from "./MoreProjectsCarousel";
 
@@ -11,17 +14,24 @@ type Props = {
 };
 
 export default function CaseLayout({ children, className = "", currentSlug }: Props) {
+  const { locale } = useLocale();
+  const site = useMemo(() => getSite(locale), [locale]);
+  const ui = useMemo(() => getUi(locale), [locale]);
+
   return (
     <div className={`case-page ${className}`.trim()}>
       <a className="skip-link" href="#case-main">
-        Saltar al contenido
+        {ui.skipToContent}
       </a>
       <header className="case-nav">
-        <Link className="brand" to="/" aria-label="Ir al inicio">
+        <Link className="brand" to="/" aria-label={ui.homeAria}>
           {site.brand}
           <span>.</span>
         </Link>
-        <Link to={site.caseFooter.backHref}>{site.caseFooter.backLabel}</Link>
+        <div className="case-nav-end">
+          <LanguageToggle />
+          <Link to={site.caseFooter.backHref}>{site.caseFooter.backLabel}</Link>
+        </div>
       </header>
 
       <main id="case-main">
@@ -30,7 +40,7 @@ export default function CaseLayout({ children, className = "", currentSlug }: Pr
       </main>
 
       <footer className="case-footer">
-        <div className="case-footer-socials" aria-label="Redes sociales">
+        <div className="case-footer-socials" aria-label={ui.socialsAria}>
           <a href={site.links.github} target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
